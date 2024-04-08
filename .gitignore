@@ -21,7 +21,6 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
-.vs/NFC/FileContentIndex
-.vs/NFC/v17
+.vs/NFC
 .vs/ProjectSettings.json
 .vs/slnx.sqlite
