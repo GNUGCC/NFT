@@ -24,3 +24,4 @@ pnpm-debug.log*
 .vs/NFC
 .vs/ProjectSettings.json
 .vs/slnx.sqlite
+.vs/VSWorkspaceState.json
