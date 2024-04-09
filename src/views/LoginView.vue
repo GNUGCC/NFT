@@ -1,27 +1,8 @@
 <script setup lang="ts">
-    //import {
-    //    Home,
-    //    Current,
-    //    CheckLogin,
-    //    Name,
-    //    Password,
-    //    Grade,
-    //    Login,
-    //    LoginOut,
-    //    InternalRegister as Register,
-    //    Form,
-    //    FormRef,
-    //    ValidateRules,
-    //} from '@/modules';
+   
 </script>
 
-<template>    
-    <!--<ul class="home">
-        <li :class="Current('Login')" @click="Login" v-if="CheckLogin == false">登入</li>
-        <li :class="Current('Home')" @click="Home">首頁</li>
-        <li @click="LoginOut" v-if="CheckLogin">登出</li>
-        <li @click="Register">註冊</li>
-    </ul>-->
+<template>
     <div class="container">
         <el-form ref="FormRef"
                  :model="Form"

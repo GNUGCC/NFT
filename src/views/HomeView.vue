@@ -1,18 +1,25 @@
 <script setup lang="ts">
-    //import { GetQuestion, CountGrade } from '@/modules';
+    import { useRouter } from 'vue-router';
+    const router = useRouter();
     const CheckLogin = false;
+    /* eslint-disable */
+    const Login = () => router.push({ path: '/login' });
+    /* eslint-disable */
+    const Register = () => { };
 </script>
 
 <template>
-    <h3 class="bg-primary text-center text-white p-2">
-        歡迎進入本系統
-    </h3>
-    <ul class="home">
-        <li class="current" @click="Login" v-if="CheckLogin == false">登入</li>
-        <li class="current" @click="Home">註冊</li>
-        <!--<li @click="LoginOut" v-if="CheckLogin">登出</li>
+    <div>
+        <h3 class="bg-primary text-center text-white p-2">
+            <div class="nft">NFT</div> 測試頁面
+        </h3>
+        <ul class="home">
+            <li class="current" @click="Login" v-if="CheckLogin == false">登入</li>
+            <li class="current" @click="Register">註冊</li>
+            <!--<li @click="LoginOut" v-if="CheckLogin">登出</li>
         <li @click="Register">註冊</li>-->
-    </ul>
+        </ul>
+    </div>    
 </template>
 
 <style lang="scss">
@@ -22,6 +29,10 @@
         -moz-osx-font-smoothing: grayscale;
         text-align: center;
         color: #2c3e50;
+    }
+
+    .nft {
+        font-weight: bolder;
     }
 
     .home {
