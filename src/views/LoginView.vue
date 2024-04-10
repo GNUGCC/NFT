@@ -6,8 +6,18 @@
     import { InternalLogin } from '@/api/account';
     import type { MemberType } from '@/model/member';
 
-    const ValideteName = (x, y, z) => {
-        console.log('ValideteName', x, y, z);
+    const ValideteName = (rule, value, callBack) => {
+        const { name } = LoginUser.value;
+        console.log('ValideteName', rule, value, callBack, name);
+        if (name == null || name.length < 1) callBack(new Error('請輸入您的使用者名稱'));
+        callBack();
+    };
+
+    const ValidetePassword = (rule, value, callBack) => {
+        const { password } = LoginUser.value;
+        console.log('ValideteName', rule, value, callBack, password);
+        if (password == null || password.length < 1) callBack(new Error('請輸入您的密碼'));
+        callBack();
     };
 
     const store = useStore();
@@ -16,7 +26,7 @@
     const ValidateRules = reactive<FormRules<MemberType>>({
         //name: [{ required: true, message: '請輸入您的使用者名稱', trigger: 'blur' }],
         name: [{ validator: ValideteName, trigger: 'blur' }],
-        password: [{ required: true, message: '請輸入您的密碼', trigger: 'blur' }]
+        password: [{ validator: ValidetePassword, trigger: 'blur' }]
     });
 
     const router = useRouter();
