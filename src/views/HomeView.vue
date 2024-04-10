@@ -16,13 +16,13 @@
     <div>
         <h3 class="bg-primary text-center text-white p-2">
             <div class="nft">NFT</div>
-            <span v-if="CheckLogin == true">登入頁面</span>
+            <span v-if="CheckLogin == true">會員登入頁面</span>
             <h1 v-if="CheckLogin == false">登入者：{{Member.name}}</h1>
         </h3>
         <ul class="home">
             <li class="current" @click="Login" v-if="CheckLogin == true">登入</li>
             <li class="current" @click="LoginOut" v-if="CheckLogin == false">登出</li>
-            <li class="current" @click="Register" v-if="CheckLogin == true">註冊</li>
+            <!--<li class="current" @click="Register" v-if="CheckLogin == true">註冊</li>-->
         </ul>
     </div>
 </template>    

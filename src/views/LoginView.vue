@@ -24,7 +24,6 @@
     const formRef = ref<FormInstance>();
     const Form = reactive<MemberType>({});    
     const ValidateRules = reactive<FormRules<MemberType>>({
-        //name: [{ required: true, message: '請輸入您的使用者名稱', trigger: 'blur' }],
         name: [{ validator: ValideteName, trigger: 'blur' }],
         password: [{ validator: ValidetePassword, trigger: 'blur' }]
     });
@@ -34,22 +33,28 @@
     const LoginUser = computed(() => FormField);
     const Home = () => router.push({ path: '/' });
     const Login = () => {
-        InternalLogin(FormField.name, FormField.password)
-            .then(x => {
-                console.log('使用者登入: ', LoginUser.value, x);
-                store.dispatch('Member', {
-                    name: FormField.name,
-                    password: FormField.password,
-                    data: x
-                }).then(() => Home());
-            })
-            .catch(err => {
-                console.log('登入錯誤: ', err);
-            });
+        formRef.value?.validate(valid => {
+            if (valid == false) return;
+            InternalLogin(FormField.name, FormField.password)
+                .then(x => {
+                    console.log('使用者登入: ', LoginUser.value, x);
+                    store.dispatch('Member', {
+                        name: FormField.name,
+                        password: FormField.password,
+                        data: x
+                    }).then(() => Home());
+                })
+                .catch(err => {
+                    console.log('登入錯誤: ', err);
+                });
+        });
     };
 </script>
 
 <template>
+    <h3 class="bg-primary text-center text-white p-2">
+        <span class="nft">NFT</span>
+    </h3>
     <div class="container">
         <el-form ref="formRef"
                  :model="Form"
