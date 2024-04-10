@@ -1,23 +1,39 @@
 <script setup lang="ts">
     import { computed, ref, reactive } from 'vue';
-    import { FormRules } from 'element-plus'
+    import { useRouter } from 'vue-router';
+    import { FormInstance, FormRules } from 'element-plus'
+    import axios from 'axios';
 
     type FormType = {
         name?: string,
-        password?: string,
-        grade?: number
+        password?: string
     };
-    
-    const Name = ref('');
-    const Password = ref('');
-    const LoginUser = computed(()=> `${Name.value}:${Password.value}`);
-    const Login = () => console.log(LoginUser.value);
 
     const Form = reactive<FormType>({});
+    const FormRef = ref<FormInstance>();
     const ValidateRules = reactive<FormRules<FormType>>({
         name: [{ required: true, message: '請輸入您的使用者名稱', trigger: 'blur' }],
         password: [{ required: true, message: '請輸入您的密碼', trigger: 'blur' }]
     });
+
+    const router = useRouter();
+    const Name = ref('');
+    const Password = ref('');
+    const LoginUser = computed(()=> `${Name.value}:${Password.value}`);    
+    const Home = () => router.push({ path: '/' });
+    const Login = () => {
+        axios.post('api/login', {
+            name: Name.value,
+            password: Password.value
+        })
+            .then(x => {
+                console.log('Login: ', LoginUser.value, x);
+                Home();
+            })
+            .catch(err => {
+                console.log('api not found ', err);
+            });
+    };
 </script>
 
 <template>
@@ -36,9 +52,10 @@
                 <label class="form-label">密碼</label>
                 <el-input v-model="Password" placeholder="您的密碼" data-password></el-input>
             </el-form-item>
-            <el-form-item>
-                <el-button type="primary" class="el-button-block" @click="Login">登錄</el-button>
-            </el-form-item>
+            <ul class="home">
+                <li class="current" @click="Login">登錄</li>
+                <li class="current" @click="Home">回主頁</li>
+            </ul>
         </el-form>
     </div>
 </template>
