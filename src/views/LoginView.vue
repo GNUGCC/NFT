@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import { computed, ref, reactive } from 'vue';
+    import { useStore } from 'vuex';
     import { useRouter } from 'vue-router';
     import { FormInstance, FormRules } from 'element-plus'
     import axios from 'axios';
@@ -9,6 +10,7 @@
         password?: string
     };
 
+    const store = useStore();
     const Form = reactive<FormType>({});
     const FormRef = ref<FormInstance>();
     const ValidateRules = reactive<FormRules<FormType>>({
@@ -16,6 +18,7 @@
         password: [{ required: true, message: '請輸入您的密碼', trigger: 'blur' }]
     });
 
+    console.log('store', store);
     const router = useRouter();
     const Name = ref('');
     const Password = ref('');
@@ -28,10 +31,11 @@
         })
             .then(x => {
                 console.log('Login: ', LoginUser.value, x);
-                Home();
+                //store.dispatch('User', x).then(() => Home());
             })
             .catch(err => {
                 console.log('api not found ', err);
+                store.dispatch('User', { id: 'test', name: Name.value}).then(() => Home());
             });
     };
 </script>

@@ -5,6 +5,7 @@ import * as bootstrap from 'bootstrap';
 import 'element-plus/dist/index.css';
 import 'bootstrap/dist/css/bootstrap.css'
 
+import store from '@/store';
 import router from "./router";
 import App from "./App.vue";
 //import svg from '@/components/svgIcon/_index.vue';
@@ -18,7 +19,7 @@ const app = createApp(App);
 
 //app.component('svg-icon', svg);
 app
-    //.use(useStore())    
+    .use(store)
     .use(router)
     .use(ElementPlus)
     .use(bootstrap)

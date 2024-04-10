@@ -1,12 +1,14 @@
 import { createStore } from "vuex";
 
+type UserType = {
+    id: string,
+    name: string,
+    token: string
+};
+
 export default createStore({
     state: {
-        User: {
-            id: '',
-            name: '',
-            token: ''
-        }
+        User: <UserType | null>(null)
     },
     getters: {
         'User': state => state.User

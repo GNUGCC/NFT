@@ -1,23 +1,27 @@
 <script setup lang="ts">
+    import { computed } from 'vue';
     import { useRouter } from 'vue-router';
+    import { useStore } from 'vuex';
+
+    const store = useStore();
     const router = useRouter();
-    const CheckLogin = false;
-    /* eslint-disable */
     const Login = () => router.push({ path: '/login' });
-    /* eslint-disable */
-    const Register = () => { };
+    const CheckLogin = computed(() => store.getters.User == null);
+    const LoginOut = () => store.dispatch('User', null);
+    //const Register = () => { };
 </script>
 
 <template>
-    <div class="wrapper">
+    <div>
         <h3 class="bg-primary text-center text-white p-2">
-            <div class="nft">NFT</div> 測試頁面
+            <div class="nft">NFT</div>
+            測試頁面
+            <h1 v-if="CheckLogin == false">登入者：{{store.getters.User.name}}</h1>
         </h3>
         <ul class="home">
-            <li class="current" @click="Login" v-if="CheckLogin == false">登入</li>
-            <li class="current" @click="Register">註冊</li>
-            <!--<li @click="LoginOut" v-if="CheckLogin">登出</li>
-            <li @click="Register">註冊</li>-->
+            <li class="current" @click="Login" v-if="CheckLogin == true">登入</li>
+            <li class="current" @click="LoginOut" v-if="CheckLogin == false">登出</li>
+            <li class="current" @click="Register" v-if="CheckLogin == true">註冊</li>
         </ul>
     </div>
 </template>    
