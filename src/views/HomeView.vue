@@ -9,7 +9,7 @@
 </script>
 
 <template>
-    <div>
+    <div class="wrapper">
         <h3 class="bg-primary text-center text-white p-2">
             <div class="nft">NFT</div> 測試頁面
         </h3>
@@ -17,10 +17,10 @@
             <li class="current" @click="Login" v-if="CheckLogin == false">登入</li>
             <li class="current" @click="Register">註冊</li>
             <!--<li @click="LoginOut" v-if="CheckLogin">登出</li>
-        <li @click="Register">註冊</li>-->
+            <li @click="Register">註冊</li>-->
         </ul>
-    </div>    
-</template>
+    </div>
+</template>    
 
 <style lang="scss">
     #app {
