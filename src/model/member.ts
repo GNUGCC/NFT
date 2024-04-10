@@ -3,6 +3,7 @@ type MemberType = {
     account?: string,
     name?: string,
     password?: string,
+    passwords?: string,
     mobile?: string,
     email?: string,
     build_time?: string,
