@@ -6,8 +6,9 @@
     const store = useStore();
     const router = useRouter();
     const Login = () => router.push({ path: '/login' });
-    const CheckLogin = computed(() => store.getters.User == null);
-    const LoginOut = () => store.dispatch('User', null);
+    const Member = computed(() => store.getters.Member);
+    const CheckLogin = computed(() => Member.value == null);
+    const LoginOut = () => store.dispatch('Member', null);
     //const Register = () => { };
 </script>
 
@@ -15,8 +16,8 @@
     <div>
         <h3 class="bg-primary text-center text-white p-2">
             <div class="nft">NFT</div>
-            測試頁面
-            <h1 v-if="CheckLogin == false">登入者：{{store.getters.User.name}}</h1>
+            <span v-if="CheckLogin == true">登入頁面</span>
+            <h1 v-if="CheckLogin == false">登入者：{{Member.name}}</h1>
         </h3>
         <ul class="home">
             <li class="current" @click="Login" v-if="CheckLogin == true">登入</li>

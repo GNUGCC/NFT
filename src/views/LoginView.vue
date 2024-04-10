@@ -2,47 +2,46 @@
     import { computed, ref, reactive } from 'vue';
     import { useStore } from 'vuex';
     import { useRouter } from 'vue-router';
-    import { FormInstance, FormRules } from 'element-plus'
-    import axios from 'axios';
+    import { FormInstance, FormRules } from 'element-plus';
+    import { InternalLogin } from '@/api/account';
+    import type { MemberType } from '@/model/member';
 
-    type FormType = {
-        name?: string,
-        password?: string
+    const ValideteName = (x, y, z) => {
+        console.log('ValideteName', x, y, z);
     };
 
     const store = useStore();
-    const Form = reactive<FormType>({});
-    const FormRef = ref<FormInstance>();
-    const ValidateRules = reactive<FormRules<FormType>>({
-        name: [{ required: true, message: '請輸入您的使用者名稱', trigger: 'blur' }],
+    const formRef = ref<FormInstance>();
+    const Form = reactive<MemberType>({});    
+    const ValidateRules = reactive<FormRules<MemberType>>({
+        //name: [{ required: true, message: '請輸入您的使用者名稱', trigger: 'blur' }],
+        name: [{ validator: ValideteName, trigger: 'blur' }],
         password: [{ required: true, message: '請輸入您的密碼', trigger: 'blur' }]
     });
 
-    console.log('store', store);
     const router = useRouter();
-    const Name = ref('');
-    const Password = ref('');
-    const LoginUser = computed(()=> `${Name.value}:${Password.value}`);    
+    const FormField = reactive<MemberType>({});
+    const LoginUser = computed(() => FormField);
     const Home = () => router.push({ path: '/' });
     const Login = () => {
-        axios.post('api/login', {
-            name: Name.value,
-            password: Password.value
-        })
+        InternalLogin(FormField.name, FormField.password)
             .then(x => {
-                console.log('Login: ', LoginUser.value, x);
-                //store.dispatch('User', x).then(() => Home());
+                console.log('使用者登入: ', LoginUser.value, x);
+                store.dispatch('Member', {
+                    name: FormField.name,
+                    password: FormField.password,
+                    data: x
+                }).then(() => Home());
             })
             .catch(err => {
-                console.log('api not found ', err);
-                store.dispatch('User', { id: 'test', name: Name.value}).then(() => Home());
+                console.log('登入錯誤: ', err);
             });
     };
 </script>
 
 <template>
     <div class="container">
-        <el-form ref="FormRef"
+        <el-form ref="formRef"
                  :model="Form"
                  :rules="ValidateRules"
                  status-icon
@@ -50,11 +49,11 @@
             <el-form-item prop="name">
                 <label v-bind="{class : 'form-label'}">使用者名稱</label>
                 <label :class="{'form-label': true}">您的使用者名稱</label>
-                <el-input v-model="Name" placeholder="您的使用者名稱" data-username></el-input>
+                <el-input v-model="FormField.name" placeholder="您的使用者名稱" data-username></el-input>
             </el-form-item>
             <el-form-item prop="password">
                 <label class="form-label">密碼</label>
-                <el-input v-model="Password" placeholder="您的密碼" data-password></el-input>
+                <el-input v-model="FormField.password" placeholder="您的密碼" data-password></el-input>
             </el-form-item>
             <ul class="home">
                 <li class="current" @click="Login">登錄</li>

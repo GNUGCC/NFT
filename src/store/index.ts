@@ -1,23 +1,46 @@
 import { createStore } from "vuex";
+import type { MemberType } from '@/model/member';
 
-type UserType = {
-    id: string,
-    name: string,
-    token: string
-};
+function PerformanceMember(data) {
+    if (data == null) return null;
+    const result = <MemberType>{
+        id: '',
+        account: '',
+        name: data?.name,
+        password: data?.password,
+        mobile: '',
+        email: '',
+        build_time: '',
+        parent: -1,
+        token: data?.message
+    };
+
+    console.log('PerformanceMember: ', data, result);
+    return <MemberType>{
+        id: '',
+        account: '',
+        name: data?.name,
+        password: data?.password,
+        mobile: '',
+        email: '',
+        build_time: '',
+        parent: -1,
+        token: data?.message
+    };
+}
 
 export default createStore({
     state: {
-        User: <UserType | null>(null)
+        Member: <MemberType | null>(null)
     },
     getters: {
-        'User': state => state.User
+        Member: state => state.Member
     },
     mutations: {
-        'User': (state, value) => state.User = value
+        Member: (state, value) => state.Member = PerformanceMember(value)
     },
     actions: {
-        'User': ({ commit }, value) => commit('User', value)
+        Member: ({ commit }, value) => commit('Member', value)
     }
     //modules: {},
 });
