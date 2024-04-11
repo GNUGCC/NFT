@@ -25,6 +25,16 @@ describe("測試 Store", () => {
             expect(getters.Member(state))
                 .toEqual(state.Member);
         });  
+
+        it('Members', () => {
+            const state = {
+                Members: [PerformanceMember({ id: '1' })!, PerformanceMember({ id: '2' })!]
+            };
+
+            getters.Members(state)
+            expect(state.Members)
+                .toEqual(state.Members);
+        });
     });
 
     describe('Mutations...', () => {
@@ -35,6 +45,6 @@ describe("測試 Store", () => {
             mutations.Member(state, member);
             expect(state.Member)
                 .toEqual(member);
-        });
+        });       
     });
 });
