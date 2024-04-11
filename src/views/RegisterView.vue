@@ -27,6 +27,20 @@
         callBack();
     };
 
+    const ValideteEMail = (rule, value, callBack) => {
+        const { email } = LoginUser.value;
+        console.log('ValideteEMail', rule, value, callBack, email);
+        if (email == null || email.length < 1) callBack(new Error('請輸入您的電子郵件信箱'));
+        callBack();
+    };
+
+    const ValideteMobile = (rule, value, callBack) => {
+        const { mobile } = LoginUser.value;
+        console.log('ValideteMobile', rule, value, callBack, mobile);
+        if (mobile == null || mobile.length < 1) callBack(new Error('請輸入您的電話號碼'));
+        callBack();
+    };
+
     const store = useStore();
     const formRef = ref<FormInstance>();
     const Form = reactive<MemberType>({});
@@ -34,6 +48,8 @@
         name: [{ validator: ValideteName, trigger: 'blur' }],
         password: [{ validator: ValidetePassword, trigger: 'blur' }],
         passwords: [{ validator: ValidetePasswords, trigger: 'blur' }],
+        email: [{ validator: ValideteEMail, trigger: 'blur' }],
+        mobile: [{ validator: ValideteMobile, trigger: 'blur' }],
     });
 
     const router = useRouter();
@@ -77,17 +93,24 @@
                  label-width="1">
             <el-form-item prop="name">
                 <label v-bind="{class : 'form-label'}">新使用者名稱</label>
-                <label :class="{'form-label': true}">您的新的使用者名稱</label>
                 <el-input v-model="FormField.name" placeholder="您的新使用者名稱" />
             </el-form-item>
             <el-form-item prop="password">
                 <label class="form-label">密碼</label>
-                <el-input v-model="FormField.password" placeholder="您的密碼" />
+                <el-input v-model="FormField.password" type="password" autocomplete="off" placeholder="您的密碼" />
             </el-form-item>
             <el-form-item prop="passwords">
                 <label class="form-label">確認密碼</label>
-                <el-input v-model="FormField.passwords" placeholder="請再次輸入您的密碼" />
+                <el-input v-model="FormField.passwords" type="password" autocomplete="off" placeholder="請再次輸入您的密碼" />
             </el-form-item>
+            <el-form-item prop="mobile">
+                <label v-bind="{class : 'form-label'}">電話號碼</label>
+                <el-input v-model="FormField.name" placeholder="您的電話號碼" />
+            </el-form-item>
+            <el-form-item prop="email">
+                <label v-bind="{class : 'form-label'}">電子郵件信箱</label>
+                <el-input v-model="FormField.name" placeholder="您的電子郵件信箱" />
+            </el-form-item>            
             <el-form-item>
                 <el-button type="primary" class="el-button-block" @click="Register">註冊</el-button>
             </el-form-item>
