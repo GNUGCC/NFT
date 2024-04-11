@@ -1,4 +1,4 @@
-type MemberType = {
+export type MemberType = {
     id?: string,
     account?: string,
     name?: string,
@@ -8,8 +8,4 @@ type MemberType = {
     build_time?: string,
     parent?: number,
     token?: string
-};
-
-export {
-    MemberType
 };
