@@ -14,31 +14,31 @@ const Member = (state, value) => state.Member = PerformanceMember(value);
  * @param data
  * @returns
  */
-function PerformanceMember(data) {
+export function PerformanceMember(data) {
     if (data == null) return null;
     const result = <MemberType>{
-        id: '',
-        account: '',
+        id: data?.id,
+        account: data?.account,
         name: data?.name,
         password: data?.password,
-        mobile: '',
-        email: '',
-        build_time: '',
-        parent: -1,
-        token: data?.message
+        mobile: data?.mobile,
+        email: data?.email,
+        build_time: data?.build_time,
+        parent: data?.parent,
+        token: data?.token
     };
 
     console.log('PerformanceMember: ', data, result);
     return <MemberType>{
-        id: '',
-        account: '',
+        id: data?.id,
+        account: data?.account,
         name: data?.name,
         password: data?.password,
-        mobile: '',
-        email: '',
-        build_time: '',
-        parent: -1,
-        token: data?.message
+        mobile: data?.mobile,
+        email: data?.email,
+        build_time: data?.build_time,
+        parent: data?.parent,
+        token: data?.token
     };
 }
 
@@ -47,8 +47,9 @@ function PerformanceMember(data) {
  * @param data
  * @param members
  */
-function AddMember(data: MemberType, members: MemberType[]) {
-    QueryMember(data.id!, members) && members.push(data);
+export function AddMember(data: MemberType, members: MemberType[]) {
+    if (data?.id == undefined) return members.push(data) > 0;
+     return QueryMember(data.id, members) == false && members.push(data) > 0;
 }
 
 /**
@@ -57,7 +58,7 @@ function AddMember(data: MemberType, members: MemberType[]) {
  * @param members
  * @returns
  */
-function UpdateMember(data: MemberType, members: MemberType[]) {
+export function UpdateMember(data: MemberType, members: MemberType[]) {
     const member = QueryMember(data.id!, members);
     member && members.splice(member.index, 1, data);
     return members;
@@ -69,7 +70,7 @@ function UpdateMember(data: MemberType, members: MemberType[]) {
  * @param members
  * @returns
  */
-function DeleteMember(id: string, members: MemberType[]) {
+export function DeleteMember(id: string, members: MemberType[]) {
     const member = QueryMember(id, members);
     return member && members.splice(member.index, 1);
 }
