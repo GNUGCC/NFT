@@ -9,7 +9,7 @@
     const Member = computed(() => store.getters.Member);
     const CheckLogin = computed(() => Member.value == null);
     const LoginOut = () => store.dispatch('Member', null);
-    //const Register = () => { };
+    const Register = () => { router.push({path: '/register'}) };
 </script>
 
 <template>
@@ -22,7 +22,7 @@
         <ul class="home">
             <li class="current" @click="Login" v-if="CheckLogin == true">登入</li>
             <li class="current" @click="LoginOut" v-if="CheckLogin == false">登出</li>
-            <!--<li class="current" @click="Register" v-if="CheckLogin == true">註冊</li>-->
+            <li class="current" @click="Register" v-if="CheckLogin == true">註冊</li>
         </ul>
     </div>
 </template>    

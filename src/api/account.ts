@@ -6,3 +6,10 @@ export function InternalLogin(name, password) {
         password
     });
 }
+
+export function InternalRegister(name, password) {
+    return service.post('register', {
+        name,
+        password
+    });
+}
