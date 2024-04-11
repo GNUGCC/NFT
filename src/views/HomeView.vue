@@ -68,14 +68,14 @@
                      :model="Form"
                      :rules="ValidateRules"
                      status-icon
-                     label-width="1">
+                     label-width="auto">
                 <el-form-item prop="name">
                     <label v-bind="{class : 'form-label'}">使用者名稱</label>
-                    <el-input v-model="FormField.name" placeholder="您的使用者名稱" data-username></el-input>
+                    <el-input v-model="FormField.name" placeholder="您的使用者名稱" clearable data-username></el-input>
                 </el-form-item>
                 <el-form-item prop="password">
                     <label class="form-label">密碼</label>
-                    <el-input v-model="FormField.password" type="password" autocomplete="off" placeholder="您的密碼" data-password></el-input>
+                    <el-input v-model="FormField.password" type="password" autocomplete="off" placeholder="您的密碼" clearable data-password></el-input>
                 </el-form-item>
             </el-form>
         </template>
