@@ -16,29 +16,18 @@ const Member = (state, value) => state.Member = PerformanceMember(value);
  */
 export function PerformanceMember(data) {
     if (data == null) return null;
-    const result = <MemberType>{
-        id: data?.id,
-        account: data?.account,
-        name: data?.name,
-        password: data?.password,
-        mobile: data?.mobile,
-        email: data?.email,
-        build_time: data?.build_time,
-        parent: data?.parent,
-        token: data?.token
-    };
 
-    console.log('PerformanceMember: ', data, result);
+    const { id, account, name, password, mobile, email, build_time, parent, token } = data;
     return <MemberType>{
-        id: data?.id,
-        account: data?.account,
-        name: data?.name,
-        password: data?.password,
-        mobile: data?.mobile,
-        email: data?.email,
-        build_time: data?.build_time,
-        parent: data?.parent,
-        token: data?.token
+        id,
+        account,
+        name,
+        password,
+        mobile,
+        email,
+        build_time,
+        parent,
+        token
     };
 }
 
@@ -49,7 +38,7 @@ export function PerformanceMember(data) {
  */
 export function AddMember(data: MemberType, members: MemberType[]) {
     if (data?.id == undefined) return members.push(data) > 0;
-     return QueryMember(data.id, members) == false && members.push(data) > 0;
+    return QueryMember(data.id, members) == false && members.push(data) > 0;
 }
 
 /**
