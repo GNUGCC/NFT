@@ -66,29 +66,63 @@ describe('測試會員資料相關功能', () => {
         });
     })
 
-    const buffers = [];
-    const a = AddMember(PerformanceMember({})!, buffers);
-    const asize = buffers.length;
+    describe('AddMember', () => {
+        const buffers = [];
+        const a = AddMember(PerformanceMember({})!, buffers);
+        const asize = buffers.length;
 
-    it("測試 AddMember(PerformanceMember({}), [])", () => {
-        expect(a)
-            .toBe(true);
+        it("測試 AddMember(PerformanceMember({}), [])", () => {
+            expect(a)
+                .toBe(true);
+        });
+
+        it("測試加入後資料數量...", () => {
+            expect(asize)
+                .toBe(1);
+        });
+
+        const b = AddMember(PerformanceMember({ name: 'test' })!, buffers);
+        const bsize = buffers.length;
+        it("測試 AddMember(PerformanceMember({name: 'test'}), [])", () => {
+            expect(b)
+                .toBe(true);
+        });
+
+        it("測試加入後資料數量...", () => {
+            expect(bsize)
+                .toBe(2);
+        });
     });
 
-    it("測試加入後資料數量...", () => {
-        expect(asize)
-            .toBe(1);
-    });
+    describe('UpdateMember', () => {
+        const members = [PerformanceMember({ id: '1' })!, PerformanceMember({ id: '2' })!];
+        const update = members[0];
 
-    const b = AddMember(PerformanceMember({ name: 'test' })!, buffers);
-    const bsize = buffers.length;
-    it("測試 AddMember(PerformanceMember({name: 'test'}), [])", () => {
-        expect(b)
-            .toBe(true);
-    });
+        it('測試更新前...', () => {            
+            expect(update.mobile)
+                .toBeUndefined();            
+        });
 
-    it("測試加入後資料數量...", () => {
-        expect(bsize)
-            .toBe(2);
+        it('測試更新後...', () => {
+            update.mobile = '12345';
+            const updated = UpdateMember(update, members);
+            expect(updated[0].mobile)
+                .toBe('12345');
+        });
+    })
+
+    describe('DeleteMember', () => {
+        const members = [PerformanceMember({ id: '1' })!, PerformanceMember({ id: '2' })!];
+        it('測試刪除 id:1 前...', () => {
+            expect(members)
+                .toHaveLength(2);
+        });
+
+
+        it('測試刪除 id:1 後...', () => {
+            expect(DeleteMember('1', members))
+                .toHaveLength(1);
+        });
+
     });
 });
