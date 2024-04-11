@@ -13,17 +13,27 @@
 </script>
 
 <template>
-    <div>
-        <h3 class="bg-primary text-center text-white p-2">
-            <div class="nft">NFT</div>
-            <span v-if="CheckLogin == true">會員登入頁面</span>
-            <h1 v-if="CheckLogin == false">登入者：{{Member.name}}</h1>
-        </h3>
-        <ul class="home">
-            <li class="current" @click="Login" v-if="CheckLogin == true">登入</li>
-            <li class="current" @click="LoginOut" v-if="CheckLogin == false">登出</li>
-            <li class="current" @click="Register" v-if="CheckLogin == true">註冊</li>
-        </ul>
+    <h3 class="bg-primary text-center text-white p-2">
+        <div class="nft">NFT</div>
+        <span v-if="CheckLogin == true">登入頁面</span>
+        <h1 v-if="CheckLogin == false">登入者：{{Member.name}}</h1>
+    </h3>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-outline-primary" @click="Login" v-if="CheckLogin == true">登入</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-outline-secondary" @click="LoginOut" v-if="CheckLogin == false">登出</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-outline-success" @click="Register" v-if="CheckLogin == true">註冊</button>
+            </div>
+        </div>
     </div>
 </template>    
 
@@ -56,6 +66,15 @@
                 background-color: rgba(0, 0, 0, .1);
             }
         }
+    }
+
+    button {
+        width: 25%;
+        margin: 5px;
+    }
+
+    .container {
+        margin-top: 20%;
     }
 
     .form-label {
