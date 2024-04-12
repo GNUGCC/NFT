@@ -1,5 +1,4 @@
-import { QueryMember } from './getters';
-import type { MemberType } from '@/model/member';
+import { AddMember, PerformanceMember } from './common';
 
 /**
  * 
@@ -7,63 +6,20 @@ import type { MemberType } from '@/model/member';
  * @param value
  * @returns
  */
-const Member = (state, value) => state.Member = PerformanceMember(value);
+const Member = (state, value) => {
+    const member = PerformanceMember(value)!;
+    state.Member = AddMember(member, state.Members) ? member : state.Member;
+}
 
 /**
  * 
- * @param data
+ * @param state
+ * @param value
  * @returns
  */
-export function PerformanceMember(data) {
-    if (data == null) return null;
-
-    const { id, account, name, password, mobile, email, build_time, parent, token } = data;
-    return <MemberType>{
-        id,
-        account,
-        name,
-        password,
-        mobile,
-        email,
-        build_time,
-        parent,
-        token
-    };
-}
-
-/**
- * 
- * @param data
- * @param members
- */
-export function AddMember(data: MemberType, members: MemberType[]) {
-    if (data?.id == undefined) return members.push(data) > 0;
-    return QueryMember(data.id, members) == false && members.push(data) > 0;
-}
-
-/**
- * 
- * @param data
- * @param members
- * @returns
- */
-export function UpdateMember(data: MemberType, members: MemberType[]) {
-    const member = QueryMember(data.id!, members);
-    member && members.splice(member.index, 1, data);
-    return members;
-}
-
-/**
- * 
- * @param id
- * @param members
- * @returns
- */
-export function DeleteMember(id: string, members: MemberType[]) {
-    const member = QueryMember(id, members);
-    return member && members.splice(member.index, 1);
-}
+const Members = (state, value) => state.Members = value;
 
 export default {
-    Member
+    Member,
+    Members
 }
