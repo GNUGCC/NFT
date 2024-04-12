@@ -5,8 +5,9 @@
     import { FormInstance, FormRules } from 'element-plus';
     import { InternalLogin } from '@/api/account';
     import type { MemberType } from '@/model/member';
-    
-    const CheckLogin = computed(() => Member == null);
+
+    const Member = computed(() => store.getters.Member);
+    const CheckLogin = computed(() => Member.value == null);
     const LoginOut = () => store.dispatch('Member', null);
 
     const ValideteName = (rule, value, callBack) => {
@@ -24,7 +25,6 @@
     };
 
     const store = useStore();
-    const Member = store.getters.Member;
     const formRef = ref<FormInstance>();
     const Form = reactive<MemberType>({});
     const ValidateRules = reactive<FormRules<MemberType>>({
@@ -61,7 +61,7 @@
     <h3 class="bg-primary text-center text-white p-2">
         <div class="nft">NFT</div>
         <span v-if="CheckLogin == true">登入頁面</span>
-        <h1 v-if="CheckLogin == false">登入者：{{Member}}</h1>
+        <h1 v-if="CheckLogin == false">登入者：{{Member.name}}</h1>
     </h3>
     <div class="container">
         <template v-if="CheckLogin == true">
