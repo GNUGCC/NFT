@@ -1,4 +1,4 @@
-import { PerformanceMember, DeleteMember } from '@/store/mutations';
+import { PerformanceMember, DeleteMember } from '@/store/common';
 
 export default function () {
     describe('DeleteMember', () => {

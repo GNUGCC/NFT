@@ -1,4 +1,4 @@
-import { PerformanceMember, UpdateMember } from '@/store/mutations';
+import { PerformanceMember, UpdateMember } from '@/store/common';
 
 export default function () {
     describe('UpdateMember', () => {

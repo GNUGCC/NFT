@@ -1,4 +1,4 @@
-import { PerformanceMember } from '@/store/mutations';
+import { PerformanceMember } from '@/store/common';
 
 describe('PerformanceMember', () => {
     it("測試空值...", () => {

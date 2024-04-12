@@ -1,5 +1,4 @@
-import { QueryMember } from '@/store/getters';
-import { PerformanceMember } from '@/store/mutations';
+import { PerformanceMember, QueryMember } from '@/store/common';
 
 export default function () {
     describe('QueryMember', () => {
