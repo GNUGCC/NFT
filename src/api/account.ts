@@ -8,8 +8,9 @@ export function InternalLogin(name, password) {
 }
 
 export function InternalRegister(name, password) {
-    return service.post('register', {
-        name,
-        password
-    });
+    return Promise.resolve({name, password});
+    //return service.post('register', {
+    //    name,
+    //    password
+    //});
 }
