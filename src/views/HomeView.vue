@@ -37,14 +37,16 @@
     const LoginUser = computed(() => FormField);
     const Home = () => router.push({ path: '/' });
     const Login = () => {
-        formRef.value?.validate(valid => {
+        formRef.value?.validate(valid => {            
             if (valid == false) return;
-            InternalLogin(FormField.name, FormField.password)
+
+            const { name, password } = FormField;
+            InternalLogin(name, password)
                 .then(x => {
                     console.log('使用者登入: ', LoginUser.value, x);
                     store.dispatch('Member', {
-                        name: FormField.name,
-                        password: FormField.password,
+                        name,
+                        password,
                         data: x
                     }).then(() => Home());
                 })
@@ -53,7 +55,6 @@
                 });
         });
     };
-    //const Register = () => { };
 </script>
 
 <template>
