@@ -7,7 +7,7 @@ import type { MemberType } from '@/model/member';
 export default createStore({
     state: {
         Member: <MemberType | null>(null),
-        Members: Array<MemberType>
+        Members: Array<MemberType>()
     },
     getters,
     mutations,
