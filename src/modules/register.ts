@@ -13,7 +13,7 @@ const Register = ctx => {
     FormRef.value?.validate(valid => {
         if (valid == false) return;
 
-        const { name, password, email, mobile } = Form;
+        const { name, password, email, mobile } = Form.value;
         InternalRegister({ name, password, email, mobile })
             .then(x => {
                 const { store } = ctx;

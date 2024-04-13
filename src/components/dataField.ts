@@ -24,7 +24,7 @@ type FieldEmitType = {
  * @returns
  */
 function NormalizeData(data) {
-    return PerformanceMember(data);
+    Form.value = PerformanceMember(data)!
 }
 
 /**

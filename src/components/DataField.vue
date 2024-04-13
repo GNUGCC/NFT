@@ -1,10 +1,10 @@
 <script setup lang="ts">
-    import { defineProps, defineEmits } from 'vue';    
+    import { defineProps, defineEmits, onMounted } from 'vue';
     import {
         Save,
         Cancel,       
         NormalizeData,        
-        //Form,
+        Form,
         FormRef,
         ValidateRules,
         type FieldType,
@@ -12,10 +12,10 @@
     } from './dataField';
 
     const props = defineProps<FieldType>();
-    const emits = defineEmits<FieldEmitType>();
-    const Form = NormalizeData(props.data);
+    const emits = defineEmits<FieldEmitType>();    
     const save = () => Save(emits);
     const cancel = () => Cancel(emits);
+    onMounted(() => NormalizeData(props.data));
 </script>
 
 <template>
