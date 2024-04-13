@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { defineProps, defineEmits, onMounted } from 'vue';
+    import { defineProps, defineEmits, onMounted, withDefaults } from 'vue';
     import {
         Save,
         Cancel,       
@@ -11,7 +11,10 @@
         type FieldEmitType
     } from './dataField';
 
-    const props = defineProps<FieldType>();
+    const props = withDefaults(defineProps<FieldType>(), {
+        fieldTitle: undefined,
+        data: {}
+    });
     const emits = defineEmits<FieldEmitType>();    
     const save = () => Save(emits);
     const cancel = () => Cancel(emits);
