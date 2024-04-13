@@ -1,12 +1,12 @@
 import { InternalRegister } from '@/api/account';
 import { Form, FormRef, Home } from './common';
 
-const Save = (x, y) => {
-    console.log('save: ', x, y);
+const Save = ({ instance, router, store }, x) => {
+    console.log('save: ', instance, router, store, x);
 }
 
-const Cancel = (x, y) => {
-    console.log('cancel: ', x, y);
+const Cancel = ({instance,router,store}, x) => {
+    console.log('cancel: ', instance, router, store, x);
 }
 
 const Register = ctx => {

@@ -14,8 +14,8 @@ type FieldType = {
  * 
  */
 type FieldEmitType = {
-    (event: 'save', result: boolean): void
-    (event: 'cancel', result: boolean): void
+    (event: 'save', { instance, router, store }, result: boolean): void
+    (event: 'cancel', { instance, router, store }, result: boolean): void
 }
 
 /**
@@ -31,16 +31,16 @@ function NormalizeData(data) {
  * 
  * @param emit
  */
-function Save(emit: FieldEmitType) {
-    FormRef.value?.validate(valid => emit('save', valid));
+function Save({ instance, router, store }, emit: FieldEmitType) {
+    FormRef.value?.validate(valid => emit('save', { instance, router, store }, valid));
 }
 
 /**
  * 
  * @param emit
  */
-function Cancel(emit: FieldEmitType) {
-    emit('cancel', false);
+function Cancel({ instance, router, store }, emit: FieldEmitType) {
+    emit('cancel', { instance, router, store }, false);
 }
 
 export {
