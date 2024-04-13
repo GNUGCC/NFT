@@ -1,17 +1,22 @@
 import service from '@/api/common';
 
-export function InternalLogin(name, password) {
-    return Promise.resolve({ name, password });
-    //return service.post('register', {
-    //    name,
-    //    password
-    //});
+/**
+ * 
+ * @param param0
+ * @returns
+ */
+export function InternalLogin({ name, password }) {
+    return service.post('login', {
+        name,
+        password
+    });
 }
 
-export function InternalRegister(name, password) {
-    return Promise.resolve({ name, password });
-    //return service.post('register', {
-    //    name,
-    //    password
-    //});
+/**
+ * 
+ * @param param0
+ * @returns
+ */
+export function InternalRegister({ name, password, email, mobile }) {
+    return Promise.resolve({ name, password, email, mobile });
 }

@@ -14,7 +14,7 @@ const Login = ({ store }) => {
         if (valid == false) return;
 
         const { name, password } = Form;
-        InternalLogin(name, password)
+        InternalLogin({ name, password })
             .then(x => {
                 console.log('使用者登入: ', Form, x);
                 store.dispatch('Member', {
@@ -25,6 +25,7 @@ const Login = ({ store }) => {
             })
             .catch(err => {
                 console.log('登入錯誤: ', err);
+                alert('登入錯誤');
             });
     });
 };
