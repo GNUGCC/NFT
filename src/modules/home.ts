@@ -13,7 +13,7 @@ const Login = ({ store }) => {
     FormRef.value?.validate(valid => {
         if (valid == false) return;
 
-        const { name, password } = Form;
+        const { name, password } = Form.value;
         InternalLogin({ name, password })
             .then(x => {
                 console.log('使用者登入: ', Form, x);
