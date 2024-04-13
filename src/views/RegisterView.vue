@@ -2,14 +2,9 @@
     import { computed, getCurrentInstance } from 'vue';
     import { useStore } from 'vuex';
     import { useRouter } from 'vue-router';    
-    import ValidateRules from '@/modules/validate';
-    import {
-        Register,
-        Home,
-        Form,
-        FormRef
-    } from '@/modules/register';
-
+    import DataField from '@/components/DataField.vue';
+    import { Register, Home, Save, Cancel } from '@/modules/register';
+    
     const store = useStore();
     const instance = getCurrentInstance();
     const router = useRouter();
@@ -21,50 +16,7 @@
 </script>
 
 <template>
-    <h3 class="bg-warning text-center text-blue p-2">
-        <div class="nft">NFT</div>
-        <h6 class="mg-1">
-            註冊會員
-        </h6>
-    </h3>
-    <div class="container">
-        <el-form ref="FormRef"
-                 :model="Form"
-                 :rules="ValidateRules"
-                 status-icon
-                 label-width="1">
-            <el-form-item prop="name">
-                <label v-bind="{class : 'form-label'}">新使用者名稱</label>
-                <el-input v-model="Form.name" placeholder="您的新使用者名稱" />
-            </el-form-item>
-            <el-form-item prop="password">
-                <label class="form-label">密碼</label>
-                <el-input v-model="Form.password" type="password" autocomplete="off" placeholder="您的密碼" />
-            </el-form-item>
-            <el-form-item prop="passwords">
-                <label class="form-label">確認密碼</label>
-                <el-input v-model="Form.passwords" type="password" autocomplete="off" placeholder="請再次輸入您的密碼" />
-            </el-form-item>
-            <el-form-item prop="mobile">
-                <label v-bind="{class : 'form-label'}">電話號碼</label>
-                <el-input v-model="Form.mobile" placeholder="您的電話號碼" />
-            </el-form-item>
-            <el-form-item prop="email">
-                <label v-bind="{class : 'form-label'}">電子郵件信箱</label>
-                <el-input v-model="Form.email" placeholder="您的電子郵件信箱" />
-            </el-form-item>
-        </el-form>
-        <div class="row">
-            <div class="col">
-                <button type="button" class="btn btn-outline-primary" @click="Register(ctx)">註冊</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <button type="button" class="btn btn-outline-dark" @click="Home(ctx)">取消</button>
-            </div>
-        </div>
-    </div>
+    <DataField fieldTitle="新會員註冊" :data="{name: '123'}" @save="Save" @cancel="Cancel"></DataField>
 </template>
 <style lang="scss" scoped>
     li {
