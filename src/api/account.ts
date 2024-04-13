@@ -1,6 +1,7 @@
 import service from '@/api/common';
 
 export function InternalLogin(name, password) {
+    /* eslint-disable */
     return Promise.resolve({ name, password });
     //return service.post('register', {
     //    name,

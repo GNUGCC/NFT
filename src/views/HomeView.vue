@@ -8,6 +8,7 @@
 
     const Member = computed(() => store.getters.Member);
     const CheckLogin = computed(() => Member.value == null);
+    const Register = () => { router.push({path: '/register'}) };
     const LoginOut = () => store.dispatch('Member', null);
 
     const ValideteName = (rule, value, callBack) => {
@@ -25,6 +26,7 @@
     };
 
     const store = useStore();
+    const router = useRouter();
     const formRef = ref<FormInstance>();
     const Form = reactive<MemberType>({});
     const ValidateRules = reactive<FormRules<MemberType>>({
