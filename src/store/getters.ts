@@ -5,7 +5,11 @@ import type { MemberType } from '@/model/member';
  * @param state
  * @returns
  */
-const Member = state => state.Member;
+const Member = state => {
+    const member = Object.assign({}, state.Member == null || state.Member);
+    if (Object.getOwnPropertyNames(member).length < 1) return null;
+    return member;
+}
 
 /**
  * 
