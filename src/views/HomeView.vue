@@ -1,58 +1,28 @@
 <script setup lang="ts">
-    import { computed, ref, reactive } from 'vue';
+    import { computed, getCurrentInstance } from 'vue';
     import { useStore } from 'vuex';
     import { useRouter } from 'vue-router';
-    import { FormInstance, FormRules } from 'element-plus';
-    import { InternalLogin } from '@/api/account';
-    import type { MemberType } from '@/model/member';
+    import { Register } from '@/modules/common';
+    import {
+        Login,
+        LoginOut,
+        Home,
+        Form,
+        FormRef,
+        ValidateRules
+    } from '@/modules/home';
+
+    const store = useStore();
+    const instance = getCurrentInstance();
+    const router = useRouter();
+    const ctx = computed(() => ({
+        store,
+        instance,
+        router
+    }));
 
     const Member = computed(() => store.getters.Member);
     const CheckLogin = computed(() => Member.value == null);
-    const LoginOut = () => store.dispatch('Member', null);
-
-    const ValideteName = (rule, value, callBack) => {
-        const { name } = LoginUser.value;
-        console.log('ValideteName', rule, value, callBack, name);
-        if (name == null || name.length < 1) callBack(new Error('請輸入您的使用者名稱'));
-        callBack();
-    };
-
-    const ValidetePassword = (rule, value, callBack) => {
-        const { password } = LoginUser.value;
-        console.log('ValideteName', rule, value, callBack, password);
-        if (password == null || password.length < 1) callBack(new Error('請輸入您的密碼'));
-        callBack();
-    };
-
-    const store = useStore();
-    const formRef = ref<FormInstance>();
-    const Form = reactive<MemberType>({});
-    const ValidateRules = reactive<FormRules<MemberType>>({
-        name: [{ validator: ValideteName, trigger: 'blur' }],
-        password: [{ validator: ValidetePassword, trigger: 'blur' }]
-    });
-
-    const FormField = reactive<MemberType>({});
-    const LoginUser = computed(() => FormField);
-    const Login = () => {
-        formRef.value?.validate(valid => {            
-            if (valid == false) return;
-
-            const { name, password } = FormField;
-            InternalLogin(name, password)
-                .then(x => {
-                    console.log('使用者登入: ', LoginUser.value, x);
-                    store.dispatch('Member', {
-                        name,
-                        password,
-                        data: x
-                    });
-                })
-                .catch(err => {
-                    console.log('登入錯誤: ', err);
-                });
-        });
-    };
 </script>
 
 <template>
@@ -63,34 +33,34 @@
     </h3>
     <div class="container">
         <template v-if="CheckLogin == true">
-            <el-form ref="formRef"
+            <el-form ref="FormRef"
                      :model="Form"
                      :rules="ValidateRules"
                      status-icon
                      label-width="1">
                 <el-form-item prop="name">
                     <label v-bind="{class : 'form-label'}">使用者名稱</label>
-                    <el-input v-model="FormField.name" placeholder="您的使用者名稱" clearable data-username></el-input>
+                    <el-input v-model="Form.name" placeholder="您的使用者名稱" clearable data-username></el-input>
                 </el-form-item>
                 <el-form-item prop="password">
                     <label class="form-label">密碼</label>
-                    <el-input v-model="FormField.password" type="password" autocomplete="off" placeholder="您的密碼" clearable data-password></el-input>
+                    <el-input v-model="Form.password" type="password" autocomplete="off" placeholder="您的密碼" clearable data-password></el-input>
                 </el-form-item>
             </el-form>
         </template>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-outline-primary" @click="Login" v-if="CheckLogin == true">登錄</button>
+                <button type="button" class="btn btn-outline-primary" @click="Login(ctx)" v-if="CheckLogin == true">登錄</button>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-outline-secondary" @click="LoginOut" v-if="CheckLogin == false">登出</button>
+                <button type="button" class="btn btn-outline-secondary" @click="LoginOut(ctx)" v-if="CheckLogin == false">登出</button>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-outline-success" @click="Register" v-if="CheckLogin == true">註冊</button>
+                <button type="button" class="btn btn-outline-success" @click="Register(ctx)" v-if="CheckLogin == true">註冊</button>
             </div>
         </div>
     </div>
