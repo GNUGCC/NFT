@@ -8,7 +8,6 @@
         LoginUser,
         Home,
         Form,
-        FormField,
         FormRef
     } from '@/modules/register';
 
@@ -37,23 +36,23 @@
                  label-width="1">
             <el-form-item prop="name">
                 <label v-bind="{class : 'form-label'}">新使用者名稱</label>
-                <el-input v-model="FormField.name" placeholder="您的新使用者名稱" />
+                <el-input v-model="Form.name" placeholder="您的新使用者名稱" />
             </el-form-item>
             <el-form-item prop="password">
                 <label class="form-label">密碼</label>
-                <el-input v-model="FormField.password" type="password" autocomplete="off" placeholder="您的密碼" />
+                <el-input v-model="Form.password" type="password" autocomplete="off" placeholder="您的密碼" />
             </el-form-item>
             <el-form-item prop="passwords">
                 <label class="form-label">確認密碼</label>
-                <el-input v-model="FormField.passwords" type="password" autocomplete="off" placeholder="請再次輸入您的密碼" />
+                <el-input v-model="Form.passwords" type="password" autocomplete="off" placeholder="請再次輸入您的密碼" />
             </el-form-item>
             <el-form-item prop="mobile">
                 <label v-bind="{class : 'form-label'}">電話號碼</label>
-                <el-input v-model="FormField.mobile" placeholder="您的電話號碼" />
+                <el-input v-model="Form.mobile" placeholder="您的電話號碼" />
             </el-form-item>
             <el-form-item prop="email">
                 <label v-bind="{class : 'form-label'}">電子郵件信箱</label>
-                <el-input v-model="FormField.email" placeholder="您的電子郵件信箱" />
+                <el-input v-model="Form.email" placeholder="您的電子郵件信箱" />
             </el-form-item>
         </el-form>
         <div class="row">
