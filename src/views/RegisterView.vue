@@ -1,9 +1,9 @@
 <script setup lang="ts">
     import { computed, getCurrentInstance } from 'vue';
     import { useStore } from 'vuex';
-    import { useRouter } from 'vue-router';    
-    import DataField from '@/components/DataField.vue';
+    import { useRouter } from 'vue-router';        
     import { Register, Home, Save, Cancel } from '@/modules/register';
+    import DataField from '@/components/DataField.vue';
     
     const store = useStore();
     const instance = getCurrentInstance();
@@ -16,7 +16,7 @@
 </script>
 
 <template>
-    <DataField fieldTitle="新會員註冊" :data="{name: '123'}" @save="Save" @cancel="Cancel"></DataField>
+    <DataField fieldTitle="新會員註冊" @save="Save" @cancel="Cancel" />
 </template>
 <style lang="scss" scoped>
     li {
