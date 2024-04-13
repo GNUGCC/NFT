@@ -9,8 +9,8 @@ const Register = ctx => {
     FormRef.value?.validate(valid => {
         if (valid == false) return;
 
-        const { name, password } = Form;
-        InternalRegister(name, password)
+        const { name, password, email, mobile } = Form;
+        InternalRegister({ name, password, email, mobile })
             .then(x => {
                 const { store } = ctx;
                 console.log('使用者註冊: ', Form, x);
@@ -18,10 +18,14 @@ const Register = ctx => {
                     name,
                     password,
                     data: x
-                }).then(() => Home(ctx));
+                }).then(() => {
+                    alert('新增會員成功!');
+                    Home(ctx);
+                });
             })
             .catch(err => {
-                console.log('登入錯誤: ', err);
+                console.log('註冊錯誤: ', err);
+                alert('註冊錯誤');
             });
     });
 };
