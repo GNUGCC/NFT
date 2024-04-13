@@ -32,10 +32,8 @@
         password: [{ validator: ValidetePassword, trigger: 'blur' }]
     });
 
-    const router = useRouter();
     const FormField = reactive<MemberType>({});
     const LoginUser = computed(() => FormField);
-    const Home = () => router.push({ path: '/' });
     const Login = () => {
         formRef.value?.validate(valid => {            
             if (valid == false) return;
@@ -48,7 +46,7 @@
                         name,
                         password,
                         data: x
-                    }).then(() => Home());
+                    });
                 })
                 .catch(err => {
                     console.log('登入錯誤: ', err);
@@ -69,7 +67,7 @@
                      :model="Form"
                      :rules="ValidateRules"
                      status-icon
-                     label-width="auto">
+                     label-width="1">
                 <el-form-item prop="name">
                     <label v-bind="{class : 'form-label'}">使用者名稱</label>
                     <el-input v-model="FormField.name" placeholder="您的使用者名稱" clearable data-username></el-input>
