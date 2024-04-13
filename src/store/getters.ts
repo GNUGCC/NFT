@@ -6,7 +6,9 @@ import type { MemberType } from '@/model/member';
  * @returns
  */
 const Member = state => {
-    return state.Member;
+    const member = Object.assign({}, state.Member == null || state.Member);
+    if (Object.getOwnPropertyNames(member).length < 1) return null;
+    return member;
 }
 
 /**
@@ -14,24 +16,7 @@ const Member = state => {
  * @param state
  * @returns
  */
-const Members: (state) => readonly MemberType[] = state => {
-    return state.Members
-}
-
-/**
- * 
- * @param id
- * @param members
- * @returns
- */
-export function QueryMember(id: string, members: readonly MemberType[]) {
-    const index = members.findIndex(x => x.id == id);
-    if (index < 0) return false;
-    return {
-        index,
-        result: members[index]
-    };
-}
+const Members: (state) => readonly MemberType[] = state => state.Members;
 
 export default {
     Member,
