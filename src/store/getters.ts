@@ -1,3 +1,4 @@
+import { QueryMember } from '@/store/common';
 import type { MemberType } from '@/model/member';
 
 /**
@@ -16,9 +17,17 @@ const Member = state => {
  * @param state
  * @returns
  */
+const ReadMember = state => id => QueryMember(id, state.Members) || null;
+
+/**
+ * 
+ * @param state
+ * @returns
+ */
 const Members: (state) => readonly MemberType[] = state => state.Members;
 
 export default {
     Member,
-    Members
+    Members,
+    ReadMember
 }

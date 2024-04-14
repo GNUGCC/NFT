@@ -1,10 +1,15 @@
 import { PerformanceMember, AddMember } from '@/store/common';
 
 export default function () {
-    describe('AddMember', () => {
+    describe('AddMember', () => {                
+        it("測試空的 Member", () => {
+            expect(AddMember(null!, buffers))
+                .toBe(false);
+        });
+
         const buffers = [];
         const a = AddMember(PerformanceMember({})!, buffers);
-        const asize = buffers.length;
+        const asize = buffers.length; 
 
         it("測試 AddMember(PerformanceMember({}), [])", () => {
             expect(a)
