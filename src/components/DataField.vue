@@ -1,24 +1,43 @@
 <script setup lang="ts">
-    import { defineProps, defineEmits, onMounted, withDefaults } from 'vue';
-    import {
-        Save,
-        Cancel,       
-        NormalizeData,        
-        Form,
-        FormRef,
-        ValidateRules,
-        type FieldType,
-        type FieldEmitType
+    import { useStore } from 'vuex';
+    import { useRouter } from 'vue-router';
+    import { 
+        computed, 
+        getCurrentInstance, 
+        defineProps, 
+        defineEmits, 
+        onMounted, 
+        withDefaults 
+    } from 'vue';
+
+    import { 
+        Save, 
+        Cancel, 
+        NormalizeData, 
+        Form, 
+        FormRef, 
+        ValidateRules, 
+        type FieldType, 
+        type FieldEmitType 
     } from './dataField';
 
+     const store = useStore();
+     const instance = getCurrentInstance();
+     const router = useRouter();
+     const ctx = computed(() => ({
+         store,
+         instance,
+         router
+     }));
+
     const props = withDefaults(defineProps<FieldType>(), {
-        fieldTitle: undefined,
         data: {}
     });
+
     const emits = defineEmits<FieldEmitType>();    
-    const save = () => Save(emits);
-    const cancel = () => Cancel(emits);
-    onMounted(() => NormalizeData(props.data));
+    const save = () => Save(ctx.value, emits);
+    const cancel = () => Cancel(ctx.value, emits);
+    onMounted(() => NormalizeData(props.data));    
 </script>
 
 <template>
@@ -68,20 +87,6 @@
     </div>
 </template>
 <style lang="scss" scoped>
-    li {
-        display: inline-block;
-        padding: 10px 24px;
-        margin: 0 10px;
-        color: #3af;
-        font-size: 14px;
-        border-radius: 5px;
-        cursor: pointer;
-
-        &.current {
-            background-color: rgba(0, 0, 0, .1);
-        }
-    }
-
     button {
         width: 25%;
         margin: 5px;
