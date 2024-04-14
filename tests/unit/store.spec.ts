@@ -2,6 +2,7 @@ import actions from '@/store/actions';
 import getters from '@/store/getters';
 import mutations from '@/store/mutations';
 import { PerformanceMember } from '@/store/common';
+import { MemberType } from '../../src/model/member';
 
 describe("測試 Store", () => {
     describe('Actions...', () => {
@@ -22,6 +23,15 @@ describe("測試 Store", () => {
     });
 
     describe('Getters...', () => {
+        it('空的 Member', () => {
+            const state = {
+                Member: null
+            };
+
+            expect(getters.Member(state))
+                .toBeNull();
+        });
+
         it('Member PerformanceMember({}):', () => {
             const state = { Member: PerformanceMember({}) };
             expect(getters.Member(state))
@@ -33,6 +43,26 @@ describe("測試 Store", () => {
             expect(getters.Member(state))
                 .toEqual(state.Member);
         });  
+
+        describe('ReadMember...', () => {
+            const id_a = PerformanceMember({ id: 'a' });
+            const state = {
+                Members: [PerformanceMember({ id: 'a' })]
+            };
+
+            it('不存在的 {id: 1}', () => {
+                expect(getters.ReadMember(state)({ id: '1' }))
+                    .toBeNull();
+            });
+
+            it('{id: a}', () => {
+                expect(getters.ReadMember(state)({ id: 'a' }))
+                    .toEqual({
+                        index: 0,
+                        result: id_a
+                    });
+            });
+        });
 
         it('Members', () => {
             const state = {
