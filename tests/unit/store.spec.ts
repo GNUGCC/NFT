@@ -56,7 +56,7 @@ describe("測試 Store", () => {
             });
 
             it('{id: a}', () => {
-                expect(getters.ReadMember(state)({ id: 'a' }))
+                expect(getters.ReadMember(state)('a'))
                     .toEqual({
                         index: 0,
                         result: id_a

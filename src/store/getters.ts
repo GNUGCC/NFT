@@ -17,7 +17,7 @@ const Member = state => {
  * @param state
  * @returns
  */
-const ReadMember = state => ({ id }) => QueryMember(id, state.Members) || null;
+const ReadMember = state => id => QueryMember(id, state.Members) || null;
 
 /**
  * 
