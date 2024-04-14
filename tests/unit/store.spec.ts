@@ -80,7 +80,7 @@ describe("測試 Store", () => {
             Member: null,
             Members: []
         };
-
+        
         it('PerformanceMember({id: 1})', () => {            
             const member = PerformanceMember({ id: '1' });
 
@@ -101,7 +101,7 @@ describe("測試 Store", () => {
 
             expect(state.Members)
                 .toHaveLength(2);
-        }); 
+        });         
 
         it('新增重覆會員 PerformanceMember({id: 1})', () => {
             const member = PerformanceMember({ id: '1' });
@@ -124,5 +124,11 @@ describe("測試 Store", () => {
             expect(state.Members)
                 .toHaveLength(3);
         }); 
+
+        it('空的 Member', () => {
+            mutations.Member(state, null);
+            expect(state.Member)
+                .toBeNull();
+        });
     });
 });
