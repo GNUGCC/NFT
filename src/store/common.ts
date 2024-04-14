@@ -42,8 +42,9 @@ function QueryMember(id: string, members: readonly MemberType[]) {
  * @param members
  */
 function AddMember(data: MemberType, members: MemberType[]) {
-    if (data?.id == undefined) return members.push(data) > 0;
-    return QueryMember(data.id, members) == false && members.push(data) > 0;
+    if (data?.id) return QueryMember(data.id!, members) == false && members.push(data) > 0;
+    return data != null && members.push(data) > 0;
+    //return data?.id && QueryMember(data.id!, members) == false || data != null || members.push(data) > 0;
 }
 
 /**
