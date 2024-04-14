@@ -7,8 +7,11 @@ import { AddMember, PerformanceMember } from './common';
  * @returns
  */
 const Member = (state, value) => {
-    const member = PerformanceMember(value)!;
-    state.Member = AddMember(member, state.Members) ? member : state.Member;
+    if (value == null) state.Member = null;
+    else {
+        const member = PerformanceMember(value)!;
+        state.Member = AddMember(member, state.Members) ? member : state.Member;
+    }
 }
 
 /**
