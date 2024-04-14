@@ -30,8 +30,7 @@ function PerformanceMember(data) {
  */
 function QueryMember(id: string, members: readonly MemberType[]) {
     const index = members.findIndex(x => x.id == id);
-    if (index < 0) return false;
-    return {
+    return index >= 0 && {
         index,
         result: members[index]
     };
