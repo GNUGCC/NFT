@@ -4,8 +4,6 @@ const service = axios.create({
 });
 
 service.interceptors.request.use(x => x);
-service.interceptors.response.use(x => {
-    return Promise.resolve(x.data);
-});
+service.interceptors.response.use(x => Promise.resolve(x.data));
 
 export default service;

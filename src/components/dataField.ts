@@ -6,7 +6,7 @@ import ValidateRules from '@/modules/validate';
  * 
  */
 type FieldType = {
-    fieldTitle: string,
+    fieldTitle?: string,
     data: any
 };
 
@@ -24,7 +24,7 @@ type FieldEmitType = {
  * @returns
  */
 function NormalizeData(data) {
-    Form.value = PerformanceMember(data)!
+    Form.value = PerformanceMember(data)!;
 }
 
 /**

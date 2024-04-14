@@ -10,11 +10,11 @@ const routes: Array<RouteRecordRaw> = [
         name: "register",
         component: () => import('@/views/RegisterView.vue')
     },
-    //{
-    //    path: "/edit",
-    //    name: "edit",
-    //    component: () => import('@/views/EditView.vue')
-    //}
+    {
+        path: "/edit/:id",
+        name: "edit",
+        component: () => import('@/views/EditView.vue')
+    }
 ];
 
 export default createRouter({
