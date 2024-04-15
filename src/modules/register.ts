@@ -14,7 +14,7 @@ const Save = ({ _, router, store }, valid) => {
                 data: x
             }).then(() => {
                 alert('新增會員成功!');
-                Home({ router });
+                Home({ router, store });
             });
         })
         .catch(err => {
@@ -23,7 +23,7 @@ const Save = ({ _, router, store }, valid) => {
         });
 }
 
-const Cancel = ({ _, router, __ }, valid) => Home({ router });
+const Cancel = ({ _, router, store }, valid) => Home({ router, store });
 
 export {
     Save,

@@ -5,7 +5,10 @@ import type { MemberType } from '@/model/member';
 
 const FormRef = ref<FormInstance>();
 const Form = ref<MemberType>({});
-const Home = ({ router }) => router.push({ path: '/' });
+const Home = ({ router, store }) => {
+    console.log('home: ', store)
+    router.push({ path: '/' });
+}
 const Register = ({ router }) => router.push({ path: '/register' });
 const LoginOut = ({ store }) => store.dispatch('Member', null);
 
