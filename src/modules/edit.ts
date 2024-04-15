@@ -14,10 +14,12 @@ const Save = ({ _, router, store }, valid) => {
     const { name, password, account, email, mobile } = Form.value;
     InternalUpdate({ id, name, password, account, email, mobile })
         .then(x => {
-            console.log('使用者更新資料: ', Form.value, x, router, store);
-            store.dispatch('Member', Form.value).then(() => {
+            const temp = Object.assign({}, Form.value);
+            console.log('使用者更新資料: ', temp, x, router, store);        
+            store.commit('Member', temp);
+            store.getters.Update(temp).then(() => {
                 alert('更新會員資料成功!');
-                Home({ router });
+                Home({ router, store });
             });
         })
         .catch(err => {
@@ -32,7 +34,7 @@ const Save = ({ _, router, store }, valid) => {
  * @param valid
  * @returns
  */
-const Cancel = ({ _, router, __ }, valid) => Home({ router });
+const Cancel = ({ _, router, store }, valid) => Home({ router, store });
 
 export {
     Save,
