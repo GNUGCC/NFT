@@ -80,8 +80,8 @@ describe("測試 Store", () => {
                     .toMatch('nameb');
             });
 
-            it('更新不存在的 Member(id: 3)', () => {
-                const result = getters.Update(state)(PerformanceMember({ id: '3', name: 'update test3' }));
+            it('更新不存在的 Member(id: 3)', async () => {
+                const result = await getters.Update(state)(PerformanceMember({ id: '3', name: 'update test3' }));
                 expect(state.Members[0].name)
                     .toMatch('nameb');
 
@@ -89,8 +89,8 @@ describe("測試 Store", () => {
                     .toBe(false);
             });
 
-            it('更新已存在的 Member(id: b) 後', () => {
-                const result = getters.Update(state)(PerformanceMember({ id: 'b', name: 'update test3' }));
+            it('更新已存在的 Member(id: b) 後', async () => {
+                const result = await getters.Update(state)(PerformanceMember({ id: 'b', name: 'update test3' }));
                 expect(state.Members[0].name)
                     .toMatch('update test3');
 

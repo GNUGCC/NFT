@@ -31,7 +31,7 @@ const ReadMember = state => id => QueryMember(id, state.Members) || null;
  * @param param0
  * @returns
  */
-const Update = state => value => UpdateMember(value, state.Members);
+const Update = state => value => Promise.resolve(UpdateMember(value, state.Members));
 
 export default {
     Member,
