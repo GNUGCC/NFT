@@ -1,4 +1,4 @@
-import { AddMember, UpdateMember, PerformanceMember } from './common';
+import { PerformanceMember, AddMember } from './common';
 
 /**
  * 
@@ -22,16 +22,7 @@ const Member = (state, value) => {
  */
 const Members = (state, value) => state.Members = value;
 
-/**
- * 
- * @param this
- * @param value
- * @returns
- */
-const Update = ({ state }) => value => UpdateMember(value, state.Members);
-
 export default {
     Member,
-    Members,
-    Update
+    Members
 }
