@@ -20,6 +20,12 @@ describe("測試 Store", () => {
             expect(commit.mock.calls[1][0]).toBe('Members');
             expect(commit.mock.calls[1][1]).toEqual([id_a]);
         });
+
+        it('UpdateMember', () => {
+            actions.UpdateMember({ commit }, [id_a]);
+            expect(commit.mock.calls[2][0]).toBe('Update');
+            expect(commit.mock.calls[2][1]).toEqual([id_a]);
+        });
     });
 
     describe('Getters...', () => {
@@ -36,13 +42,13 @@ describe("測試 Store", () => {
             const state = { Member: PerformanceMember({}) };
             expect(getters.Member(state))
                 .toEqual(state.Member);
-        });    
+        });
 
         it('Member PerformanceMember({id: 1})', () => {
-            const state = { Member: PerformanceMember({id: '1'}) };
+            const state = { Member: PerformanceMember({ id: '1' }) };
             expect(getters.Member(state))
                 .toEqual(state.Member);
-        });  
+        });
 
         describe('ReadMember...', () => {
             const id_a = PerformanceMember({ id: 'a' });
@@ -64,6 +70,38 @@ describe("測試 Store", () => {
             });
         });
 
+        describe('Update Member...', () => {
+            const state = {
+                Members: [PerformanceMember({ id: 'b', name: 'nameb' })!]
+            };
+
+            it('更新前 Member', () => {
+                expect(state.Members[0].name)
+                    .toMatch('nameb');
+            });
+
+            it('更新不存在的 Member(id: 3)', () => {
+                const result = getters.Update(state)(PerformanceMember({ id: '3', name: 'update test3' }));
+                expect(state.Members[0].name)
+                    .toMatch('nameb');
+
+                expect(result)
+                    .toBe(false);
+            });
+
+            it('更新已存在的 Member(id: b) 後', () => {
+                const result = getters.Update(state)(PerformanceMember({ id: 'b', name: 'update test3' }));
+                expect(state.Members[0].name)
+                    .toMatch('update test3');
+
+                expect(result)
+                    .toEqual(state.Members);
+
+                expect(state.Members)
+                    .toHaveLength(state.Members.length);
+            });
+        });       
+
         it('Members', () => {
             const state = {
                 Members: [PerformanceMember({ id: '1' })!, PerformanceMember({ id: '2' })!]
@@ -75,13 +113,13 @@ describe("測試 Store", () => {
         });
     });
 
-    describe('Mutations...', () => {        
+    describe('Mutations...', () => {
         const state = {
             Member: null,
-            Members: []
+            Members: Array<MemberType>()
         };
-        
-        it('PerformanceMember({id: 1})', () => {            
+
+        it('PerformanceMember({id: 1})', () => {
             const member = PerformanceMember({ id: '1' });
 
             mutations.Member(state, member);
@@ -101,7 +139,7 @@ describe("測試 Store", () => {
 
             expect(state.Members)
                 .toHaveLength(2);
-        });         
+        });
 
         it('新增重覆會員 PerformanceMember({id: 1})', () => {
             const member = PerformanceMember({ id: '1' });
@@ -112,10 +150,10 @@ describe("測試 Store", () => {
 
             expect(state.Members)
                 .toHaveLength(2);
-        }); 
+        });
 
         it('PerformanceMember({id: 3})', () => {
-            const member = PerformanceMember({ id: '3' });
+            const member = PerformanceMember({ id: '3', name: 'test3' });
 
             mutations.Member(state, member);
             expect(state.Member)
@@ -123,7 +161,7 @@ describe("測試 Store", () => {
 
             expect(state.Members)
                 .toHaveLength(3);
-        }); 
+        });
 
         it('空的 Member', () => {
             mutations.Member(state, null);

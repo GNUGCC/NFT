@@ -1,4 +1,4 @@
-import { AddMember, PerformanceMember } from './common';
+import { PerformanceMember, AddMember } from './common';
 
 /**
  * 
