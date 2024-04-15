@@ -20,6 +20,12 @@ describe("測試 Store", () => {
             expect(commit.mock.calls[1][0]).toBe('Members');
             expect(commit.mock.calls[1][1]).toEqual([id_a]);
         });
+
+        it('UpdateMember', () => {
+            actions.UpdateMember({ commit }, [id_a]);
+            expect(commit.mock.calls[2][0]).toBe('Update');
+            expect(commit.mock.calls[2][1]).toEqual([id_a]);
+        });
     });
 
     describe('Getters...', () => {
