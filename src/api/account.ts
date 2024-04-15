@@ -7,7 +7,7 @@ import service from '@/api/common';
  */
 export function InternalLogin({ name, password }) {
     return service.post('login', {
-        name,
+        account: name,
         password
     });
 }
