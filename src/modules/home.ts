@@ -25,7 +25,7 @@ const Login = ({ store }) => {
             })
             .catch(err => {
                 console.log('登入錯誤: ', err);
-                alert('登入錯誤');
+                alert(err);
             });
     });
 };
