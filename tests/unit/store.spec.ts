@@ -78,7 +78,7 @@ describe("測試 Store", () => {
     describe('Mutations...', () => {        
         const state = {
             Member: null,
-            Members: []
+            Members: Array<MemberType>()
         };
         
         it('PerformanceMember({id: 1})', () => {            
@@ -115,7 +115,7 @@ describe("測試 Store", () => {
         }); 
 
         it('PerformanceMember({id: 3})', () => {
-            const member = PerformanceMember({ id: '3' });
+            const member = PerformanceMember({ id: '3', name: 'test3' });
 
             mutations.Member(state, member);
             expect(state.Member)
@@ -124,6 +124,19 @@ describe("測試 Store", () => {
             expect(state.Members)
                 .toHaveLength(3);
         }); 
+
+        describe('Update Member...', () => {
+            it('更新前 Member', () => {
+                expect(state.Members[2].name)
+                    .toMatch('test3');
+            });
+
+            it('更新後 Member', () => {
+                mutations.Update({ state })(PerformanceMember({ id: '3', name: 'update test3' }));
+                expect(state.Members[2].name)
+                    .toMatch('update test3');
+            });
+        });        
 
         it('空的 Member', () => {
             mutations.Member(state, null);
