@@ -1,43 +1,22 @@
 <script setup lang="ts">
-    import { useStore } from 'vuex';
-    import { useRouter } from 'vue-router';
+    import { defineEmits, defineProps, withDefaults, onMounted } from 'vue';
     import { 
-        computed, 
-        getCurrentInstance, 
-        defineProps, 
-        defineEmits, 
-        onMounted, 
-        withDefaults 
-    } from 'vue';
-
-    import { 
-        Save, 
-        Cancel, 
-        NormalizeData, 
-        Form, 
-        FormRef, 
-        ValidateRules, 
-        type FieldType, 
-        type FieldEmitType 
+        Save,
+        Cancel,                
+        Form,
+        FormRef,
+        ValidateRules,
+        InitlaizeData,
+        type FieldType,
+        type FieldEmitType
     } from './dataField';
 
-     const store = useStore();
-     const instance = getCurrentInstance();
-     const router = useRouter();
-     const ctx = computed(() => ({
-         store,
-         instance,
-         router
-     }));
-
+    const emit = defineEmits<FieldEmitType>();
     const props = withDefaults(defineProps<FieldType>(), {
         data: {}
     });
 
-    const emits = defineEmits<FieldEmitType>();    
-    const save = () => Save(ctx.value, emits);
-    const cancel = () => Cancel(ctx.value, emits);
-    onMounted(() => NormalizeData(props.data));    
+    onMounted(() => InitlaizeData(props));
 </script>
 
 <template>
@@ -76,12 +55,12 @@
         </el-form>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-outline-primary" @click="save">儲存</button>
+                <button type="button" class="btn btn-outline-primary" @click="Save(emit)">儲存</button>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-outline-dark" @click="cancel">取消</button>
+                <button type="button" class="btn btn-outline-dark" @click="Cancel(emit)">取消</button>
             </div>
         </div>
     </div>
