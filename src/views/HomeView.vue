@@ -1,38 +1,24 @@
 <script setup lang="ts">
-    import { computed, getCurrentInstance } from 'vue';
-    import { useStore } from 'vuex';
-    import { useRouter } from 'vue-router';
-    import { Register } from '@/modules/common';
     import {
         Login,
         LoginOut,
-        Home,
+        Member,
+        Authentication,
+        Register,
         Form,
         FormRef,
         ValidateRules
-    } from '@/modules/home';
-
-    const store = useStore();
-    const instance = getCurrentInstance();
-    const router = useRouter();
-    const ctx = computed(() => ({
-        store,
-        instance,
-        router
-    }));
-
-    const Member = computed(() => store.getters.Member);
-    const CheckLogin = computed(() => Member.value == null);
+    } from '@/modules/home';    
 </script>
 
 <template>
     <h3 class="bg-primary text-center text-white p-2">
         <div class="nft">NFT</div>
-        <span v-if="CheckLogin == true">登入頁面</span>
-        <h1 v-if="CheckLogin == false">登入者：{{Member.name}}</h1>
+        <span v-if="Authentication == false">登入頁面</span>
+        <h1 v-if="Authentication == true">登入者：{{Member.name}}</h1>
     </h3>
     <div class="container">
-        <template v-if="CheckLogin == true">
+        <template v-if="Authentication == false">
             <el-form ref="FormRef"
                      :model="Form"
                      :rules="ValidateRules"
@@ -50,17 +36,17 @@
         </template>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-outline-primary" @click="Login(ctx)" v-if="CheckLogin == true">登錄</button>
+                <button type="button" class="btn btn-outline-primary" @click="Login" v-if="Authentication == false">登錄</button>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-outline-secondary" @click="LoginOut(ctx)" v-if="CheckLogin == false">登出</button>
+                <button type="button" class="btn btn-outline-secondary" @click="LoginOut" v-if="Authentication == true">登出</button>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-outline-success" @click="Register(ctx)" v-if="CheckLogin == true">註冊</button>
+                <button type="button" class="btn btn-outline-success" @click="Register" v-if="Authentication == false">註冊</button>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 import { QueryMember, UpdateMember } from './common';
-import type { MemberType } from '@/model/member';
+import { type MemberType } from '@/models/member';
 
 /**
  * 

@@ -9,4 +9,9 @@ export type MemberType = {
     build_time?: string,
     parent?: number,
     token?: string
-};
+}
+
+export type MemberStore = {
+    Member: MemberType,
+    Members: Array<MemberType>
+}

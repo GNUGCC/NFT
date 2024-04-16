@@ -1,3 +1,12 @@
+<script setup lang="ts">
+    import { getCurrentInstance } from 'vue';
+    import { useRouter } from 'vue-router';
+    import { LogManager, RouteManager } from '@/utils/manager';        
+
+    LogManager.InitialAppConfig(getCurrentInstance()?.appContext.config);
+    RouteManager.InitialRouter(useRouter());
+</script>
+
 <template>
   <router-view />
 </template>

@@ -1,21 +1,20 @@
 import { InternalRegister } from '@/api/account';
-import { Form, Home } from './common';
+import { StoreManager } from '@/utils/manager';
+import { Form, Home, Log } from './common';
 
-const Save = ({ _, router, store }, valid) => {
+function Save(valid) {
     if (valid == false) return;
 
     const { name, password, email, mobile } = Form.value;
     InternalRegister({ name, password, email, mobile })
         .then(x => {
-            console.log('使用者註冊: ', Form, x);
-            store.dispatch('Member', {
-                name,
-                password,
-                data: x
-            }).then(() => {
-                alert('新增會員成功!');
-                Home({ router, store });
-            });
+            Log('使用者註冊: ', Form, x);
+            StoreManager.AddMember({ name, password, email, mobile })
+                .then(() => {
+                    Log('新增會員: ', StoreManager.Member,  StoreManager.Members);
+                    alert('新增會員成功!');
+                    Home();
+                });
         })
         .catch(err => {
             console.log('註冊錯誤: ', err);
@@ -23,7 +22,9 @@ const Save = ({ _, router, store }, valid) => {
         });
 }
 
-const Cancel = ({ _, router, store }, valid) => Home({ router, store });
+function Cancel() {
+    Home();
+}
 
 export {
     Save,

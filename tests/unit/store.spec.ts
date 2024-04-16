@@ -2,7 +2,7 @@ import actions from '@/store/actions';
 import getters from '@/store/getters';
 import mutations from '@/store/mutations';
 import { PerformanceMember } from '@/store/common';
-import { MemberType } from '../../src/model/member';
+import { type MemberType } from '@/models/member';
 
 describe("測試 Store", () => {
     describe('Actions...', () => {

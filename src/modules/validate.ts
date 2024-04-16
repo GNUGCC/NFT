@@ -1,6 +1,6 @@
 import { reactive } from 'vue';
 import { FormRules } from 'element-plus';
-import type { MemberType } from '@/model/member';
+import { type MemberType } from '@/models/member';
 
 const ValideteName = (rule, value, callBack) => {
     console.log('ValideteName', rule, value, callBack);

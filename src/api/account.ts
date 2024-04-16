@@ -18,13 +18,14 @@ export function InternalLogin({ name, password }) {
  * @returns
  */
 export function InternalRegister({ name, password, email, mobile }) {
-    return service.post('register', {
-        account: name,
-        name,
-        password,
-        email,
-        mobile
-    });
+    return Promise.resolve({ name, password, email, mobile });
+    //return service.post('register', {
+    //    account: name,
+    //    name,
+    //    password,
+    //    email,
+    //    mobile
+    //});
 }
 
 /**
