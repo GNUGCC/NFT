@@ -1,40 +1,41 @@
-import { Form, Home, GetRoutParams } from './common';
+import { Form, Home, Log } from './common';
+import { StoreManager } from '@/utils/manager';
 import { InternalUpdate } from '@/api/account';
+import { RouteManager } from '@/utils/manager';
 
 /**
  * 
- * @param param0
  * @param valid
  * @returns
  */
-const Save = ({ _, router, store }, valid) => {
+function Save(valid) {
     if (valid == false) return;
 
-    const { id } = GetRoutParams(router);
+    const { id } = RouteManager.Params;
     const { name, password, account, email, mobile } = Form.value;
     InternalUpdate({ id, name, password, account, email, mobile })
         .then(x => {
-            const temp = Object.assign({}, Form.value);
-            console.log('使用者更新資料: ', temp, x, router, store);        
-            store.commit('Member', temp);
-            store.getters.Update(temp).then(() => {
-                alert('更新會員資料成功!');
-                Home({ router, store });
-            });
+            const form = Object.assign({}, Form.value);
+            Log('使用者更新資料: ', form, x);
+            StoreManager.UpdateMember(form)
+                .then(() => {
+                    Log('update member: ', StoreManager.Member, StoreManager.Members);
+                    alert('更新會員資料成功!');
+                    Home();
+                });                
         })
         .catch(err => {
             console.log('更新錯誤: ', err);
             alert('更新錯誤');
-        }); 
+        });
 }
 
 /**
  * 
- * @param param0
- * @param valid
- * @returns
  */
-const Cancel = ({ _, router, store }, valid) => Home({ router, store });
+function Cancel() {
+    Home();
+}
 
 export {
     Save,
