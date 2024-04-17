@@ -68,7 +68,13 @@
             </div>
         </div>
     </template>
-    <template v-else><Header /><Footer /></template>    
+    <template v-else>
+        <el-container>
+            <el-header><Header /></el-header>
+            <el-main></el-main>
+            <el-footer><Footer /></el-footer>
+        </el-container>        
+    </template>    
 </template>
 
 <style lang="scss">
