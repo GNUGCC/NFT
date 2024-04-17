@@ -1,5 +1,6 @@
 <script setup lang="ts">
     import Header from '@/components/Header.vue';
+    import Info from '@/components/Info.vue';
     import Footer from '@/components/Footer.vue';
     import {
         Check,
@@ -23,9 +24,12 @@
 </script>
 
 <template>
-    <!--<Header />
-    <Footer />-->
-    <template v-if="Authentication == false">
+    <el-container>
+        <el-header><Header /></el-header>
+        <el-main><Info /></el-main>
+        <el-footer><Footer /></el-footer>
+    </el-container>
+    <!--<template v-if="Authentication == false">
         <h3 class="bg-primary text-center text-white p-2">
             <div class="nft">NFT</div>
         </h3>
@@ -73,8 +77,8 @@
             <el-header><Header /></el-header>
             <el-main></el-main>
             <el-footer><Footer /></el-footer>
-        </el-container>        
-    </template>    
+        </el-container>
+    </template>-->
 </template>
 
 <style lang="scss">
