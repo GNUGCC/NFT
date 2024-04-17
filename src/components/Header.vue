@@ -14,10 +14,8 @@
              :ellipsis="false"             
              menu-trigger="click"
              background-color="#0000FF"
-             text-color="#fff"
-             @open="console.log('open')"
-             @close="console.log('close')"
-             @select="handleSelect" router>
+             text-color="#fff"           
+             router>
         <div class="flex-grow" />
         <el-sub-menu index="2">
             <template #title>
