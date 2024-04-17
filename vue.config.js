@@ -1,7 +1,7 @@
 const path = require('path');
 const { defineConfig } = require("@vue/cli-service");
 
-module.exports = defineConfig({
+module.exports = defineConfig({   
     devServer: {
         open: false,
         host: '0.0.0.0',

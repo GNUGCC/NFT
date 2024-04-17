@@ -1,4 +1,15 @@
 <script setup lang="ts">
+    import Header from '@/components/Header.vue';
+    import Footer from '@/components/Footer.vue';
+    import {
+        Check,
+        Delete,
+        Edit,
+        Message,
+        Search,
+        Star,
+    } from '@element-plus/icons-vue';
+
     import {
         Login,
         LoginOut,
@@ -12,47 +23,67 @@
 </script>
 
 <template>
-    <h3 class="bg-primary text-center text-white p-2">
-        <div class="nft">NFT</div>
-        <span v-if="Authentication == false">登入頁面</span>
-        <h1 v-if="Authentication == true">登入者：{{Member.name}}</h1>
-    </h3>
-    <div class="container">
-        <template v-if="Authentication == false">
-            <el-form ref="FormRef"
-                     :model="Form"
-                     :rules="ValidateRules"
-                     status-icon
-                     label-width="1">
-                <el-form-item prop="name">
-                    <label v-bind="{class : 'form-label'}">使用者名稱</label>
-                    <el-input v-model="Form.name" placeholder="您的使用者名稱" clearable data-username></el-input>
-                </el-form-item>
-                <el-form-item prop="password">
-                    <label class="form-label">密碼</label>
-                    <el-input v-model="Form.password" type="password" autocomplete="off" placeholder="您的密碼" clearable data-password></el-input>
-                </el-form-item>
-            </el-form>
-        </template>
+    <!--<Header />
+    <Footer />-->
+    <template v-if="Authentication == false">
+        <h3 class="bg-primary text-center text-white p-2">
+            <div class="nft">NFT</div>
+        </h3>
+        <div class="container">
+            <el-space warp>
+                <el-card class="box-card">
+                    <template #header>
+                        <span class="nft-title">NFT 登入頁面</span>
+                    </template>
+                    <el-form ref="FormRef"
+                             :model="Form"
+                             :rules="ValidateRules"
+                             status-icon
+                             label-width="1">
+                        <el-form-item prop="name">
+                            <label v-bind="{class : 'form-label'}">使用者名稱</label>
+                            <el-input v-model="Form.name" placeholder="您的使用者名稱" clearable data-username></el-input>
+                        </el-form-item>
+                        <el-form-item prop="password">
+                            <label class="form-label">密碼</label>
+                            <el-input v-model="Form.password" type="password" autocomplete="off" placeholder="您的密碼" clearable data-password></el-input>
+                        </el-form-item>
+                    </el-form>
+                </el-card>
+            </el-space>
+        </div>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-outline-primary" @click="Login" v-if="Authentication == false">登錄</button>
+                <el-button type="primary" class="button" @click="Login" v-if="Authentication == false">登錄</el-button>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-outline-secondary" @click="LoginOut" v-if="Authentication == true">登出</button>
+                <el-button type="info" class="button" @click="LoginOut" v-if="Authentication == true">登出</el-button>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-outline-success" @click="Register" v-if="Authentication == false">註冊</button>
+                <el-button type="success" class="button" @click="Register" v-if="Authentication == false">註冊</el-button>
             </div>
         </div>
-    </div>
-</template>    
+    </template>
+    <template v-else><Header /><Footer /></template>    
+</template>
 
 <style lang="scss">
+    .nft-title {
+        font-weight: bolder;
+    }
+
+    .box-card {
+        width: 450px;
+    }
+
+    .button {
+        width: 100px;
+    }
+
     #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
