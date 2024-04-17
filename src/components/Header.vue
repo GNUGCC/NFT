@@ -2,7 +2,8 @@
     import { defineProps, computed } from 'vue';
     import { MemberType } from '@/models/member';
     import { AddNFT, AddMyCard, Update, LogOut } from './header';
-    import { Discount, Avatar, Edit, InfoFilled, Plus, CirclePlusFilled, Hide } from '@element-plus/icons-vue';
+    import IconItem from './IconItem.vue';
+    //import { Discount, Avatar, Edit, InfoFilled, Plus, CirclePlusFilled, Hide } from '@element-plus/icons-vue';
 
     const props = defineProps<MemberType>();
     const member = computed(() => props);
@@ -15,40 +16,34 @@
              :ellipsis="false"             
              menu-trigger="hover"
              background-color="#0000FF"
-             active-text-color="#33ab3ff"
+             active-text-color="#FFFF00"
              text-color="#fff"           
              router>
         <div class="flex-grow" />
         <el-sub-menu index="1">            
             <template #title>
-                <el-icon><discount /></el-icon>
-                點數管理
+                <icon-item title="點數管理" icon="discount"></icon-item>
             </template>
             <el-menu-item @click="AddNFT(member)">
+                <icon-item title="加購 NFT 點數" icon="plus"></icon-item>
                 <el-icon><plus /></el-icon>
-                加購<span>NFT</span>點數
             </el-menu-item>
             <el-menu-item @click="AddMyCard(member)">
-                <el-icon><circle-plus-filled /></el-icon>
-                加購<span>MyCard</span>點數
+                <icon-item title="加購 MyCard 點數" icon="circle-plus-filled"></icon-item>
             </el-menu-item>
         </el-sub-menu>
         <el-sub-menu index="2">
             <template #title>
-                <el-icon><avatar /></el-icon>
-                會員功能
+                <icon-item title="會員功能" icon="avatar"></icon-item>
             </template>
             <el-menu-item :index="Update(member)">
-                <el-icon><edit /></el-icon>
-                修改會員資料
+                <icon-item title="修改會員資料" icon="edit"></icon-item>
             </el-menu-item>
             <el-menu-item index="/info/testid">
-                <el-icon><info-filled /></el-icon>
-                顯示會員資訊
+                <icon-item title="顯示會員資訊" icon="info-filled"></icon-item>
             </el-menu-item>            
             <el-menu-item @click="LogOut(member)">
-                <el-icon><hide /></el-icon>
-                登出
+                <icon-item title="登出" icon="hide"></icon-item>
             </el-menu-item>
         </el-sub-menu>
     </el-menu>   
