@@ -10,7 +10,7 @@ import { type MemberType } from '@/models/member';
  * @returns
  */
 function Edit(member: MemberType) {
-    return `/edit/${member.id}`;
+    return `/member/edit/${member.id}`;
 }
 
 /**

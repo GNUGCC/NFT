@@ -30,5 +30,7 @@
     <template v-if="props.icon == 'hide'">
         <el-icon><hide /></el-icon>
     </template>
-    <span>{{props.title}}</span>
+    <template v-if="props.title">
+        <span>{{props.title}}</span>
+    </template>    
 </template>

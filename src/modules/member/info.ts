@@ -6,7 +6,7 @@ import { type MemberType } from '@/models/member';
  * @returns
  */
 function Info(member: MemberType) {
-    return `/info/${member.id}`;
+    return `/member/info/${member.id}`;
 }
 
 export {
