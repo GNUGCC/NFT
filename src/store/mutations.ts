@@ -10,7 +10,8 @@ const Member = (state, value) => {
     if (value == null) state.Member = null;
     else {
         const member = PerformanceMember(value)!;
-        state.Member = AddMember(member, state.Members) ? member : state.Member;
+        state.Member = member;
+        AddMember(member, state.Members);
     }
 }
 
