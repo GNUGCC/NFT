@@ -14,6 +14,14 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'member',
                 children: [
                     {
+                        path: "/member/detail/:id",
+                        name: "detail",
+                        meta: {
+
+                        },
+                        component: () => import('@/views/DetailView.vue')
+                    },
+                    {
                         path: "/member/edit/:id",
                         name: "edit",
                         meta: {
@@ -36,7 +44,7 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'point',
                 children: [
                     {
-                        path: "/info/:id",
+                        path: "/point/info/:id",
                         name: "info",
                         meta: {
 
@@ -44,7 +52,7 @@ const routes: Array<RouteRecordRaw> = [
                         component: () => import('@/views/InfoView.vue')
                     },
                     {
-                        path: "/ntf/add/:id",
+                        path: "/point/ntf/add/:id",
                         name: "addntf",
                         meta: {
 
@@ -52,7 +60,7 @@ const routes: Array<RouteRecordRaw> = [
                         component: () => import('@/views/NtfView.vue')
                     },
                     {
-                        path: "/mycard/add/:id",
+                        path: "/point/mycard/add/:id",
                         name: "addmycard",
                         meta: {
 

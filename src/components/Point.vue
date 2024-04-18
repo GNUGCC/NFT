@@ -1,7 +1,8 @@
 <script setup lang="ts">
     import { defineProps, computed } from 'vue';
-    import { AddNTF } from '@/modules/logic/ntf';
-    import { AddMyCard } from '@/modules/logic/mycard';
+    import { Info } from '@/modules/point/info';
+    import { AddNTF } from '@/modules/point/ntf';
+    import { AddMyCard } from '@/modules/point/mycard';
     import IconItem from './IconItem.vue';
     import { MemberType } from '../models/member';
 
@@ -11,7 +12,7 @@
 
 <template>
     <template v-if="member">
-        <el-menu-item :index="AddNTF(member)">
+        <el-menu-item :index="Info(member)">
             <icon-item title="消費記錄" icon="hide"></icon-item>
         </el-menu-item>
         <el-menu-item :index="AddNTF(member)">

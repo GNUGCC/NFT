@@ -2,7 +2,7 @@
     import { defineProps, computed } from 'vue';
     import IconItem from './IconItem.vue';
     import { Edit } from '@/modules/member/edit';    
-    import { Info } from '@/modules/member/info';
+    import { Detail } from '@/modules/member/detail';
     import { Logout } from '@/modules/common';
     import { type MemberType } from '@/models/member';    
 
@@ -19,7 +19,7 @@
         <el-menu-item :index="Edit(member)">
             <icon-item title="修改會員資料" icon="edit"></icon-item>
         </el-menu-item>
-        <el-menu-item :index="Info(member)">
+        <el-menu-item :index="Detail(member)">
             <icon-item title="顯示會員資訊" icon="info-filled"></icon-item>
         </el-menu-item>
         <el-menu-item @click="Logout(member)">
