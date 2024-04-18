@@ -12,7 +12,7 @@ export type MemberType = {
 }
 
 export type NtfType = {
-    point: string
+    point?: string
 }
 
 export type MyCardType = NtfType;

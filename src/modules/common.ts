@@ -1,12 +1,10 @@
 import { ref } from 'vue';
 import { FormInstance } from 'element-plus';
 import { StoreManager, RouteManager, LogManager } from '@/utils/manager';
-import { type MemberType, type NtfType, type MyCardType } from '@/models/member';
+import { type MemberType } from '@/models/member';
 
 const FormRef = ref<FormInstance>();
 const Form = ref<MemberType>({});
-const FormNtf = ref<NtfType>();
-const FormMyCard = ref<MyCardType>();
 
 /**
  * 
@@ -80,8 +78,6 @@ function LoadData(result: (data) => void) {
 export {
     FormRef,
     Form,
-    FormNtf,
-    FormMyCard,
     Home,
     Log,
     LogGroup,
