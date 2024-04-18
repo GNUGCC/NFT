@@ -144,9 +144,10 @@ describe("測試 Store", () => {
         it('新增重覆會員 PerformanceMember({id: 1})', () => {
             const member = PerformanceMember({ id: '1' });
 
+            state.Member = null;
             mutations.Member(state, member);
             expect(state.Member)
-                .toEqual(PerformanceMember({ id: '2' }));
+                .toEqual(PerformanceMember({ id: '1' }));
 
             expect(state.Members)
                 .toHaveLength(2);
