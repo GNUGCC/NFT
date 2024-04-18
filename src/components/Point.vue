@@ -1,13 +1,13 @@
 <script setup lang="ts">
-    import { ref, onMounted } from 'vue';
+    import { defineProps, computed } from 'vue';
     import { Info } from '@/modules/point/info';
     import { AddNTF } from '@/modules/point/ntf';
     import { AddMyCard } from '@/modules/point/mycard';
-    import { LoadData } from '@/modules/common';
     import IconItem from './IconItem.vue';
+     import { type MemberType } from '../models/member';
 
-    const member = ref();
-    onMounted(() => LoadData(result => member.value = result));
+    const props = defineProps<{ data: MemberType }>();
+    const member = computed(() => props.data);
 </script>
 
 <template>
