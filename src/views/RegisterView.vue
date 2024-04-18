@@ -1,5 +1,5 @@
 <script setup lang="ts">   
-    import { Save, Cancel } from '@/modules/register';
+    import { Save, Cancel } from '@/modules/member/register';
     import DataField from '@/components/DataField.vue';  
 </script>
 

@@ -24,8 +24,9 @@ function Register(){
 /**
  * 
  */
-function LoginOut() {
+function Logout() {
     StoreManager.Member = null;
+    RouteManager.Logout();
 }
 
 /**
@@ -60,7 +61,7 @@ function LogPopup(message: string, type: 'success' | 'error' | 'warning') {
  */
 function LoadData(result: (data) => void) {
     const { id } = RouteManager.Params;
-    Log('loadData: ', id);
+    Log('loadData: ', RouteManager.Params);
     const data = StoreManager.ReadMember(id);
     return data && result(data.result);
 
@@ -82,6 +83,6 @@ export {
     LogGroup,
     LogPopup,
     Register,
-    LoginOut,
+    Logout,
     LoadData
 }

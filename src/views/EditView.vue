@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import { ref, onMounted } from 'vue';
     import { LoadData } from '@/modules/common';
-    import { Save, Cancel } from '@/modules/edit';            
+    import { Save, Cancel } from '@/modules/member/edit';            
     import DataField from '@/components/DataField.vue';
 
     const data = ref();

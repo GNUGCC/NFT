@@ -49,8 +49,8 @@
     }
 
     .point {
-        font-weight: bolder;
-        font-size: 20px;
+        font-weight: bold;
+        font-size: 15px;
     }
 
     .info {

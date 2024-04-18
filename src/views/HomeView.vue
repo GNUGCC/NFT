@@ -2,30 +2,21 @@
     import Header from '@/components/Header.vue';
     import Info from '@/components/Info.vue';
     import Footer from '@/components/Footer.vue';
-    import {
-        Check,
-        Delete,
-        Edit,
-        Message,
-        Search,
-        Star,
-    } from '@element-plus/icons-vue';
-
-    import {
+      import {
         Login,
-        LoginOut,
+        Logout,
         Member,
         Authentication,
         Register,
         Form,
         FormRef,
         ValidateRules
-    } from '@/modules/home';    
+    } from '@/modules/home';        
 </script>
 
 <template>
     <el-container>
-        <el-header><Header /></el-header>
+        <el-header><Header :member="Member" /></el-header>
         <el-main><Info /></el-main>
         <el-footer><Footer /></el-footer>
     </el-container>
@@ -63,7 +54,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <el-button type="info" class="button" @click="LoginOut" v-if="Authentication == true">登出</el-button>
+                <el-button type="info" class="button" @click="Logout" v-if="Authentication == true">登出</el-button>
             </div>
         </div>
         <div class="row">
@@ -74,8 +65,8 @@
     </template>
     <template v-else>
         <el-container>
-            <el-header><Header /></el-header>
-            <el-main></el-main>
+            <el-header><Header :member="Member" /></el-header>
+            <el-main><Info /></el-main>
             <el-footer><Footer /></el-footer>
         </el-container>
     </template>-->

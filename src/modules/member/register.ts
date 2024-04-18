@@ -1,6 +1,6 @@
 import { InternalRegister } from '@/api/account';
 import { StoreManager } from '@/utils/manager';
-import { Form, Home, Log } from './common';
+import { Form, Home, Log } from '@/modules/common';
 
 function Save(valid) {
     if (valid == false) return;

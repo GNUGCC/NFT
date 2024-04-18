@@ -44,6 +44,12 @@ export class RouteManager {
         RouteManager.Router.push({ path: '/' });
     }    
 
+    /** 登出路由*/
+    static Logout() {
+        LogManager.Log('登出路由', RouteManager.Router);
+        RouteManager.Router.push({ path: '/' });
+    }
+
     /**
      * 
      */
