@@ -9,7 +9,7 @@ import { type MemberType } from '@/models/member';
  * @param member
  * @returns
  */
-function Update(member: MemberType) {
+function Edit(member: MemberType) {
     return `/edit/${member.id}`;
 }
 
@@ -49,6 +49,6 @@ function Cancel() {
 
 export {
     Save,
-    Update,
+    Edit,
     Cancel
 }

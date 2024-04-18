@@ -1,8 +1,9 @@
 <script setup lang="ts">
     import { defineProps, computed } from 'vue';
     import { MemberType } from '@/models/member';
-    import { Update } from '@/modules/member/edit';
-    import { AddNFT, AddMyCard } from './header';
+    import { Edit } from '@/modules/member/edit';
+    import { AddNTF } from '@/modules/logic/ntf';
+    import { AddMyCard } from '@/modules/logic/mycard';
     import { Logout } from '@/modules/common';
     import { Info } from '@/modules/member/info';
     import IconItem from './IconItem.vue';
@@ -15,7 +16,7 @@
     <el-menu
              class="fixed-top header"
              mode="horizontal"
-             :ellipsis="false"             
+             :ellipsis="false"
              menu-trigger="hover"
              background-color="#0000FF"
              active-text-color="#FFFF00"
@@ -26,10 +27,10 @@
             <template #title>
                 <icon-item title="點數管理" icon="discount"></icon-item>
             </template>
-            <el-menu-item @click="AddNFT(member)">
+            <el-menu-item @click="AddNTF(member)">
                 <icon-item title="消費記錄" icon="hide"></icon-item>
             </el-menu-item>
-            <el-menu-item @click="AddNFT(member)">
+            <el-menu-item @click="AddNTF(member)">
                 <icon-item title="加購 NFT 點數" icon="plus"></icon-item>
             </el-menu-item>
             <el-menu-item @click="AddMyCard(member)">
@@ -40,7 +41,7 @@
             <template #title>
                 <icon-item title="會員專區" icon="avatar"></icon-item>
             </template>
-            <el-menu-item :index="Update(member)">
+            <el-menu-item :index="Edit(member)">
                 <icon-item title="修改會員資料" icon="edit"></icon-item>
             </el-menu-item>
             <el-menu-item :index="Info(member)">
