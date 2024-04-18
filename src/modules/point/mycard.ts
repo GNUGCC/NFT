@@ -1,4 +1,4 @@
-import { Log } from '@/modules/common';
+import { Log, Home } from '@/modules/common';
 
 function AddMyCard(member) {
     Log('加購 MyCard');
@@ -13,6 +13,7 @@ function AddMyCard(member) {
 function Save(member, value) {
     const { point } = value;
     Log('Save 加購 MyCard: ', member, point);
+    Home();
 }
 
 /**
@@ -21,6 +22,7 @@ function Save(member, value) {
  */
 function Cancel(member) {
     Log('Cancel 加購 MyCard: ', member);
+    Home();
 }
 
 export {
