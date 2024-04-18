@@ -36,20 +36,28 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'point',
                 children: [
                     {
-                        path: "/point/addntf/:id",
+                        path: "/info/:id",
+                        name: "info",
+                        meta: {
+
+                        },
+                        component: () => import('@/views/InfoView.vue')
+                    },
+                    {
+                        path: "/ntf/add/:id",
                         name: "addntf",
                         meta: {
 
                         },
-                        component: () => import('@/views/EditView.vue')
+                        component: () => import('@/views/NtfView.vue')
                     },
                     {
-                        path: "/point/addmycard/:id",
+                        path: "/mycard/add/:id",
                         name: "addmycard",
                         meta: {
 
                         },
-                        component: () => import('@/views//InfoView.vue')
+                        component: () => import('@/views/MyCardView.vue')
                     }
                 ]
             }

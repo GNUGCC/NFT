@@ -1,1 +1,0 @@
-import { type MemberType } from '@/models/member';

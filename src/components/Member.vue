@@ -8,10 +8,10 @@
 
     const props = defineProps<{
         index: string
-        member: MemberType
+        data: MemberType
     }>();
 
-    const member = computed(() => props.member);
+    const member = computed(() => props.data);
 </script>
 
 <template>
