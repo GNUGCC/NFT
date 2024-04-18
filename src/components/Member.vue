@@ -5,12 +5,8 @@
     import { Detail } from '@/modules/member/detail';
     import { Logout } from '@/modules/common';
     import { type MemberType } from '@/models/member';    
-
-    const props = defineProps<{
-        index: string
-        data: MemberType
-    }>();
-
+    
+    const props = defineProps<{ data: MemberType }>();
     const member = computed(() => props.data);
 </script>
 

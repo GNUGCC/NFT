@@ -5,7 +5,7 @@
     import IconItem from './IconItem.vue';
     import { type MemberType } from '@/models/member';
 
-    const props = defineProps<{member: MemberType}>();
+    const props = defineProps<{ member: MemberType }>();
     const member = computed(() => props.member);
 </script>
 

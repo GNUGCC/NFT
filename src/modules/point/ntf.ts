@@ -1,4 +1,4 @@
-import { Log } from '@/modules/common';
+import { Log, Home } from '@/modules/common';
 
 function AddNTF(member) {
     Log('加購 NFT');    
@@ -13,6 +13,7 @@ function AddNTF(member) {
 function Save(member, value) {
     const { point } = value;
     Log('Save 加購 NFT: ', point);
+    Home();
 }
 
 /**
@@ -21,6 +22,7 @@ function Save(member, value) {
  */
 function Cancel(member) {
     Log('Cancel 加購 NFT');
+    Home();
 }
 
 export {
