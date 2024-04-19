@@ -1,4 +1,4 @@
-import { QueryMember, UpdateMember } from './common';
+import { QueryMember } from './common';
 import { type MemberType } from '@/models/member';
 
 /**
@@ -26,16 +26,8 @@ const Members: (state) => readonly MemberType[] = state => state.Members;
  */
 const ReadMember = state => id => QueryMember(id, state.Members) || null;
 
-/**
- * 
- * @param param0
- * @returns
- */
-const Update = state => value => Promise.resolve(UpdateMember(value, state.Members));
-
 export default {
     Member,
     Members,
-    ReadMember,
-    Update
+    ReadMember    
 }
