@@ -18,7 +18,11 @@ export class RouteManager {
      */
     static InitialRouter(router: Router) {
         RouteManager._router = router;
-        router.beforeEach(to => to.name == 'home' || StoreManager.Authentication != null || RouteManager.Home());
+        router.beforeEach(to => {
+            if (RouteManager.IsPassToAuth(to.name)) return true;
+            if (StoreManager.Authentication == false) return RouteManager.Home();
+            return true;
+        });
     }
 
     /**
@@ -54,8 +58,24 @@ export class RouteManager {
 
     /**
      * 
+     * @param path
+     * @returns
+     */
+    private static IsPassToAuth(path) {
+        return RouteManager.NeedAuthList.findIndex(x => path == x) < 0;
+    }
+
+    /**
+     * 
      */
     private static get Router() {
         return RouteManager._router;
+    }
+
+    /**
+     * 
+     */
+    private static get NeedAuthList() {
+        return ['info', 'addntf', 'addmycard', 'edit', 'detail'];
     }
 }
