@@ -77,7 +77,7 @@ export class StoreManager {
      * @returns
      */
     static UpdateMember(value) {
-        return StoreManager.Getters.Update(value);
+        return StoreManager.Dispatch('Update', value);
     }
 
     /**
