@@ -1,33 +1,46 @@
 <script setup lang="ts">
     import { defineProps, computed } from 'vue';
-    import { MemberType } from '@/models/member';
-    import { Update, LogOut } from './header';
+    import Point from './Point.vue';
+    import Member from './Member.vue';
+    import IconItem from './IconItem.vue';
+    import { type MemberType } from '@/models/member';
 
-    const props = defineProps<MemberType>();
-    const member = computed(() => props);
+    const props = defineProps<{ member: MemberType }>();
+    const member = computed(() => props.member);
 </script>
 
 <template>
-    <el-menu :default-active="2"
+    <el-menu
+             id="menu"
              class="fixed-top header"
              mode="horizontal"
-             :ellipsis="false"             
-             menu-trigger="click"
+             :ellipsis="false"
+             menu-trigger="hover"
              background-color="#0000FF"
-             text-color="#fff"           
+             active-text-color="#FFFF00"
+             text-color="#fff"
              router>
         <div class="flex-grow" />
+        <el-sub-menu index="1">
+            <template #title>
+                <icon-item title="點數管理" icon="discount"></icon-item>
+            </template>
+            <point :data="member" />
+        </el-sub-menu>
         <el-sub-menu index="2">
             <template #title>
-                會員功能
+                <icon-item title="會員專區" icon="avatar"></icon-item>
             </template>
-            <el-menu-item :index="Update(member)">修改會員資料</el-menu-item>
-            <el-menu-item @click="LogOut(member)">登出</el-menu-item>
+            <member :data="member" />        
         </el-sub-menu>
     </el-menu>   
 </template>
 
 <style lang="scss" scoped>
+    .el-menu-item {
+        --el-menu-hover-bg-color: rgb(0, 155, 204);
+    }
+
     .flex-grow {
         flex-grow: 1;
     }

@@ -11,6 +11,12 @@ export type MemberType = {
     token?: string
 }
 
+export type NtfType = {
+    point?: string
+}
+
+export type MyCardType = NtfType;
+
 export type MemberStore = {
     Member: MemberType,
     Members: Array<MemberType>

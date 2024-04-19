@@ -1,37 +1,22 @@
 <script setup lang="ts">
-    import { defineEmits, defineProps, withDefaults, onMounted } from 'vue';
-    import { 
-        Save,
-        Cancel,                
-        Form,
-        FormRef,
-        ValidateRules,
-        InitlaizeData,
-        type FieldType,
-        type FieldEmitType
-    } from './dataField';
-
-    const emit = defineEmits<FieldEmitType>();
-    const props = withDefaults(defineProps<FieldType>(), {
-        data: {}
-    });
-
-    onMounted(() => InitlaizeData(props));
+    import { ref } from 'vue';
+    import { FormMyCard } from '@/modules/common';
+    const Form = ref();
 </script>
 
 <template>
     <el-space direction="vertical">
         <el-card class="card" shadow="hover">
             <template #header>
-                {{props.fieldTitle}}
+                <h1 class="mycard">MyCard 購點資訊</h1>
             </template>
             <el-form ref="FormRef"
-                     :model="Form"
+                     :model="FormMyCard"
                      :rules="ValidateRules"
                      status-icon
                      label-width="1">
-                <el-form-item prop="name">
-                    <label class="form-label">新使用者名稱</label>
+                <!--el-form-item prop="point">
+                    <label v-bind="{class : 'form-label'}">請輸入您要購買點數</label>
                     <el-input v-model="Form.name" placeholder="您的新使用者名稱" />
                 </el-form-item>
                 <el-form-item prop="password">
@@ -49,7 +34,7 @@
                 <el-form-item prop="email">
                     <label v-bind="{class : 'form-label'}">電子郵件信箱</label>
                     <el-input v-model="Form.email" placeholder="您的電子郵件信箱" />
-                </el-form-item>
+                </el-form-item>-->
             </el-form>
             <el-button type="success" class="button" @click="Save(emit)" plain>儲存</el-button>
             <el-button type="info" class="button" @click="Cancel(emit)" plain>取消</el-button>
@@ -57,30 +42,7 @@
     </el-space>
 </template>
 <style lang="scss" scoped>
-    .button {
-        width: 100px;
-    }
-
-    .container {
-        //margin-top: 10%;
-    }
-
-    .nft {
+    .mycard {
         font-weight: bolder;
-    }
-
-    .card {
-        width: 450px;
-        margin: auto;
-    }
-
-    .point {
-        font-weight: bold;
-        font-size: 15px;
-    }
-
-    .info {
-        font-weight: bolder;
-        text-align: center;
     }
 </style>

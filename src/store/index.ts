@@ -2,16 +2,15 @@ import { createStore } from "vuex";
 import actions from './actions';
 import mutations from './mutations';
 import getters from './getters';
-import { type MemberType, type MemberStore } from '@/models/member';
+import plugins from './plugins';
+import { type MemberStore } from '@/models/member';
 
 export default function () {
-    return createStore<MemberStore>({
-        state: {
-            Member: {},
-            Members: Array<MemberType>()
-        },
+    return createStore({
+        state: <MemberStore>{},
         getters,
         mutations,
-        actions
+        actions,
+        plugins
     });
 }

@@ -1,5 +1,6 @@
 import { Router } from "vue-router";
 import { LogManager } from './logManager';
+import { StoreManager } from "./storeManager";
 
 /** 路由 Manager */
 export class RouteManager {
@@ -17,6 +18,7 @@ export class RouteManager {
      */
     static InitialRouter(router: Router) {
         RouteManager._router = router;
+        router.beforeEach(to => to.name == 'home' || StoreManager.Authentication != null || RouteManager.Home());
     }
 
     /**
@@ -43,6 +45,12 @@ export class RouteManager {
         //RouteManager.Router.push('home');
         RouteManager.Router.push({ path: '/' });
     }    
+
+    /** 登出路由*/
+    static Logout() {
+        LogManager.Log('登出路由', RouteManager.Router);
+        RouteManager.Router.push({ path: '/' });
+    }
 
     /**
      * 

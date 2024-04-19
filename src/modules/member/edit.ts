@@ -1,7 +1,17 @@
-import { Form, Home, Log } from './common';
+import { Form, Home, Log } from '@/modules/common';
 import { StoreManager } from '@/utils/manager';
 import { InternalUpdate } from '@/api/account';
 import { RouteManager } from '@/utils/manager';
+import { type MemberType } from '@/models/member';
+
+/**
+ * 
+ * @param member
+ * @returns
+ */
+function Edit(member: MemberType) {
+    return `/member/edit/${member.id}`;
+}
 
 /**
  * 
@@ -39,5 +49,6 @@ function Cancel() {
 
 export {
     Save,
+    Edit,
     Cancel
 }

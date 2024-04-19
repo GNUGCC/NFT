@@ -1,3 +1,5 @@
+import { UpdateMember } from './common';
+
 /**
  * 
  * @param param0
@@ -20,10 +22,15 @@ const Members = ({ commit }, value) => commit('Members', value);
  * @param value
  * @returns
  */
-const UpdateMember = ({ commit }, value) => commit('Update', value);
+const Update = ({ dispatch, getters }, value) => {
+    const result = UpdateMember(value, getters.Members);
+    dispatch('Member', value);
+
+    return Promise.resolve(result);
+}
 
 export default {
     Member,
     Members,
-    UpdateMember
+    Update
 }
