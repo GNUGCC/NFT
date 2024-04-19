@@ -18,7 +18,12 @@ function member(store) {
  * @returns
  */
 function init() {
-    return read() || restore({ Member: {}, Members: Array<MemberType>() });
+    const data = <MemberStore>{
+        Member: {},
+        Members: Array<MemberType>()
+    };
+
+    return read() || restore(data);
 }
 
 /**
@@ -35,9 +40,9 @@ function read() {
  * @param param0
  * @returns
  */
-function restore({ Member, Members }) {
-    localStorage.setItem('data', JSON.stringify({ Member, Members }));
-    return { Member, Members };
+function restore(state: MemberStore) {
+    localStorage.setItem('data', JSON.stringify(state));
+    return { ...state };
 }
 
 export default [member]

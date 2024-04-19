@@ -1,4 +1,22 @@
-import { type MemberType } from '@/models/member';
+import type { MemberType, MyCardContentType } from '@/models/member';
+
+/**
+ * 
+ * @param data
+ */
+function PerformanceMyCard(data) {
+    if (data == null) return null;
+
+    const { id, m_id, mycard_point, mycard_data, status, build_time } = data;
+    return <MyCardContentType>{
+        id,
+        m_id,
+        mycard_point,
+        mycard_data,
+        status,
+        build_time
+    };
+}
 
 /**
  * 
@@ -20,6 +38,15 @@ function PerformanceMember(data) {
         parent,
         token
     };
+}
+
+/**
+ * 
+ * @param id
+ * @param myCards
+ */
+function QueryMyCard(id: string, myCards: Array<MyCardContentType>) {
+
 }
 
 /**
@@ -71,6 +98,7 @@ function DeleteMember(id: string, members: MemberType[]) {
 }
 
 export {
+    PerformanceMyCard,
     PerformanceMember,
     QueryMember,
     AddMember,
