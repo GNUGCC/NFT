@@ -25,5 +25,5 @@ const Members = (state, value) => state.Members = value;
 
 export default {
     Member,
-    Members
+    Members    
 }
