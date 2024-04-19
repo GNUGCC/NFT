@@ -7,6 +7,7 @@ import { type MemberType } from '@/models/member';
  * @returns
  */
 const Member = state => {
+    console.log('read member: ', state , state.Member);
     const member = Object.assign({}, state.Member == null || state.Member);
     if (Object.getOwnPropertyNames(member).length < 1) return null;
     return member;
@@ -29,5 +30,5 @@ const ReadMember = state => id => QueryMember(id, state.Members) || null;
 export default {
     Member,
     Members,
-    ReadMember    
+    ReadMember
 }

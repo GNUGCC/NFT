@@ -19,7 +19,8 @@ export class StoreManager {
      * 
      */
     static get Authentication() {
-        return StoreManager.Member != null;
+        console.log('get Authentication', StoreManager.Member != null && StoreManager.Member);
+        return StoreManager.Member != null && StoreManager.Member;
     }
 
     /**
@@ -27,13 +28,16 @@ export class StoreManager {
      */
     static set Authentication(value) {
         StoreManager.Dispatch('Member', value);
+        console.log('set Authentication', value, StoreManager.Member != null && StoreManager.Member);
     }
 
     /**
      * 
      */
     static get Member() {
+        //console.log('get Member: ', getters.Member(StoreManager.Store));        
         return StoreManager.Getters.Member;
+        //return getters.Member(StoreManager.Store);
     }
 
     /**

@@ -11,16 +11,14 @@
         Form,
         FormRef,
         ValidateRules
-    } from '@/modules/home';        
+    } from '@/modules/home';
+
+    import { StoreManager } from '@/utils/manager';
+    console.log('store: ', StoreManager.Member);
 </script>
 
 <template>
-    <el-container>
-        <el-header><Header :member="Member" /></el-header>
-        <el-main><Info /></el-main>
-        <el-footer><Footer /></el-footer>
-    </el-container>
-    <!--<template v-if="Authentication == false">
+    <template v-if="Authentication == false">
         <h3 class="bg-primary text-center text-white p-2">
             <div class="nft">NFT</div>
         </h3>
@@ -69,7 +67,7 @@
             <el-main><Info /></el-main>
             <el-footer><Footer /></el-footer>
         </el-container>
-    </template>-->
+    </template>
 </template>
 
 <style lang="scss">

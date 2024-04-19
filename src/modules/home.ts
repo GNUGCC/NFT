@@ -7,14 +7,12 @@ import { Form, FormRef, Log, Register, Logout } from './common';
 const Member = computed(() => StoreManager.Member);
 const Authentication = computed(() => StoreManager.Authentication);
 
-LoginMember({ id: 'test', name: '測試資料', email: 'test@yahoo.com', mobile: '12345' });
-
 /**
  * 
  * @param param0
  */
 function LoginMember(value) {
-    StoreManager.Member = value;
+    StoreManager.Authentication = value;
 }
 
 /**

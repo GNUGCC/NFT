@@ -13,6 +13,8 @@ const Member = (state, value) => {
         state.Member = member;
         AddMember(member, state.Members);
     }
+
+    console.log('set Member: ', state, value);
 }
 
 /**
