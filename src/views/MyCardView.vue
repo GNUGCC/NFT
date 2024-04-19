@@ -33,4 +33,9 @@
     .mycard {
         font-weight: bolder;
     }
+
+    .card {
+        width: 300px;
+        margin: auto;
+    }
 </style>
