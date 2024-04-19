@@ -9,3 +9,8 @@ export type MemberType = {
     parent?: number,
     token?: string
 };
+
+export type MemberStore = {
+    Member: MemberType,
+    Members: Array<MemberType>
+}

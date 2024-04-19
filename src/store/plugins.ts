@@ -1,4 +1,4 @@
-import { type MemberType, type MemberStore } from '@/models/member';
+import type { MemberType, MemberStore } from '@/models/member';
 
 /**
  * 
