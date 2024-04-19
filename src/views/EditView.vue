@@ -1,13 +1,11 @@
 <script setup lang="ts">
     import { ref, onMounted } from 'vue';
-    import { useRouter } from 'vue-router';
-    import { useStore } from 'vuex';
-    import { Save, Cancel } from '@/modules/edit';        
-    import { LoadData, GetRoutParams } from '@/modules/common';
+    import { LoadData } from '@/modules/common';
+    import { Save, Cancel } from '@/modules/member/edit';            
     import DataField from '@/components/DataField.vue';
 
     const data = ref();
-    onMounted(() => LoadData(GetRoutParams(useRouter()), useStore(), result => data.value = result));
+    onMounted(() => LoadData(result => data.value = result));
 </script>
 
 <template>

@@ -1,5 +1,5 @@
-import { QueryMember } from '@/store/common';
-import type { MemberType } from '@/model/member';
+import { QueryMember } from './common';
+import { type MemberType } from '@/models/member';
 
 /**
  * 
@@ -7,6 +7,7 @@ import type { MemberType } from '@/model/member';
  * @returns
  */
 const Member = state => {
+    console.log('read member: ', state , state.Member);
     const member = Object.assign({}, state.Member == null || state.Member);
     if (Object.getOwnPropertyNames(member).length < 1) return null;
     return member;
@@ -17,14 +18,14 @@ const Member = state => {
  * @param state
  * @returns
  */
-const ReadMember = state => id => QueryMember(id, state.Members) || null;
+const Members: (state) => readonly MemberType[] = state => state.Members;
 
 /**
  * 
  * @param state
  * @returns
  */
-const Members: (state) => readonly MemberType[] = state => state.Members;
+const ReadMember = state => id => QueryMember(id, state.Members) || null;
 
 export default {
     Member,

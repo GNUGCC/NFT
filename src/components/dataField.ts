@@ -14,8 +14,8 @@ type FieldType = {
  * 
  */
 type FieldEmitType = {
-    (event: 'save', { instance, router, store }, result: boolean): void
-    (event: 'cancel', { instance, router, store }, result: boolean): void
+    (event: 'save', result: boolean): void
+    (event: 'cancel', result: boolean): void
 }
 
 /**
@@ -23,31 +23,31 @@ type FieldEmitType = {
  * @param data
  * @returns
  */
-function NormalizeData(data) {
-    Form.value = PerformanceMember(data)!;
+function InitlaizeData(props) {
+    Form.value = PerformanceMember(props.data)!;
 }
 
 /**
  * 
  * @param emit
  */
-function Save({ instance, router, store }, emit: FieldEmitType) {
-    FormRef.value?.validate(valid => emit('save', { instance, router, store }, valid));
+function Save(emit: FieldEmitType) {
+    FormRef.value?.validate(valid => emit('save', valid));
 }
 
 /**
  * 
  * @param emit
  */
-function Cancel({ instance, router, store }, emit: FieldEmitType) {
-    emit('cancel', { instance, router, store }, false);
+function Cancel(emit: FieldEmitType) {
+    emit('cancel', false);
 }
 
 export {
     Form,
     FormRef,
     ValidateRules,
-    NormalizeData,
+    InitlaizeData,
     FieldType,
     FieldEmitType,
     Save,

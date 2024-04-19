@@ -1,23 +1,33 @@
+import { computed } from 'vue';
 import { InternalLogin } from '@/api/account';
 import ValidateRules from './validate';
-import {    
-    Form,
-    FormRef,
-    Home,
-    Register,
-    LoginOut
-} from './common';
+import { StoreManager } from '@/utils/manager';
+import { Form, FormRef, Log, Register, Logout } from './common';
 
-//const CheckLogin = computed(() => Member.value == null);
-const Login = ({ store }) => {
+const Member = computed(() => StoreManager.Member);
+const Authentication = computed(() => StoreManager.Authentication);
+
+/**
+ * 
+ * @param param0
+ */
+function LoginMember(value) {
+    StoreManager.Authentication = value;
+}
+
+/**
+ * 
+ */
+function Login() {
     FormRef.value?.validate(valid => {
         if (valid == false) return;
 
         const { name, password } = Form.value;
         InternalLogin({ name, password })
             .then(x => {
-                console.log('使用者登入: ', Form, x);
-                store.dispatch('Member', {
+                Log('使用者登入: ', Form, x);
+                LoginMember({
+                    id: name,
                     name,
                     password,
                     data: x
@@ -25,16 +35,16 @@ const Login = ({ store }) => {
             })
             .catch(err => {
                 console.log('登入錯誤: ', err);
-                alert('登入錯誤');
+                alert(err);
             });
     });
-};
+}
 
 export {
     Login,
-    LoginOut,
-    //CheckLogin,
-    Home,
+    Logout,
+    Member,
+    Authentication,
     Register,
     Form,
     FormRef,

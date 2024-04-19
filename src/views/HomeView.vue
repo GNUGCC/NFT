@@ -1,72 +1,88 @@
 <script setup lang="ts">
-    import { computed, getCurrentInstance } from 'vue';
-    import { useStore } from 'vuex';
-    import { useRouter } from 'vue-router';
-    import { Register } from '@/modules/common';
-    import {
+    import Header from '@/components/Header.vue';
+    import Info from '@/components/Info.vue';
+    import Footer from '@/components/Footer.vue';
+      import {
         Login,
-        LoginOut,
-        Home,
+        Logout,
+        Member,
+        Authentication,
+        Register,
         Form,
         FormRef,
         ValidateRules
     } from '@/modules/home';
 
-    const store = useStore();
-    const instance = getCurrentInstance();
-    const router = useRouter();
-    const ctx = computed(() => ({
-        store,
-        instance,
-        router
-    }));
-
-    const Member = computed(() => store.getters.Member);
-    const CheckLogin = computed(() => Member.value == null);
+    import { StoreManager } from '@/utils/manager';
+    console.log('store: ', StoreManager.Member);
 </script>
 
 <template>
-    <h3 class="bg-primary text-center text-white p-2">
-        <div class="nft">NFT</div>
-        <span v-if="CheckLogin == true">登入頁面</span>
-        <h1 v-if="CheckLogin == false">登入者：{{Member.name}}</h1>
-    </h3>
-    <div class="container">
-        <template v-if="CheckLogin == true">
-            <el-form ref="FormRef"
-                     :model="Form"
-                     :rules="ValidateRules"
-                     status-icon
-                     label-width="1">
-                <el-form-item prop="name">
-                    <label v-bind="{class : 'form-label'}">使用者名稱</label>
-                    <el-input v-model="Form.name" placeholder="您的使用者名稱" clearable data-username></el-input>
-                </el-form-item>
-                <el-form-item prop="password">
-                    <label class="form-label">密碼</label>
-                    <el-input v-model="Form.password" type="password" autocomplete="off" placeholder="您的密碼" clearable data-password></el-input>
-                </el-form-item>
-            </el-form>
-        </template>
+    <template v-if="Authentication == false">
+        <h3 class="bg-primary text-center text-white p-2">
+            <div class="nft">NFT</div>
+        </h3>
+        <div class="container">
+            <el-space warp>
+                <el-card class="box-card">
+                    <template #header>
+                        <span class="nft-title">NFT 登入頁面</span>
+                    </template>
+                    <el-form ref="FormRef"
+                             :model="Form"
+                             :rules="ValidateRules"
+                             status-icon
+                             label-width="1">
+                        <el-form-item prop="name">
+                            <label v-bind="{class : 'form-label'}">使用者名稱</label>
+                            <el-input v-model="Form.name" placeholder="您的使用者名稱" clearable data-username></el-input>
+                        </el-form-item>
+                        <el-form-item prop="password">
+                            <label class="form-label">密碼</label>
+                            <el-input v-model="Form.password" type="password" autocomplete="off" placeholder="您的密碼" clearable data-password></el-input>
+                        </el-form-item>
+                    </el-form>
+                </el-card>
+            </el-space>
+        </div>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-outline-primary" @click="Login(ctx)" v-if="CheckLogin == true">登錄</button>
+                <el-button type="primary" class="button" @click="Login" v-if="Authentication == false">登錄</el-button>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-outline-secondary" @click="LoginOut(ctx)" v-if="CheckLogin == false">登出</button>
+                <el-button type="info" class="button" @click="Logout" v-if="Authentication == true">登出</el-button>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <button type="button" class="btn btn-outline-success" @click="Register(ctx)" v-if="CheckLogin == true">註冊</button>
+                <el-button type="success" class="button" @click="Register" v-if="Authentication == false">註冊</el-button>
             </div>
         </div>
-    </div>
-</template>    
+    </template>
+    <template v-else>
+        <el-container>
+            <el-header><Header :member="Member" /></el-header>
+            <el-main><Info /></el-main>
+            <el-footer><Footer /></el-footer>
+        </el-container>
+    </template>
+</template>
 
 <style lang="scss">
+    .nft-title {
+        font-weight: bolder;
+    }
+
+    .box-card {
+        width: 450px;
+    }
+
+    .button {
+        width: 100px;
+    }
+
     #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;

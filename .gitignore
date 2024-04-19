@@ -27,3 +27,4 @@ pnpm-debug.log*
 .vs/VSWorkspaceState.json
 .vs/NFT/FileContentIndex
 .vs/NFT/v17
+.vs/slnx.sqlite-journal

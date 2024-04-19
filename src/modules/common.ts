@@ -1,46 +1,88 @@
 import { ref } from 'vue';
-import { Router } from 'vue-router';
 import { FormInstance } from 'element-plus';
-import type { MemberType } from '@/model/member';
+import { StoreManager, RouteManager, LogManager } from '@/utils/manager';
+import { type MemberType } from '@/models/member';
 
 const FormRef = ref<FormInstance>();
 const Form = ref<MemberType>({});
-const Home = ({ router }) => router.push({ path: '/' });
-const Register = ({ router }) => router.push({ path: '/register' });
-const LoginOut = ({ store }) => store.dispatch('Member', null);
 
-function GetRoutParams(router: Router) {
-    return router.currentRoute.value.params;
+/**
+ * 
+ */
+function Home() {
+    Log('home: ', StoreManager);
+    RouteManager.Home();
 }
 
-function LoadData(params, store, result: (data) => void) {
-    const { id } = params;
-    console.log('loadData: ', params);
-    const data = store.getters.ReadMember(id);
+/**
+ * 
+ */
+function Register(){
+    RouteManager.Register();
+}
 
-    if (data) {
-        console.log('find: ', data);
-        return result(data.result);
-    }
+/**
+ * 
+ */
+function Logout() {
+    StoreManager.Member = null;
+    RouteManager.Logout();
+}
 
-    const temp = { id, name: '測試資料', email: 'test@yahoo.com', mobile: '12345' };
-    console.log('newEdit: ', temp);
-    return result(temp);
-    //store.dispatch('Member', newdata)
-    //    .then(() => {
-    //        console.log('newEdit: ', store.getters.Members);
-    //        result(newdata);
-    //    });
+/**
+ * 
+ * @param data
+ */
+function Log(...data: any[]) {
+    LogManager.Log(...data);
+}
 
-    //return data && data.result;
+/**
+ * 
+ * @param data
+ */
+function LogGroup(...data: any[]) {
+    LogManager.LogGroup(...data);
+}
+
+/**
+ * 
+ * @param message
+ * @param type
+ */
+function LogPopup(message: string, type: 'success' | 'error' | 'warning') {
+    LogManager.LogPopup(message, type);
+}
+
+/**
+ * 
+ * @param result
+ * @returns
+ */
+function LoadData(result: (data) => void) {
+    const { id } = RouteManager.Params;
+    Log('loadData: ', RouteManager.Params);
+    const data = StoreManager.ReadMember(id);
+    return data && result(data.result);
+
+    //if (data) {
+    //    Log('find: ', data);
+    //    return result(data.result);
+    //}
+
+    //const temp = { id, name: '測試資料', email: 'test@yahoo.com', mobile: '12345' };
+    //Log('newEdit: ', temp);
+    //return result(temp);  
 }
 
 export {
     FormRef,
     Form,
     Home,
+    Log,
+    LogGroup,
+    LogPopup,
     Register,
-    LoginOut,
-    LoadData,
-    GetRoutParams
+    Logout,
+    LoadData
 }

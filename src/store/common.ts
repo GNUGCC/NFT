@@ -1,4 +1,4 @@
-import type { MemberType } from '@/model/member';
+import { type MemberType } from '@/models/member';
 
 /**
  * 
@@ -56,7 +56,7 @@ function AddMember(data: MemberType, members: MemberType[]) {
 function UpdateMember(data: MemberType, members: MemberType[]) {
     const member = QueryMember(data.id!, members);
     member && members.splice(member.index, 1, data);
-    return members;
+    return member && members;
 }
 
 /**
