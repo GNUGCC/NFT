@@ -2,7 +2,7 @@ import { computed } from 'vue';
 import { InternalLogin } from '@/api/account';
 import ValidateRules from './validate';
 import { StoreManager } from '@/utils/manager';
-import { Form, FormRef, Log, Register, Logout } from './common';
+import { Form, FormRef, Log, Register, Logout, LogPopup } from './common';
 
 const Member = computed(() => StoreManager.Member);
 const Authentication = computed(() => StoreManager.Authentication);
@@ -32,6 +32,7 @@ function Login() {
                     password,
                     data: x
                 });
+                LogPopup('登入成功', 'success');
             })
             .catch(err => {
                 console.log('登入錯誤: ', err);
