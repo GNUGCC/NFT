@@ -11,7 +11,6 @@
 
 <template>
     <el-menu
-             id="menu"
              class="fixed-top header"
              mode="horizontal"
              :ellipsis="false"
@@ -36,7 +35,7 @@
     </el-menu>   
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .el-menu-item {
         --el-menu-hover-bg-color: rgb(0, 155, 204);
     }
