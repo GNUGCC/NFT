@@ -14,7 +14,6 @@
     } from '@/modules/home';
 
     import { StoreManager } from '@/utils/manager';
-    console.log('store: ', StoreManager.Member);
 </script>
 
 <template>
@@ -22,6 +21,12 @@
         <h3 class="bg-primary text-center text-white p-2">
             <div class="nft">NFT</div>
         </h3>
+        <!--<template v-if="true">
+            <div class="test">
+                <el-alert title="測試階段" type="info" :closable="false" effect="dark" center show-icon />
+            </div>
+        </template>-->        
+
         <div class="container">
             <el-space warp>
                 <el-card class="box-card">
@@ -71,6 +76,19 @@
 </template>
 
 <style lang="scss">
+    .el-alert__title {
+        font-size: 20px;
+        font-weight: bolder;
+    }
+
+    .el-alert--info.is-dark {
+        background-color: red;
+    }
+
+    .test {
+        max-width: 100%;
+    }
+
     .nft-title {
         font-weight: bolder;
     }

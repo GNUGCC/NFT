@@ -6,11 +6,10 @@ import service from '@/api/common';
  * @returns
  */
 export function InternalLogin({ name, password }) {
-    return Promise.resolve({ name, password });
-    //return service.post('login', {
-    //    account: name,
-    //    password
-    //});
+    return service.post('login', {
+        account: name,
+        password
+    });
 }
 
 /**

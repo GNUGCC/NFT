@@ -3,6 +3,7 @@ import { FormInstance } from 'element-plus';
 import { StoreManager, RouteManager, LogManager } from '@/utils/manager';
 import { type MemberType } from '@/models/member';
 
+const dev = true;
 const FormRef = ref<FormInstance>();
 const Form = ref<MemberType>({});
 
@@ -34,7 +35,7 @@ function Logout() {
  * @param data
  */
 function Log(...data: any[]) {
-    LogManager.Log(...data);
+    if ((Boolean)(dev) == true) LogManager.Log(...data);
 }
 
 /**
@@ -73,6 +74,10 @@ function LoadData(result: (data) => void) {
     //const temp = { id, name: '測試資料', email: 'test@yahoo.com', mobile: '12345' };
     //Log('newEdit: ', temp);
     //return result(temp);  
+}
+
+export function DevErrorMesage(message) {
+    LogPopup(`${message}: 目前為測試階段。`, 'warning');
 }
 
 export {

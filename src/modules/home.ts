@@ -1,8 +1,9 @@
 import { computed } from 'vue';
+//import { ElMessageBox } from 'element-plus';
 import { InternalLogin } from '@/api/account';
+import { StoreManager, MessageBoxManager } from '@/utils/manager';
 import ValidateRules from './validate';
-import { StoreManager } from '@/utils/manager';
-import { Form, FormRef, Log, Register, Logout, LogPopup } from './common';
+import { Form, FormRef, Log, Register, Logout, LogPopup, DevErrorMesage } from './common';
 
 const Member = computed(() => StoreManager.Member);
 const Authentication = computed(() => StoreManager.Authentication);
@@ -35,8 +36,22 @@ function Login() {
                 LogPopup('登入成功', 'success');
             })
             .catch(err => {
-                console.log('登入錯誤: ', err);
-                alert(err);
+                MessageBoxManager.Confirm(
+                    '目前測試階段，系統將自動使用您目前輸入的帳密登入，您確定嗎？',
+                    'warning'
+                )
+                    .then(() => {
+                        LoginMember({
+                            id: name,
+                            name,
+                            password
+                        });
+                    })
+                    .catch(() => {
+                        Log('登入錯誤: ', err);                        
+                    });                               
+
+                LogPopup(err, 'error');
             });
     });
 }

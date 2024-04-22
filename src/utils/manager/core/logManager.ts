@@ -1,27 +1,7 @@
-import { AppConfig } from 'vue';
+import { ContextManager } from './contextManager';
 
 /** 訊息輸出相關 Manager */
 export class LogManager {
-    /**
-     * 
-     */
-    private static _appConfig?: AppConfig;
-
-    /**
-     * 
-     */
-    static get AppConfig() {
-        return LogManager._appConfig;
-    }
-
-    /**
-     * 
-     * @param config
-     */
-    static InitialAppConfig(config?: AppConfig | undefined) {        
-        LogManager._appConfig = config;        
-    }
-
     /**
      * 集中做訊息輸出用
      * @param data
@@ -46,6 +26,6 @@ export class LogManager {
      * @returns
      */
     static LogPopup = (message: string, type: 'success' | 'error' | 'warning') => {
-        LogManager.AppConfig?.globalProperties.$message({ message, type });
+        ContextManager.GlobalProperties.$message({ message, type });
     }
 }
