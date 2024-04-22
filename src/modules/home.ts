@@ -1,5 +1,4 @@
 import { computed } from 'vue';
-//import { ElMessageBox } from 'element-plus';
 import { InternalLogin } from '@/api/account';
 import { StoreManager, MessageBoxManager } from '@/utils/manager';
 import ValidateRules from './validate';
@@ -37,7 +36,7 @@ function Login() {
             })
             .catch(err => {
                 MessageBoxManager.Confirm(
-                    '目前測試階段，系統將自動使用您目前輸入的帳密登入，您確定嗎？',
+                    '目前測試階段，系統將自動以訪客身份登入，您確定嗎？',
                     'warning'
                 )
                     .then(() => {
