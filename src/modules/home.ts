@@ -2,10 +2,24 @@ import { computed } from 'vue';
 import { InternalLogin } from '@/api/account';
 import { Env, ContextManager, StoreManager, MessageBoxManager } from '@/utils';
 import ValidateRules from './validate';
-import { Form, FormRef, Log, Register, Logout, LogPopup, DevErrorMesage } from './common';
+import { Form, FormRef, Log, Register, Logout, LogPopup } from './common';
 
 const Member = computed(() => StoreManager.Member);
 const Authentication = computed(() => StoreManager.Authentication);
+
+/**
+ * 
+ */
+function Login() {
+    FormRef.value?.validate(valid => {
+        if (valid == false) return;
+
+        const { account, password } = Form.value;
+        InternalLogin({ account, password })
+            .then(x => LoginAndPopup({ account, password, data: x }))
+            .catch(err => CheckGuest({ account, password, err }));
+    });
+}
 
 /**
  * 
@@ -17,40 +31,41 @@ function LoginMember(value) {
 
 /**
  * 
+ * @param param0
  */
-function Login() {
-    FormRef.value?.validate(valid => {
-        if (valid == false) return;
+function LoginAndPopup({ account, password, data }) {
+    LoginMember({
+        account,
+        password,
+        data
+    });
 
-        const { account, password } = Form.value;
-        InternalLogin({ account, password })
-            .then(x => {
-                LoginMember({
+    Log('使用者登入: ', Form, data);
+    LogPopup('登入成功', 'success');
+}
+
+/**
+ * 
+ * @param param0
+ */
+function CheckGuest({ account, password, err }) {
+    if (ContextManager.Process == Env.Development) {
+        MessageBoxManager.Confirm('目前測試階段，系統將自動以訪客身份登入，您確定嗎？', 'warning', '使用者登入失敗')
+            .then(() => {
+                LoginAndPopup({
                     account,
                     password,
-                    data: x
+                    data: {
+                        guest: true
+                    }
                 });
-
-                Log('使用者登入: ', Form, x);
-                LogPopup('登入成功', 'success');
             })
-            .catch(err => {
-                if (ContextManager.Process == Env.Development) {
-                    MessageBoxManager.Confirm('目前測試階段，系統將自動以訪客身份登入，您確定嗎？', 'warning', '使用者登入失敗')
-                        .then(() => {
-                            LoginMember({
-                                account,
-                                password
-                            });
-                        })
-                        .catch(() => {
-                            Log('測試階段登入錯誤: ', err);
-                        });
-                }
-
-                LogPopup(err, 'error');
+            .catch(() => {
+                Log('測試階段登入錯誤: ', err);
             });
-    });
+    }    
+
+    LogPopup(err, 'error')
 }
 
 export {
