@@ -5,9 +5,9 @@ import service from '@/api/common';
  * @param param0
  * @returns
  */
-export function InternalLogin({ name, password }) {
+export function InternalLogin({ account, password }) {
     return service.post('login', {
-        account: name,
+        account,
         password
     });
 }

@@ -22,11 +22,11 @@ function Login() {
     FormRef.value?.validate(valid => {
         if (valid == false) return;
 
-        const { name, password } = Form.value;
-        InternalLogin({ name, password })
+        const { account, password } = Form.value;
+        InternalLogin({ account, password })
             .then(x => {
                 LoginMember({
-                    name,
+                    account,
                     password,
                     data: x
                 });
@@ -39,8 +39,7 @@ function Login() {
                     MessageBoxManager.Confirm('目前測試階段，系統將自動以訪客身份登入，您確定嗎？', 'warning', '使用者登入失敗')
                         .then(() => {
                             LoginMember({
-                                id: name,
-                                name,
+                                account,
                                 password
                             });
                         })
