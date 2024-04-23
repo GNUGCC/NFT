@@ -38,9 +38,9 @@
                              :rules="ValidateRules"
                              status-icon
                              label-width="1">
-                        <el-form-item prop="name">
+                        <el-form-item prop="account">
                             <label v-bind="{class : 'form-label'}">使用者名稱</label>
-                            <el-input v-model="Form.name" placeholder="您的使用者名稱" clearable data-username></el-input>
+                            <el-input v-model="Form.account" placeholder="您的使用者名稱" clearable data-username></el-input>
                         </el-form-item>
                         <el-form-item prop="password">
                             <label class="form-label">密碼</label>
