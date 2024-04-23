@@ -68,7 +68,7 @@ const ValideteMobile = (rule, value, callBack) => {
  * 
  */
 const ValidateRules = reactive<FormRules<MemberType>>({
-    name: [{ validator: ValideteName, trigger: 'blur' }],
+    account: [{ validator: ValideteName, trigger: 'blur' }],
     password: [{ validator: ValidetePassword, trigger: 'blur' }],
     passwords: [{ validator: ValidetePasswords, trigger: 'blur' }],
     email: [{ validator: ValideteEMail, trigger: 'blur' }],
