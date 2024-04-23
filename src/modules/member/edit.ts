@@ -6,15 +6,6 @@ import { type MemberType } from '@/models/member';
 
 /**
  * 
- * @param member
- * @returns
- */
-function Edit(member: MemberType) {
-    return `/member/edit/${member.id}`;
-}
-
-/**
- * 
  * @param valid
  * @returns
  */
@@ -38,6 +29,15 @@ function Save(valid) {
             console.log('更新錯誤: ', err);
             alert('更新錯誤');
         });
+}
+
+/**
+ * 
+ * @param member
+ * @returns
+ */
+function Edit(member: MemberType) {
+    return `/member/edit/${member.id}`;
 }
 
 /**

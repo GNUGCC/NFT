@@ -1,6 +1,6 @@
 import { InternalRegister } from '@/api/account';
-import { StoreManager } from '@/utils/manager';
-import { Form, Home, Log } from '@/modules/common';
+import { Env, MessageBoxManager, ContextManager, StoreManager } from '@/utils';
+import { Form, Home, Log, LogPopup } from '@/modules/common';
 
 function Save(valid) {
     if (valid == false) return;
@@ -12,13 +12,17 @@ function Save(valid) {
             StoreManager.AddMember({ name, password, email, mobile })
                 .then(() => {
                     Log('新增會員: ', StoreManager.Member,  StoreManager.Members);
-                    alert('新增會員成功!');
+                    LogPopup('新增會員成功!', 'success');
                     Home();
                 });
         })
         .catch(err => {
-            console.log('註冊錯誤: ', err);
-            alert('註冊錯誤');
+            if (ContextManager.Process == Env.Development) {
+                MessageBoxManager.Alert('目前為測試階段，後端註冊產生錯誤!', 'error', '檢查後端');
+            }
+
+            Log('註冊錯誤: ', err);
+            LogPopup(err, 'error');            
         });
 }
 
