@@ -5,10 +5,10 @@ import { type MemberType } from '@/models/member';
  * @param member
  * @returns
  */
-function Detail(member: MemberType) {
-    return `/member/detail/${member.id}`;
+function Order(member: MemberType) {
+    return `/member/order/${member.id}`;
 }
 
 export {
-    Detail
+    Order
 }
