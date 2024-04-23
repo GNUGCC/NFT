@@ -1,60 +1,55 @@
 <script setup lang="ts">
+    import { RouteManager } from '@/utils/';
     import type { OrderStatusType } from '@/models/member';
     const orders: OrderStatusType[] = [
         {
             id: '1',
-            amount: 'test1',
+            amount: '1000',
             m_id: '1',
             content: '',
-            status: '0',
-            available_date: ''
+            status: '訂單成立',
+            available_date: '2024/4/15',
+            build_time: '2024/4/15'
         },
         {
             id: '2',
-            amount: 'test2',
+            amount: '2000',
             m_id: '2',
             content: '',
-            status: '1',
-            available_date: ''
+            status: '付款成功',
+            available_date: '2024/4/16',
+            build_time: '2024/4/16'
         },
         {
             id: '3',
-            amount: 'test3',
+            amount: '2500',
             m_id: '3',
             content: '',
-            status: '1',
-            available_date: ''
+            status: '付款成功',
+            available_date: '2024/4/17',
+            build_time: '2024/4/17'
         },
         {
             id: '4',
-            amount: 'test4',
+            amount: '500',
             m_id: '4',
             content: '',
-            status: '3',
-            available_date: ''
+            status: '付款失敗',
+            available_date: '2024/4/18',
+            build_time: '2024/4/18'
         },
         {
             id: '5',
-            amount: 'test5',
+            amount: '13000',
             m_id: '5',
             content: '',
-            status: '1',
-            available_date: ''
+            status: '付款成功',
+            available_date: '2024/4/23',
+            build_time: '2024/4/23'
         }
     ];
 
-    interface User {
-        date: string
-        name: string
-        address: string
-    }
-
-    const handleEdit = (index: number, row: User) => {
-        console.log(index, row)
-    }
-    const handleDelete = (index: number, row: User) => {
-        console.log(index, row)
-    }   
+    const Home = () => RouteManager.Home();
 </script>
 
 <template>
@@ -80,30 +75,40 @@
             </template>
         </el-table-column>
         <el-table-column label="狀態">
-            <!--<template #default="{ row }">
-                <el-button size="small" @click="handleEdit(row)">Edit</el-button>
+            <template #default="{ row }">
+                <div style="display: flex; align-items: center">
+                    <span style="margin-left: 10px">{{ row.status }}</span>
+                </div>
+                <!--<el-button size="small" @click="handleEdit(row)">Edit</el-button>
                 <el-button size="small"
                            type="danger"
-                           @click="handleDelete(row)">Delete</el-button>
-            </template>-->
+                           @click="handleDelete(row)">Delete</el-button>-->
+            </template>
         </el-table-column>
         <el-table-column label="有效日期">
-            <!--<template #default="{ row }">
-                <el-button size="small" @click="handleEdit(row)">Edit</el-button>
+            <template #default="{ row }">
+                <div style="display: flex; align-items: center">
+                    <span style="margin-left: 10px">{{ row.available_date }}</span>
+                </div>
+                <!--<el-button size="small" @click="handleEdit(row)">Edit</el-button>
                 <el-button size="small"
                            type="danger"
-                           @click="handleDelete(row)">Delete</el-button>
-            </template>-->
+                           @click="handleDelete(row)">Delete</el-button>-->
+            </template>
         </el-table-column>
         <el-table-column label="建立日期">
-            <!--<template #default="{ row }">
-                <el-button size="small" @click="handleEdit(srow)">Edit</el-button>
+            <template #default="{ row }">
+                <div style="display: flex; align-items: center">
+                    <span style="margin-left: 10px">{{ row.available_date }}</span>
+                </div>
+                <!--<el-button size="small" @click="handleEdit(srow)">Edit</el-button>
                 <el-button size="small"
                            type="danger"
-                           @click="handleDelete(row)">Delete</el-button>
-            </template>-->
+                           @click="handleDelete(row)">Delete</el-button>-->
+            </template>
         </el-table-column>
     </el-table>
+    <el-button type="primary" @click="Home" style="width: 100px; margin-top: 5px;" plain>確定</el-button>
 </template>
 
 <style lang="scss" scoped>
