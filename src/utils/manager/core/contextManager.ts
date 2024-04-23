@@ -2,12 +2,26 @@ import { AppConfig } from 'vue';
 import { Router } from 'vue-router';
 import { RouteManager } from './routeManager';
 
+export const enum Env {
+    Development = 'development',
+    Production = 'production'
+}
+
 /**
  * 
  */
 export class ContextManager {
     private static _appConfig?: AppConfig;
     private static _router?: Router;
+
+    /**
+     * 
+     */
+    static get Process() {
+        const env = process.env.NODE_ENV;
+        if (env == 'development') return Env.Development;
+        if (env == 'production') return Env.Production;
+    }
 
     /**
      * 

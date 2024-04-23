@@ -1,6 +1,6 @@
 import { computed } from 'vue';
 import { InternalLogin } from '@/api/account';
-import { StoreManager, MessageBoxManager } from '@/utils/manager';
+import { Env, ContextManager, StoreManager, MessageBoxManager } from '@/utils';
 import ValidateRules from './validate';
 import { Form, FormRef, Log, Register, Logout, LogPopup, DevErrorMesage } from './common';
 
@@ -25,30 +25,29 @@ function Login() {
         const { name, password } = Form.value;
         InternalLogin({ name, password })
             .then(x => {
-                Log('使用者登入: ', Form, x);
                 LoginMember({
-                    id: name,
                     name,
                     password,
                     data: x
                 });
+
+                Log('使用者登入: ', Form, x);
                 LogPopup('登入成功', 'success');
             })
             .catch(err => {
-                MessageBoxManager.Confirm(
-                    '目前測試階段，系統將自動以訪客身份登入，您確定嗎？',
-                    'warning'
-                )
-                    .then(() => {
-                        LoginMember({
-                            id: name,
-                            name,
-                            password
+                if (ContextManager.Process == Env.Development) {
+                    MessageBoxManager.Confirm('目前測試階段，系統將自動以訪客身份登入，您確定嗎？', 'warning', '使用者登入失敗')
+                        .then(() => {
+                            LoginMember({
+                                id: name,
+                                name,
+                                password
+                            });
+                        })
+                        .catch(() => {
+                            Log('測試階段登入錯誤: ', err);
                         });
-                    })
-                    .catch(() => {
-                        Log('登入錯誤: ', err);                        
-                    });                               
+                }
 
                 LogPopup(err, 'error');
             });
