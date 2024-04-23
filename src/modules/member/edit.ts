@@ -1,8 +1,13 @@
-import { Form, Home, Log } from '@/modules/common';
-import { StoreManager } from '@/utils/manager';
+import { Form, Home, Log, LogPopup } from '@/modules/common';
 import { InternalUpdate } from '@/api/account';
-import { RouteManager } from '@/utils/manager';
 import { type MemberType } from '@/models/member';
+import {
+    Env,
+    ContextManager,
+    RouteManager,
+    StoreManager,
+    MessageBoxManager
+} from '@/utils';
 
 /**
  * 
@@ -21,13 +26,17 @@ function Save(valid) {
             StoreManager.UpdateMember(form)
                 .then(() => {
                     Log('update member: ', StoreManager.Member, StoreManager.Members);
-                    alert('更新會員資料成功!');
+                    LogPopup('更新會員資料成功!', 'success');
                     Home();
                 });                
         })
         .catch(err => {
-            console.log('更新錯誤: ', err);
-            alert('更新錯誤');
+            if (ContextManager.Process == Env.Development) {
+                MessageBoxManager.Alert('目前為測試階段，後端修改會員資料產生錯誤!', 'error', '檢查後端');
+            }
+
+            Log('更新錯誤: ', err);
+            LogPopup(err, 'error');
         });
 }
 
