@@ -38,3 +38,10 @@ export function InternalUpdate({ id, name, password, account, email, mobile }) {
     //return Promise.resolve({ id, name, password, account, email, mobile });
     //return service.put('members', { id, name, password, account, email, mobile });
 }
+
+/**
+ * 
+ */
+export function InternalGetAllMembers() {
+    return service.get('members');
+}
