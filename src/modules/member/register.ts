@@ -1,4 +1,5 @@
 import { InternalRegister } from '@/api/account';
+import { sha512 } from 'js-sha512';
 import { Env, MessageBoxManager, ContextManager, StoreManager } from '@/utils';
 import { Form, Home, Log, LogPopup } from '@/modules/common';
 
@@ -6,7 +7,7 @@ function Save(valid) {
     if (valid == false) return;
 
     const { name, password, email, mobile } = Form.value;
-    InternalRegister({ name, password, email, mobile })
+    InternalRegister({ name, password: sha512(password!), email, mobile })
         .then(x => {
             Log('使用者註冊: ', Form, x);
             StoreManager.AddMember({ name, password, email, mobile })
