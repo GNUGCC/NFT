@@ -1,6 +1,6 @@
 import { PerformanceMember } from '@/store/common';
 import { FormRef, Form } from '@/modules/common';
-import ValidateRules from '@/modules/validate';
+import { ValidateRules } from '@/modules/validate';
 
 /**
  * 

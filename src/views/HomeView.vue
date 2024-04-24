@@ -12,8 +12,6 @@
         FormRef,
         ValidateRules
     } from '@/modules/home';
-
-    import { StoreManager } from '@/utils/manager';
 </script>
 
 <template>
@@ -52,7 +50,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <el-button type="primary" class="button" @click="Login" v-if="Authentication == false">登錄</el-button>
+                <el-button type="primary" class="button" @click="Login(Form.account, Form.password)" v-if="Authentication == false">登錄</el-button>
             </div>
         </div>
         <div class="row">

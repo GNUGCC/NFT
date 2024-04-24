@@ -1,4 +1,5 @@
 import { ref } from 'vue';
+import { sha512 } from 'js-sha512';
 import { FormInstance } from 'element-plus';
 import { StoreManager, RouteManager, LogManager } from '@/utils/manager';
 import { type MemberType } from '@/models/member';
@@ -76,8 +77,12 @@ function LoadData(result: (data) => void) {
     //return result(temp);  
 }
 
-export function DevErrorMesage(message) {
-    LogPopup(`${message}: 目前為測試階段。`, 'warning');
+/**
+ * 
+ * @returns
+ */
+function PrepareUserPassword({ useraccount, userpassword }) {
+    return { account: useraccount, password: sha512(userpassword!) };
 }
 
 export {
@@ -89,5 +94,6 @@ export {
     LogPopup,
     Register,
     Logout,
-    LoadData
+    LoadData,
+    PrepareUserPassword
 }
