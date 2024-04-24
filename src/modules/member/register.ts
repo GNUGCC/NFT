@@ -1,16 +1,19 @@
 import { InternalRegister } from '@/api/account';
-import { sha512 } from 'js-sha512';
 import { Env, MessageBoxManager, ContextManager, StoreManager } from '@/utils';
-import { Form, Home, Log, LogPopup } from '@/modules/common';
+import { Home, Log, LogPopup, PrepareUserPassword } from '@/modules/common';
+import type { MemberType } from '@/models/member';
 
-function Save(valid) {
+function Save(valid, fields: MemberType) {
     if (valid == false) return;
 
-    const { name, password, email, mobile } = Form.value;
-    InternalRegister({ name, password: sha512(password!), email, mobile })
+    Log('註冊', fields);
+    const { account, password } = PrepareUserPassword({ useraccount: fields.account, userpassword: fields.password });
+    const result = { name: fields.name, account, password, email: fields.email, mobile: fields.mobile };
+
+    InternalRegister({ ...result })
         .then(x => {
-            Log('使用者註冊: ', Form, x);
-            StoreManager.AddMember({ name, password, email, mobile })
+            Log('使用者註冊: ', { ...result }, x);
+            StoreManager.AddMember({ ...result })
                 .then(() => {
                     Log('新增會員: ', StoreManager.Member,  StoreManager.Members);
                     LogPopup('新增會員成功!', 'success');

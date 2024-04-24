@@ -32,7 +32,9 @@ function InitlaizeData(props) {
  * @param emit
  */
 function Save(emit: FieldEmitType) {
-    FormRef.value?.validate(valid => emit('save', valid, Form.value));
+    const result = Form.value;
+    result.name = result.account;
+    FormRef.value?.validate(valid => emit('save', valid, result));
 }
 
 /**
