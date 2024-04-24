@@ -18,14 +18,13 @@ export function InternalLogin({ account, password }) {
  * @returns
  */
 export function InternalRegister({ name, password, email, mobile }) {
-    return Promise.resolve({ name, password, email, mobile });
-    //return service.post('register', {
-    //    account: name,
-    //    name,
-    //    password,
-    //    email,
-    //    mobile
-    //});
+    return service.post('register', {
+        account: name,
+        name,
+        password,
+        email,
+        mobile
+    });
 }
 
 /**
@@ -34,9 +33,7 @@ export function InternalRegister({ name, password, email, mobile }) {
  * @returns
  */
 export function InternalUpdate({ id, name, password, account, email, mobile }) {
-    return Promise.resolve({ id, name, password, account, email, mobile });
-    //return Promise.resolve({ id, name, password, account, email, mobile });
-    //return service.put('members', { id, name, password, account, email, mobile });
+    return service.put('members', { id, name, password, account, email, mobile });
 }
 
 /**
