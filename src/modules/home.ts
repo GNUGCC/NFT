@@ -2,6 +2,7 @@ import { computed } from 'vue';
 import { InternalLogin } from '@/api/account';
 import { Env, ContextManager, StoreManager, MessageBoxManager } from '@/utils';
 import ValidateRules from './validate';
+import { sha512 } from 'js-sha512';
 import { Form, FormRef, Log, Register, Logout, LogPopup } from './common';
 
 const Member = computed(() => StoreManager.Member);
@@ -15,7 +16,7 @@ function Login() {
         if (valid == false) return;
 
         const { account, password } = Form.value;
-        InternalLogin({ account, password })
+        InternalLogin({ account, password: sha512(password!) })
             .then(x => LoginAndPopup({ account, password, data: x }))
             .catch(err => CheckGuest({ account, password, err }));
     });
