@@ -14,6 +14,14 @@ export function InternalLogin({ account, password }) {
 
 /**
  * 
+ * @param id
+ */
+export function InternalQueryMember({ id }) {
+    return service.get(`members/${id}`);
+}
+
+/**
+ * 
  * @param param0
  * @returns
  */
@@ -33,7 +41,7 @@ export function InternalRegister({ name, account, password, email, mobile }) {
  * @returns
  */
 export function InternalUpdate({ id, name, password, account, email, mobile }) {
-    return service.put('members', { id, name, password, account, email, mobile });
+    return service.put(`members/${id}`, { name, password, account, email, mobile });
 }
 
 /**

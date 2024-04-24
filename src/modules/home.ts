@@ -1,5 +1,5 @@
 import { computed } from 'vue';
-import { InternalLogin } from '@/api/account';
+import { InternalLogin, InternalQueryMember } from '@/api/account';
 import { FormRef, Log, LogPopup, PrepareUserPassword } from './common';
 import { Env, ContextManager, StoreManager, MessageBoxManager } from '@/utils';
 
@@ -15,7 +15,11 @@ function Login(useraccount: string, userpassword: string) {
 
         const { account, password } = PrepareUserPassword({ useraccount, userpassword });
         InternalLogin({ account, password })
-            .then(x => LoginAndPopup({ account, password, data: x }))
+            .then(x => {
+                const data = x as any;
+                return InternalQueryMember({ id: data.member_id });
+            })
+            .then(x => LoginAndPopup(x))
             .catch(err => CheckGuest({ account, password, err }));
     });
 }
@@ -32,14 +36,10 @@ function LoginMember(value) {
  * 
  * @param param0
  */
-function LoginAndPopup({ account, password, data }) {
-    LoginMember({
-        account,
-        password,
-        data
-    });
+function LoginAndPopup(value) {
+    LoginMember(value);
 
-    Log('使用者登入: ', account, data);
+    Log('使用者登入: ', value);
     LogPopup('登入成功', 'success');
 }
 
