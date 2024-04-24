@@ -1,6 +1,7 @@
 import { Form, Home, Log, LogPopup } from '@/modules/common';
 import { InternalUpdate } from '@/api/account';
-import { type MemberType } from '@/models/member';
+import { sha512 } from 'js-sha512';
+import type { MemberType } from '@/models/member';
 import {
     Env,
     ContextManager,
@@ -19,7 +20,7 @@ function Save(valid) {
 
     const { id } = RouteManager.Params;
     const { name, password, account, email, mobile } = Form.value;
-    InternalUpdate({ id, name, password, account, email, mobile })
+    InternalUpdate({ id, name, password: sha512(password!), account, email, mobile })
         .then(x => {
             const form = Object.assign({}, Form.value);
             Log('使用者更新資料: ', form, x);
