@@ -17,10 +17,10 @@ export function InternalLogin({ account, password }) {
  * @param param0
  * @returns
  */
-export function InternalRegister({ name, password, email, mobile }) {
+export function InternalRegister({ name, account, password, email, mobile }) {
     return service.post('register', {
-        account: name,
         name,
+        account,
         password,
         email,
         mobile
