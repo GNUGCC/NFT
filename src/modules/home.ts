@@ -1,7 +1,6 @@
 import { computed } from 'vue';
-import { sha512 } from 'js-sha512';
 import { InternalLogin } from '@/api/account';
-import { FormRef, Log, LogPopup } from './common';
+import { FormRef, Log, LogPopup, PrepareUserPassword } from './common';
 import { Env, ContextManager, StoreManager, MessageBoxManager } from '@/utils';
 
 const Member = computed(() => StoreManager.Member);
@@ -14,7 +13,7 @@ function Login(useraccount: string, userpassword: string) {
     FormRef.value?.validate(valid => {
         if (valid == false) return;
 
-        const { account, password } = prepareUserPassword({ useraccount, userpassword });
+        const { account, password } = PrepareUserPassword({ useraccount, userpassword });
         InternalLogin({ account, password })
             .then(x => LoginAndPopup({ account, password, data: x }))
             .catch(err => CheckGuest({ account, password, err }));
@@ -42,14 +41,6 @@ function LoginAndPopup({ account, password, data }) {
 
     Log('使用者登入: ', account, data);
     LogPopup('登入成功', 'success');
-}
-
-/**
- * 
- * @returns
- */
-function prepareUserPassword({ useraccount, userpassword }) {
-    return { account: useraccount, password: sha512(userpassword!) };
 }
 
 /**
