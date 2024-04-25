@@ -47,7 +47,7 @@ function PerformanceMember(data) {
  * @param myCards
  */
 function QueryMyCard(id: string, myCards: Array<MyCardContentType>) {
-
+    /* eslint-disable */
 }
 
 /**
