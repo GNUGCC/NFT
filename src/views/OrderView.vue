@@ -1,59 +1,11 @@
 <script setup lang="ts">
     import { RouteManager } from '@/utils/';
-    import type { OrderStatusType } from '@/models/member';
-    const orders: OrderStatusType[] = [
-        {
-            id: '1',
-            amount: '1000',
-            m_id: '1',
-            content: '',
-            status: '訂單成立',
-            available_date: '2024/4/15',
-            build_time: '2024/4/15'
-        },
-        {
-            id: '2',
-            amount: '2000',
-            m_id: '2',
-            content: '',
-            status: '付款成功',
-            available_date: '2024/4/16',
-            build_time: '2024/4/16'
-        },
-        {
-            id: '3',
-            amount: '2500',
-            m_id: '3',
-            content: '',
-            status: '付款成功',
-            available_date: '2024/4/17',
-            build_time: '2024/4/17'
-        },
-        {
-            id: '4',
-            amount: '500',
-            m_id: '4',
-            content: '',
-            status: '付款失敗',
-            available_date: '2024/4/18',
-            build_time: '2024/4/18'
-        },
-        {
-            id: '5',
-            amount: '13000',
-            m_id: '5',
-            content: '',
-            status: '付款成功',
-            available_date: '2024/4/23',
-            build_time: '2024/4/23'
-        }
-    ];
-
+    import { Orders } from '@/modules/member/order';
     const Home = () => RouteManager.Home();
 </script>
 
 <template>
-    <el-card class="card" shadow="hover">
+    <el-card class="card" shadow="hover">        
         <template #header>
             <template v-if="true">
                 <el-alert title="MyCard 訂單記錄(測試資料)" :type="warning" :closable="false" effect="dark" center show-icon />
@@ -61,9 +13,8 @@
             <template v-else>
                 <el-alert title="MyCard 訂單記錄" type="info" :closable="false" effect="light" center show-icon />
             </template>            
-            <!--<h5>MyCard 訂單記錄</h5>-->
         </template>
-        <el-table :data="orders" style="width: 100%">
+        <el-table :data="Orders" style="width: 100%">
             <el-table-column label="購買內容" width="180">
                 <template #default="{ row }">
                     <el-popover effect="light" trigger="hover" placement="top" width="auto">
@@ -117,6 +68,7 @@
                                @click="handleDelete(row)">Delete</el-button>-->
                 </template>
             </el-table-column>
+            <template #empty>沒有訂單資料</template>
         </el-table>
         <el-button type="primary" class="info" @click="Home" plain>確定</el-button>
     </el-card>    

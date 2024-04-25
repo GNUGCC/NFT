@@ -2,7 +2,7 @@
     import { defineProps, computed } from 'vue';
     import IconItem from './IconItem.vue';
     import { Edit } from '@/modules/member/edit';    
-    import { Order } from '@/modules/member/detail';
+    import { Order } from '@/modules/member/order';
     import { Logout } from '@/modules/common';
     import { type MemberType } from '@/models/member';    
     

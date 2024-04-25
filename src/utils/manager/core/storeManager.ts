@@ -1,6 +1,6 @@
 import { Store } from "vuex";
 import useStore from '@/store';
-import { MemberStore } from '@/models/member';
+import type { MemberStore } from '@/models/memberStore';
 
 export class StoreManager {
     /**
