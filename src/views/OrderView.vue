@@ -5,17 +5,17 @@
 </script>
 
 <template>
-    <el-card class="card" shadow="hover">        
+    <el-card class="card" shadow="hover">
         <template #header>
             <template v-if="true">
                 <el-alert title="MyCard 訂單記錄(測試資料)" :type="warning" :closable="false" effect="dark" center show-icon />
             </template>
             <template v-else>
                 <el-alert title="MyCard 訂單記錄" type="info" :closable="false" effect="light" center show-icon />
-            </template>            
+            </template>                    
         </template>
-        <el-table :data="Orders" style="width: 100%">
-            <el-table-column label="購買內容" width="180">
+        <el-table :data="Orders" style="width: 100%" align="center">
+            <el-table-column label="購買內容" width="100%" align="center">
                 <template #default="{ row }">
                     <el-popover effect="light" trigger="hover" placement="top" width="auto">
                         <template #default>
@@ -28,40 +28,32 @@
                     </el-popover>
                 </template>
             </el-table-column>
-            <el-table-column label="付款金額" width="180">
+            <el-table-column label="付款金額" width="100%" align="right">
                 <template #default="{ row }">
-                    <div style="display: flex; align-items: center">
-                        <span style="margin-left: 10px">{{ row.amount }}</span>
-                    </div>
+                    <span>{{ row.amount }}</span>
                 </template>
             </el-table-column>
-            <el-table-column label="狀態">
+            <el-table-column label="狀態" width="100%" align="center">
                 <template #default="{ row }">
-                    <div style="display: flex; align-items: center">
-                        <span style="margin-left: 10px">{{ row.status }}</span>
-                    </div>
+                    <span>{{ row.status }}</span>
                     <!--<el-button size="small" @click="handleEdit(row)">Edit</el-button>
                     <el-button size="small"
                                type="danger"
                                @click="handleDelete(row)">Delete</el-button>-->
                 </template>
             </el-table-column>
-            <el-table-column label="有效日期">
+            <el-table-column label="有效日期" width="100%" align="center">
                 <template #default="{ row }">
-                    <div style="display: flex; align-items: center">
-                        <span style="margin-left: 10px">{{ row.available_date }}</span>
-                    </div>
+                    <span>{{ row.available_date }}</span>
                     <!--<el-button size="small" @click="handleEdit(row)">Edit</el-button>
                     <el-button size="small"
                                type="danger"
                                @click="handleDelete(row)">Delete</el-button>-->
                 </template>
             </el-table-column>
-            <el-table-column label="建立日期">
+            <el-table-column label="建立日期" width="100%" align="center">
                 <template #default="{ row }">
-                    <div style="display: flex; align-items: center">
-                        <span style="margin-left: 10px">{{ row.available_date }}</span>
-                    </div>
+                    <span>{{ row.available_date }}</span>
                     <!--<el-button size="small" @click="handleEdit(srow)">Edit</el-button>
                     <el-button size="small"
                                type="danger"
@@ -81,7 +73,7 @@
     }
 
     .card {
-        width: 100%;
+        width: 40%;
         margin: auto;
     }
 
