@@ -1,4 +1,10 @@
+import { ref } from 'vue';
+import { computedAsync } from '@vueuse/core';
 import { Log, Home } from '@/modules/common';
+import { InternalMyCardSelectItem } from '@/api/point';
+
+const Select = ref();
+const SelectMyCardItem = computedAsync(async () => await InternalMyCardSelectItem());
 
 function AddMyCard(member) {
     Log('加購 MyCard');
@@ -25,8 +31,10 @@ function Cancel(member) {
     Home();
 }
 
-export {
-    AddMyCard,
+export {    
     Save,
-    Cancel
+    Cancel,
+    AddMyCard,
+    Select,
+    SelectMyCardItem
 }

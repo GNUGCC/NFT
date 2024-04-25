@@ -1,41 +1,53 @@
-<script setup lang="ts">
-      import {  ref, onMounted } from 'vue';
-      import { LoadData, FormRef } from '@/modules/common';
-      import { Save, Cancel } from '@/modules/point/mycard';
-      import { type MyCardType } from '@/models/member';
-      
-      const form = ref<MyCardType>({});
-      const member = ref();
-      onMounted(() => LoadData(result => member.value = result));
+<script setup lang="ts">    
+    import { Save, Cancel, Select, SelectMyCardItem } from '@/modules/point/mycard';
 </script>
 
+ <!--loading="true" loading-text="請稍候正在取得資訊..." remote-show-suffix="true" remote="false" remote-method="test@yahoo.com"--> 
 <template>
     <el-space direction="vertical">
         <el-card class="card" shadow="hover">
             <template #header>
-                <h1 class="mycard">MyCard 購點資訊</h1>
+                <h1 class="mycard">MyCard 線上購點</h1>
             </template>
-            <el-form ref="FormRef"
-                     :model="form"
-                     status-icon
-                     label-width="1">
-                <el-form-item prop="point">
-                    <label v-bind="{class : 'form-label'}">請輸入您要購買點數</label>
-                    <el-input v-model="form.point" placeholder="您的新使用者名稱" />
-                </el-form-item>
-            </el-form>
-            <el-button type="success" class="button" @click="Save(member, form)" plain>儲存</el-button>
-            <el-button type="info" class="button" @click="Cancel(member)" plain>取消</el-button>
+            <el-select v-model="Select" placeholder="請選擇卡別(品項)" style="width: 400px;" effect="light" clearable>
+                <el-option v-for="item in SelectMyCardItem"
+                           :key="item.id"
+                           :label="item.content"
+                           :value="item.id">
+                    <el-row>
+                        <el-col :span="12">
+                            <span class="price">台幣 ${{item.points}}</span>
+                        </el-col>
+                        <el-col :span="12">
+                            <span class="point">MyCard 會員點數 {{item.content}}</span>
+                        </el-col>
+                    </el-row>
+                </el-option>
+            </el-select>
+            <div style="margin-top: 5px;">
+                <el-button type="success" class="button" @click="Save" plain>下一步</el-button>
+                <!--<el-button type="info" class="button" @click="Cancel(member)" plain>取消</el-button>-->
+            </div>
         </el-card>
     </el-space>
 </template>
 <style lang="scss" scoped>
+    .point {
+        font-weight: bolder;
+        float: right;
+        color: blue;
+    }
+
+    .price {
+        font-weight: bolder;
+    }
+
     .mycard {
         font-weight: bolder;
     }
 
     .card {
-        width: 300px;
+        width: 40%;
         margin: auto;
     }
 </style>
