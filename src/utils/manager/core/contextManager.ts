@@ -1,6 +1,7 @@
 import { AppConfig } from 'vue';
 import { Router } from 'vue-router';
 import { RouteManager } from './routeManager';
+import ResizeObserver from '@/modules/resize';
 
 export const enum Env {
     Development = 'development',
@@ -53,5 +54,13 @@ export class ContextManager {
         ContextManager._router = router;
 
         RouteManager.InitialRouter(router!);
+        ContextManager.InitialResize();
+    }
+
+    /**
+     * 
+     */
+    static InitialResize() {
+        window.ResizeObserver = ResizeObserver;
     }
 }
