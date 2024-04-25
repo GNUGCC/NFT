@@ -1,4 +1,5 @@
-import type { MemberType, MyCardContentType } from '@/models/member';
+import type { MemberType } from '@/models/member';
+import type { MyCardContentType } from '@/models/mycardContent';
 
 /**
  * 
