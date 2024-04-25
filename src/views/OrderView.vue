@@ -1,119 +1,87 @@
 <script setup lang="ts">
     import { RouteManager } from '@/utils/';
-    import type { OrderStatusType } from '@/models/member';
-    const orders: OrderStatusType[] = [
-        {
-            id: '1',
-            amount: '1000',
-            m_id: '1',
-            content: '',
-            status: '訂單成立',
-            available_date: '2024/4/15',
-            build_time: '2024/4/15'
-        },
-        {
-            id: '2',
-            amount: '2000',
-            m_id: '2',
-            content: '',
-            status: '付款成功',
-            available_date: '2024/4/16',
-            build_time: '2024/4/16'
-        },
-        {
-            id: '3',
-            amount: '2500',
-            m_id: '3',
-            content: '',
-            status: '付款成功',
-            available_date: '2024/4/17',
-            build_time: '2024/4/17'
-        },
-        {
-            id: '4',
-            amount: '500',
-            m_id: '4',
-            content: '',
-            status: '付款失敗',
-            available_date: '2024/4/18',
-            build_time: '2024/4/18'
-        },
-        {
-            id: '5',
-            amount: '13000',
-            m_id: '5',
-            content: '',
-            status: '付款成功',
-            available_date: '2024/4/23',
-            build_time: '2024/4/23'
-        }
-    ];
-
+    import { Orders } from '@/modules/member/order';
     const Home = () => RouteManager.Home();
 </script>
 
 <template>
-    <el-table :data="orders" style="width: 100%">
-        <el-table-column label="購買內容" width="180">
-            <template #default="{ row }">
-                <el-popover effect="light" trigger="hover" placement="top" width="auto">
-                    <template #default>
-                        <div>id: {{ row.id }}</div>
-                        <div>status: {{ row.status }}</div>
-                    </template>
-                    <template #reference>
-                        <el-tag>{{ row.id }}</el-tag>
-                    </template>
-                </el-popover>
+    <el-card class="card" shadow="hover">        
+        <template #header>
+            <template v-if="true">
+                <el-alert title="MyCard 訂單記錄(測試資料)" :type="warning" :closable="false" effect="dark" center show-icon />
             </template>
-        </el-table-column>
-        <el-table-column label="付款金額" width="180">
-            <template #default="{ row }">
-                <div style="display: flex; align-items: center">
-                    <span style="margin-left: 10px">{{ row.amount }}</span>
-                </div>
-            </template>
-        </el-table-column>
-        <el-table-column label="狀態">
-            <template #default="{ row }">
-                <div style="display: flex; align-items: center">
-                    <span style="margin-left: 10px">{{ row.status }}</span>
-                </div>
-                <!--<el-button size="small" @click="handleEdit(row)">Edit</el-button>
-                <el-button size="small"
-                           type="danger"
-                           @click="handleDelete(row)">Delete</el-button>-->
-            </template>
-        </el-table-column>
-        <el-table-column label="有效日期">
-            <template #default="{ row }">
-                <div style="display: flex; align-items: center">
-                    <span style="margin-left: 10px">{{ row.available_date }}</span>
-                </div>
-                <!--<el-button size="small" @click="handleEdit(row)">Edit</el-button>
-                <el-button size="small"
-                           type="danger"
-                           @click="handleDelete(row)">Delete</el-button>-->
-            </template>
-        </el-table-column>
-        <el-table-column label="建立日期">
-            <template #default="{ row }">
-                <div style="display: flex; align-items: center">
-                    <span style="margin-left: 10px">{{ row.available_date }}</span>
-                </div>
-                <!--<el-button size="small" @click="handleEdit(srow)">Edit</el-button>
-                <el-button size="small"
-                           type="danger"
-                           @click="handleDelete(row)">Delete</el-button>-->
-            </template>
-        </el-table-column>
-    </el-table>
-    <el-button type="primary" @click="Home" style="width: 100px; margin-top: 5px;" plain>確定</el-button>
+            <template v-else>
+                <el-alert title="MyCard 訂單記錄" type="info" :closable="false" effect="light" center show-icon />
+            </template>            
+        </template>
+        <el-table :data="Orders" style="width: 100%">
+            <el-table-column label="購買內容" width="180">
+                <template #default="{ row }">
+                    <el-popover effect="light" trigger="hover" placement="top" width="auto">
+                        <template #default>
+                            <div>id: {{ row.id }}</div>
+                            <div>status: {{ row.status }}</div>
+                        </template>
+                        <template #reference>
+                            <el-tag>{{ row.id }}</el-tag>
+                        </template>
+                    </el-popover>
+                </template>
+            </el-table-column>
+            <el-table-column label="付款金額" width="180">
+                <template #default="{ row }">
+                    <div style="display: flex; align-items: center">
+                        <span style="margin-left: 10px">{{ row.amount }}</span>
+                    </div>
+                </template>
+            </el-table-column>
+            <el-table-column label="狀態">
+                <template #default="{ row }">
+                    <div style="display: flex; align-items: center">
+                        <span style="margin-left: 10px">{{ row.status }}</span>
+                    </div>
+                    <!--<el-button size="small" @click="handleEdit(row)">Edit</el-button>
+                    <el-button size="small"
+                               type="danger"
+                               @click="handleDelete(row)">Delete</el-button>-->
+                </template>
+            </el-table-column>
+            <el-table-column label="有效日期">
+                <template #default="{ row }">
+                    <div style="display: flex; align-items: center">
+                        <span style="margin-left: 10px">{{ row.available_date }}</span>
+                    </div>
+                    <!--<el-button size="small" @click="handleEdit(row)">Edit</el-button>
+                    <el-button size="small"
+                               type="danger"
+                               @click="handleDelete(row)">Delete</el-button>-->
+                </template>
+            </el-table-column>
+            <el-table-column label="建立日期">
+                <template #default="{ row }">
+                    <div style="display: flex; align-items: center">
+                        <span style="margin-left: 10px">{{ row.available_date }}</span>
+                    </div>
+                    <!--<el-button size="small" @click="handleEdit(srow)">Edit</el-button>
+                    <el-button size="small"
+                               type="danger"
+                               @click="handleDelete(row)">Delete</el-button>-->
+                </template>
+            </el-table-column>
+            <template #empty>沒有訂單資料</template>
+        </el-table>
+        <el-button type="primary" class="info" @click="Home" plain>確定</el-button>
+    </el-card>    
 </template>
 
 <style lang="scss" scoped>
+    .info {
+        width: 100px;
+        margin-top: 15px;
+    }
+
     .card {
-        width: 300px;
+        width: 100%;
         margin: auto;
     }
 
