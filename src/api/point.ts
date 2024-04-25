@@ -1,5 +1,6 @@
 import service from '@/api/common';
 import type { OrderStatusType } from '@/models/order';
+import type { MyCardContentType } from '@/models/mycardContent';
 
 const orders: OrderStatusType[] = [
     {
@@ -49,9 +50,50 @@ const orders: OrderStatusType[] = [
     }
 ];
 
+const mycardInfo: MyCardContentType[] = [
+    {
+        id: '1',
+        m_id: '1',
+        mycard_data: '1000 點數',
+        mycard_point: '1000'
+    },
+    {
+        id: '2',
+        m_id: '2',
+        mycard_data: '300 點數',
+        mycard_point: '300'
+    },
+    {
+        id: '3',
+        m_id: '3',
+        mycard_data: '11000 點數',
+        mycard_point: '11000'
+    },
+    {
+        id: '4',
+        m_id: '4',
+        mycard_data: '13000 點數',
+        mycard_point: '13000'
+    },
+    {
+        id: '5',
+        m_id: '5',
+        mycard_data: '10000 點數',
+        mycard_point: '10000'
+    }
+];
+
 /**
  * 
  */
 export function InternalOrder({ id }) {
     return Promise.resolve(orders);
+}
+
+/**
+ * 
+ * @param param0
+ */
+export function InternalMyCardInfo({ id }) {
+    return Promise.resolve(mycardInfo);
 }

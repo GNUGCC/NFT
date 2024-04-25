@@ -1,50 +1,69 @@
 <script setup lang="ts">
-    import { ref, onMounted } from 'vue';
-    import { LoadData } from '@/modules/common';
-    import { type MemberType } from '@/models/member';
-    //import { defineProps, computed } from 'vue';
-
-    //const props = defineProps<MemberType>();
-    //const member = computed(() => props);
-    //const data = ref<MemberType>();
-    //onMounted(() => LoadData(result => data.value = result));
-    const data = ref<MemberType>({ id: '100', name: '測試資料', email: 'test@yahoo.com', mobile: '12345' });
-    console.log('data: ', data);
+    import { RouteManager } from '@/utils/';
+    import { MyCardInfo } from '@/modules/point/info';
+    const Home = () => RouteManager.Home();
 </script>
 
 <template>
-    <template v-if="data">
-        <div class="container">
-            <el-card class="card" shadow="hover">
-                <template #header>
-                    {{data.name}}
+    <el-card class="card" shadow="hover">        
+        <template #header>
+            <template v-if="true">
+                <el-alert title="MyCard 購買記錄(測試資料)" type="error" :closable="false" effect="dark" center show-icon />
+            </template>
+            <template v-else>
+                <el-alert title="MyCard 購買記錄" type="info" :closable="false" effect="light" center show-icon />
+            </template>
+        </template>
+        <el-table :data="MyCardInfo" style="width: 100%" align="center">
+            <el-table-column label="購買內容" width="100%" align="center">
+                <template #default="{ row }">
+                    <el-popover effect="light" trigger="hover" placement="top" width="auto">
+                        <template #default>
+                            <span>id: {{ row.id }}</span>
+                            <span>status: {{ row.mycard_data }}</span>
+                        </template>
+                        <template #reference>
+                            <el-tag>{{ row.mycard_data }}</el-tag>
+                        </template>
+                    </el-popover>
                 </template>
-                <div class="info">
-                    總共點數:
-                    <span class="point">
-                        100
-                    </span>
-                </div>
-                <div class="info">
-                    剩餘點數:
-                    <span class="point">
-                        100
-                    </span>
-                </div>
-                <div class="info">
-                    優惠點數:
-                    <span class="point">
-                        100
-                    </span>
-                </div>
-            </el-card>
-        </div>
-    </template>
+            </el-table-column>
+            <el-table-column label="付款金額" width="100%" align="right">
+                <template #default="{ row }">
+                    <span>{{ row.mycard_point }}</span>
+                </template>
+            </el-table-column>
+            <!--<el-table-column label="狀態" width="100%" align="center">
+                <template #default="{ row }">
+                    <span>{{ row.status }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column label="有效日期" width="100%" align="center">
+                <template #default="{ row }">
+                    <span>{{ row.available_date }}</span>
+                </template>
+            </el-table-column>
+            <el-table-column label="建立日期" width="100%" align="center">
+                <template #default="{ row }">
+                    <span>{{ row.available_date }}</span>
+                </template>
+            </el-table-column>-->
+            <template #empty>
+                沒有訂單資料
+            </template>
+        </el-table>
+        <el-button type="primary" class="info" @click="Home" plain>確定</el-button>
+    </el-card>    
 </template>
 
 <style lang="scss" scoped>
+    .info {
+        width: 100px;
+        margin-top: 15px;
+    }
+
     .card {
-        width: 300px;
+        width: 40%;
         margin: auto;
     }
 
