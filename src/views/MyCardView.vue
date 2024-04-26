@@ -24,7 +24,7 @@
         </el-select>
         <div style="margin-top: 5px;">
             <el-button type="success" class="button" @click="Order(Select)" :disabled="Select == null">送出訂單</el-button>
-            <!--<el-button type="info" class="button" @click="Cancel(member)" plain>取消</el-button>-->
+            <el-button type="info" class="button" @click="Cancel(member)" plain>取消</el-button>
         </div>
         <!--<template v-if="Status != null">
             <template v-if="Status == false">

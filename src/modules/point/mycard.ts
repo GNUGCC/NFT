@@ -31,7 +31,7 @@ function Order(select) {
                             done();
                         }, 5000);
                     }
-                    else {                        
+                    else {
                         done();
                         Log('訂單送出錯誤');
                         MessageBoxManager.Alert('訂單送出錯誤，請重新再試一次。', 'error').catch(x => { /* eslint-disable */ });
@@ -51,9 +51,10 @@ function Order(select) {
             MessageBoxManager.Alert('訂單已建立成功，謝謝您的訂購。', 'success').catch(() => { /* eslint-disable */ });
             Home();
         })
-        .catch(x=> {
+        .catch(x => {
             Log('使用者取消: ', x);
-        });
+        })
+        .finally(() => Select.value = null);
 }  
 
 /**
