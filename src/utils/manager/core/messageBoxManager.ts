@@ -1,4 +1,6 @@
+import { ElMessageBox } from 'element-plus';
 import { ContextManager } from './contextManager';
+import type { Action } from 'element-plus';
 
 /**
  * 
@@ -40,13 +42,14 @@ export class MessageBoxManager {
     * @param title
     */
     static MsgBox(message?: string, type?: 'success' | 'warning' | 'info' | 'error', beforeClose?: (action, instance, done) => void, title = '系統訊息') {
-        const { confirmButtonText, cancelButtonText } = MessageBoxManager.GetParams(type);
+        const params = MessageBoxManager.GetParams(type);
         return ContextManager.GlobalProperties.$msgbox({
-            title,
+            title,            
             message,
             showCancelButton: true,
-            confirmButtonText,
-            cancelButtonText,
+            type: params.type,
+            confirmButtonText: params.confirmButtonText,
+            cancelButtonText: params.cancelButtonText,
             beforeClose
         });
     }
@@ -59,9 +62,9 @@ export class MessageBoxManager {
      */
     private static GetParams(type) {
         return {
-            confirmButtonText: '確定',
-            cancelButtonText: '取消',
             type,
+            confirmButtonText: '確定',
+            cancelButtonText: '取消'
         };
     }
 }
