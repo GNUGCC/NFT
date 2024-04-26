@@ -107,6 +107,15 @@ function SetMessageBoxContent(order, instance) {
 
 /**
  * 
+ */
+function OrderCompleted(order) {
+    Log('訂單成立', order);
+    MessageBoxManager.Alert('訂單已建立成功，請按下確定即將導向付款頁面。', 'warning').catch(() => { /* eslint-disable */ });
+    Home();
+}
+
+/**
+ * 
  * @param type
  * @param order
  * @returns
@@ -128,15 +137,6 @@ function translateOrderType(order, status) {
         content: order.content,
         build_time: order.build_time
     };
-}
-
-/**
- * 
- */
-function OrderCompleted(order) {
-    Log('訂單成立', order);
-    MessageBoxManager.Alert('訂單已建立成功，請按下確定即將導向付款頁面。', 'warning').catch(() => { /* eslint-disable */ });
-    Home();
 }
 
 /**
