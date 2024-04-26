@@ -16,12 +16,13 @@ function Order(select) {
     Log('Save 加購 MyCard: ', select);
     MessageBoxManager.MsgBox('系統即將送出訂單，您是否確定？', 'warning', (action, instance, done) => {
         if (action == 'confirm') {
-            Log('送出訂單成立', action, instance, done);
+            const order = SelectMyCardItem.value[select - 1];
+            Log('送出訂單成立', order);
             instance.showCancelButton = false;
             instance.dangerouslyUseHTMLString = true;
             instance.confirmButtonLoading = true;
             instance.type = 'info';
-            instance.message = '<h5 style="font-weight: bolder; color: red;">請稍候，訂單送出中</h1>';
+            instance.message = `<h5 style="font-weight: bolder; color: red;">請稍候，訂單"MyCard ${order.content}" 送出中...</h1>`;
             instance.confirmButtonText = '請稍候...';
             InternalPay()
                 .then(x => {
