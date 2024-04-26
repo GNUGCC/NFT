@@ -13,7 +13,7 @@
 <template>
     <template v-if="member">
         <el-menu-item :index="Info(member)">
-            <icon-item title="消費記錄" icon="hide"></icon-item>
+            <icon-item title="MyCard 購買記錄" icon="hide"></icon-item>
         </el-menu-item>
         <el-menu-item :index="AddNTF(member)">
             <icon-item title="加購 NFT 點數" icon="plus"></icon-item>

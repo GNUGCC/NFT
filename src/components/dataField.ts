@@ -1,6 +1,6 @@
 import { PerformanceMember } from '@/store/common';
 import { FormRef, Form } from '@/modules/common';
-import ValidateRules from '@/modules/validate';
+import type { MemberType } from '@/models/member';
 
 /**
  * 
@@ -14,8 +14,8 @@ type FieldType = {
  * 
  */
 type FieldEmitType = {
-    (event: 'save', result: boolean): void
-    (event: 'cancel', result: boolean): void
+    (event: 'save', result: boolean, fields: MemberType): void
+    (event: 'cancel', result: boolean, fields: MemberType): void
 }
 
 /**
@@ -32,7 +32,9 @@ function InitlaizeData(props) {
  * @param emit
  */
 function Save(emit: FieldEmitType) {
-    FormRef.value?.validate(valid => emit('save', valid));
+    const result = Form.value;
+    result.name = result.account;
+    FormRef.value?.validate(valid => emit('save', valid, result));
 }
 
 /**
@@ -40,13 +42,13 @@ function Save(emit: FieldEmitType) {
  * @param emit
  */
 function Cancel(emit: FieldEmitType) {
-    emit('cancel', false);
+    emit('cancel', false, Form.value);
 }
 
+export { ValidateRules } from '@/modules/validate';
 export {
     Form,
     FormRef,
-    ValidateRules,
     InitlaizeData,
     FieldType,
     FieldEmitType,

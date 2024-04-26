@@ -5,12 +5,19 @@ import service from '@/api/common';
  * @param param0
  * @returns
  */
-export function InternalLogin({ name, password }) {
-    return Promise.resolve({ name, password });
-    //return service.post('login', {
-    //    account: name,
-    //    password
-    //});
+export function InternalLogin({ account, password }) {
+    return service.post('login', {
+        account,
+        password
+    });
+}
+
+/**
+ * 
+ * @param id
+ */
+export function InternalQueryMember({ id }) {
+    return service.get(`members/${id}`);
 }
 
 /**
@@ -18,15 +25,14 @@ export function InternalLogin({ name, password }) {
  * @param param0
  * @returns
  */
-export function InternalRegister({ name, password, email, mobile }) {
-    return Promise.resolve({ name, password, email, mobile });
-    //return service.post('register', {
-    //    account: name,
-    //    name,
-    //    password,
-    //    email,
-    //    mobile
-    //});
+export function InternalRegister({ name, account, password, email, mobile }) {
+    return service.post('register', {
+        name,
+        account,
+        password,
+        email,
+        mobile
+    });
 }
 
 /**
@@ -35,7 +41,12 @@ export function InternalRegister({ name, password, email, mobile }) {
  * @returns
  */
 export function InternalUpdate({ id, name, password, account, email, mobile }) {
-    return Promise.resolve({ id, name, password, account, email, mobile });
-    //return Promise.resolve({ id, name, password, account, email, mobile });
-    //return service.put('members', { id, name, password, account, email, mobile });
+    return service.put(`members/${id}`, { name, password, account, email, mobile });
+}
+
+/**
+ * 
+ */
+export function InternalGetAllMembers() {
+    return service.get('members');
 }

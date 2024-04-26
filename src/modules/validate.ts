@@ -1,7 +1,7 @@
 import { reactive } from 'vue';
 import { FormRules } from 'element-plus';
-import { Form, FormRef, Log } from './common';
-import { type MemberType } from '@/models/member';
+import { Form, Log } from './common';
+import type{ MemberType } from '@/models/member';
 
 /**
  * 
@@ -68,11 +68,13 @@ const ValideteMobile = (rule, value, callBack) => {
  * 
  */
 const ValidateRules = reactive<FormRules<MemberType>>({
-    name: [{ validator: ValideteName, trigger: 'blur' }],
+    account: [{ validator: ValideteName, trigger: 'blur' }],
     password: [{ validator: ValidetePassword, trigger: 'blur' }],
     passwords: [{ validator: ValidetePasswords, trigger: 'blur' }],
     email: [{ validator: ValideteEMail, trigger: 'blur' }],
     mobile: [{ validator: ValideteMobile, trigger: 'blur' }],
 });
 
-export default ValidateRules;
+export {
+    ValidateRules
+}

@@ -14,14 +14,6 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'member',
                 children: [
                     {
-                        path: "/member/detail/:id",
-                        name: "detail",
-                        meta: {
-
-                        },
-                        component: () => import('@/views/DetailView.vue')
-                    },
-                    {
                         path: "/member/edit/:id",
                         name: "edit",
                         meta: {
@@ -29,6 +21,14 @@ const routes: Array<RouteRecordRaw> = [
                         },
                         component: () => import('@/views/EditView.vue')
                     },
+                    {
+                        path: "/member/order/:id",
+                        name: "detail",
+                        meta: {
+
+                        },
+                        component: () => import('@/views/OrderView.vue')
+                    },                    
                     {
                         path: "/member/info/:id",
                         name: "info",

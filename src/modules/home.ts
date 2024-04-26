@@ -1,11 +1,28 @@
 import { computed } from 'vue';
-import { InternalLogin } from '@/api/account';
-import ValidateRules from './validate';
-import { StoreManager } from '@/utils/manager';
-import { Form, FormRef, Log, Register, Logout } from './common';
+import { InternalLogin, InternalQueryMember } from '@/api/account';
+import { FormRef, Log, LogPopup, PrepareUserPassword } from './common';
+import { Env, ContextManager, StoreManager, MessageBoxManager } from '@/utils';
 
 const Member = computed(() => StoreManager.Member);
 const Authentication = computed(() => StoreManager.Authentication);
+
+/**
+ * 
+ */
+function Login(useraccount: string, userpassword: string) {
+    FormRef.value?.validate(valid => {
+        if (valid == false) return;
+
+        const { account, password } = PrepareUserPassword({ useraccount, userpassword });
+        InternalLogin({ account, password })
+            .then(x => {
+                const data = x as any;
+                return InternalQueryMember({ id: data.member_id });
+            })
+            .then(x => LoginAndPopup(x))
+            .catch(err => CheckGuest({ account, password, err }));
+    });
+}
 
 /**
  * 
@@ -17,36 +34,44 @@ function LoginMember(value) {
 
 /**
  * 
+ * @param param0
  */
-function Login() {
-    FormRef.value?.validate(valid => {
-        if (valid == false) return;
+function LoginAndPopup(value) {
+    LoginMember(value);
 
-        const { name, password } = Form.value;
-        InternalLogin({ name, password })
-            .then(x => {
-                Log('使用者登入: ', Form, x);
-                LoginMember({
-                    id: name,
-                    name,
-                    password,
-                    data: x
-                });
-            })
-            .catch(err => {
-                console.log('登入錯誤: ', err);
-                alert(err);
-            });
-    });
+    Log('使用者登入: ', value);
+    LogPopup('登入成功', 'success');
 }
 
+/**
+ * 
+ * @param param0
+ */
+function CheckGuest({ account, password, err }) {
+    if (ContextManager.Process == Env.Development) {
+        MessageBoxManager.Confirm('目前測試階段，系統將自動以訪客身份登入，您確定嗎？', 'warning', '使用者登入失敗')
+            .then(() => {
+                LoginAndPopup({
+                    account,
+                    password,
+                    data: {
+                        guest: true
+                    }
+                });
+            })
+            .catch(() => {
+                Log('測試階段登入錯誤: ', err);
+            });
+    }    
+
+    LogPopup(err, 'error')
+}
+
+export { ValidateRules } from './validate';
+export { Form, Register, Logout } from './common';
 export {
     Login,
-    Logout,
     Member,
     Authentication,
-    Register,
-    Form,
-    FormRef,
-    ValidateRules
+    FormRef
 }

@@ -1,24 +1,26 @@
 import { Router } from "vue-router";
 import { LogManager } from './logManager';
 import { StoreManager } from "./storeManager";
+import { ContextManager } from './contextManager';
 
 /** 路由 Manager */
 export class RouteManager {
-    private static _router: Router;
-
     /**
      * 
      */
     static get Params() {
-        return RouteManager.Router.currentRoute.value.params;
+        return ContextManager.Router.currentRoute.value.params;
     }
 
     /**
      * 
      */
     static InitialRouter(router: Router) {
-        RouteManager._router = router;
-        router.beforeEach(to => to.name == 'home' || StoreManager.Authentication != null || RouteManager.Home());
+        router.beforeEach(to => {
+            if (RouteManager.IsPassToAuth(to.name)) return true;
+            if (StoreManager.Authentication == false) return RouteManager.Home();
+            return true;
+        });
     }
 
     /**
@@ -26,7 +28,7 @@ export class RouteManager {
      */
     static Register() {
         LogManager.Log('註冊路由');
-        RouteManager.Router.push('register');
+        ContextManager.Router.push('register');
     }
 
     /**
@@ -34,28 +36,37 @@ export class RouteManager {
      */
     static About() {
         LogManager.Log('關於路由');
-        RouteManager.Router.push('about');
+        ContextManager.Router.push('about');
     }
 
     /**
      * 返回主頁路由
      */
     static Home() {
-        LogManager.Log('返回主頁路由', RouteManager.Router);
+        LogManager.Log('返回主頁路由', ContextManager.Router);
         //RouteManager.Router.push('home');
-        RouteManager.Router.push({ path: '/' });
+        ContextManager.Router.push({ path: '/' });
     }    
 
     /** 登出路由*/
     static Logout() {
-        LogManager.Log('登出路由', RouteManager.Router);
-        RouteManager.Router.push({ path: '/' });
+        LogManager.Log('登出路由', ContextManager.Router);
+        ContextManager.Router.push({ path: '/' });
+    }
+
+    /**
+     * 
+     * @param path
+     * @returns
+     */
+    private static IsPassToAuth(path) {
+        return RouteManager.NeedAuthList.findIndex(x => path == x) < 0;
     }
 
     /**
      * 
      */
-    private static get Router() {
-        return RouteManager._router;
+    private static get NeedAuthList() {
+        return ['info', 'addntf', 'addmycard', 'edit', 'detail'];
     }
 }

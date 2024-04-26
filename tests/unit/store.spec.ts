@@ -9,72 +9,74 @@ describe("測試 Store", () => {
         const commit = jest.fn();        
         const id_a = PerformanceMember({ id: 'a' })!;
 
-        it('Member PerformanceMember({id: a})', () => {
-            actions.Member({ commit }, id_a);
-            expect(commit.mock.calls[0][0])
-                .toBe('Member');
-
-            expect(commit.mock.calls[0][1])
-                .toEqual(id_a);
-        });
-
-        it('Members', () => {
-            actions.Members({ commit }, [id_a]);
-            expect(commit.mock.calls[1][0])
-                .toBe('Members');
-
-            expect(commit.mock.calls[1][1])
-                .toEqual([id_a]);
-        });
-
-        describe('Update Member...', () => {
-            const dispatch = jest.fn();
-            const getters = {
-                Members: [PerformanceMember({ id: 'b', name: 'nameb' })!]
-            };
-
-            it('更新前 Member', () => {
-                expect(getters.Members[0].name)
-                    .toMatch('nameb');
-            });
-
-            it('更新不存在的 Member(id: 3)', async () => {
-                const id_3 = PerformanceMember({ id: '3', name: 'update test3' });
-                const result = await actions.Update({ dispatch, getters }, id_3);
-
-                expect(dispatch.mock.calls[0][0])
+        describe('測試會員資料...', () => {
+            it('Member PerformanceMember({id: a})', () => {
+                actions.Member({ commit }, id_a);
+                expect(commit.mock.calls[0][0])
                     .toBe('Member');
 
-                expect(dispatch.mock.calls[0][1])
-                    .toEqual(id_3);
-
-                expect(getters.Members[0].name)
-                    .toMatch('nameb');
-
-                expect(result)
-                    .toBe(false);
+                expect(commit.mock.calls[0][1])
+                    .toEqual(id_a);
             });
 
-            it('更新已存在的 Member(id: b) 後', async () => {
-                const id_b = PerformanceMember({ id: 'b', name: 'update test3' });
-                const result = await actions.Update({ dispatch, getters }, id_b);
+            it('Members', () => {
+                actions.Members({ commit }, [id_a]);
+                expect(commit.mock.calls[1][0])
+                    .toBe('Members');
 
-                expect(dispatch.mock.calls[1][0])
-                    .toBe('Member');
-
-                expect(dispatch.mock.calls[1][1])
-                    .toEqual(id_b);
-
-                expect(getters.Members[0].name)
-                    .toMatch('update test3');
-
-                expect(result)
-                    .toEqual(getters.Members);
-
-                expect(getters.Members)
-                    .toHaveLength(getters.Members.length);
+                expect(commit.mock.calls[1][1])
+                    .toEqual([id_a]);
             });
-        });        
+
+            describe('Update Member...', () => {
+                const dispatch = jest.fn();
+                const getters = {
+                    Members: [PerformanceMember({ id: 'b', name: 'nameb' })!]
+                };
+
+                it('更新前 Member', () => {
+                    expect(getters.Members[0].name)
+                        .toMatch('nameb');
+                });
+
+                it('更新不存在的 Member(id: 3)', async () => {
+                    const id_3 = PerformanceMember({ id: '3', name: 'update test3' });
+                    const result = await actions.Update({ dispatch, getters }, id_3);
+
+                    expect(dispatch.mock.calls[0][0])
+                        .toBe('Member');
+
+                    expect(dispatch.mock.calls[0][1])
+                        .toEqual(id_3);
+
+                    expect(getters.Members[0].name)
+                        .toMatch('nameb');
+
+                    expect(result)
+                        .toBe(false);
+                });
+
+                it('更新已存在的 Member(id: b) 後', async () => {
+                    const id_b = PerformanceMember({ id: 'b', name: 'update test3' });
+                    const result = await actions.Update({ dispatch, getters }, id_b);
+
+                    expect(dispatch.mock.calls[1][0])
+                        .toBe('Member');
+
+                    expect(dispatch.mock.calls[1][1])
+                        .toEqual(id_b);
+
+                    expect(getters.Members[0].name)
+                        .toMatch('update test3');
+
+                    expect(result)
+                        .toEqual(getters.Members);
+
+                    expect(getters.Members)
+                        .toHaveLength(getters.Members.length);
+                });
+            });        
+        })        
     });
 
     describe('Getters...', () => {

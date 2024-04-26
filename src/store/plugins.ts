@@ -1,4 +1,5 @@
-import type { MemberType, MemberStore } from '@/models/member';
+import type { MemberType } from '@/models/member';
+import type { MemberStore } from '@/models/memberStore';
 
 /**
  * 
@@ -6,10 +7,9 @@ import type { MemberType, MemberStore } from '@/models/member';
  */
 function member(store) {
     Object.assign(store.state, init());
-    console.log('plugin: ', store.state);
     store.subscribe(({ type, payload }, state) => {
         restore(state);
-        console.log('write: ', type, payload, read());
+        //console.log('write: ', type, payload, read());
     });
 }
 

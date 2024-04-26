@@ -1,8 +1,10 @@
 import { ref } from 'vue';
+import { sha512 } from 'js-sha512';
 import { FormInstance } from 'element-plus';
 import { StoreManager, RouteManager, LogManager } from '@/utils/manager';
 import { type MemberType } from '@/models/member';
 
+const dev = true;
 const FormRef = ref<FormInstance>();
 const Form = ref<MemberType>({});
 
@@ -34,7 +36,7 @@ function Logout() {
  * @param data
  */
 function Log(...data: any[]) {
-    LogManager.Log(...data);
+    if ((Boolean)(dev) == true) LogManager.Log(...data);
 }
 
 /**
@@ -75,6 +77,14 @@ function LoadData(result: (data) => void) {
     //return result(temp);  
 }
 
+/**
+ * 
+ * @returns
+ */
+function PrepareUserPassword({ useraccount, userpassword }) {
+    return { account: useraccount, password: sha512(userpassword!) };
+}
+
 export {
     FormRef,
     Form,
@@ -84,5 +94,6 @@ export {
     LogPopup,
     Register,
     Logout,
-    LoadData
+    LoadData,
+    PrepareUserPassword
 }

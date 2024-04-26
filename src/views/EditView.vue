@@ -5,7 +5,10 @@
     import DataField from '@/components/DataField.vue';
 
     const data = ref();
-    onMounted(() => LoadData(result => data.value = result));
+    onMounted(() => LoadData(result => {
+        result.password = result.passwords = null;
+        data.value = result;
+    }));
 </script>
 
 <template>
