@@ -2,8 +2,6 @@ import { ref } from 'vue';
 import { computedAsync } from '@vueuse/core';
 import { Log, Home } from '@/modules/common';
 import { MessageBoxManager } from '@/utils';
-import { ElMessageBox, ElMessage } from 'element-plus';
-import type { Action } from 'element-plus';
 import { InternalMyCardSelectItem, InternalPay } from '@/api/point';
 
 const Select = ref();
