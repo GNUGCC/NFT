@@ -9,52 +9,84 @@ const SelectMyCardItem = computedAsync(async () => await InternalMyCardSelectIte
 
 /**
  * 
- * @param member
- * @param point
+ * @param select
+ * @param instance
+ * @param done
  */
-function Order(select) {
-    Log('Save 加購 MyCard: ', select);
-    MessageBoxManager.MsgBox('系統即將送出訂單，您是否確定？', 'warning', (action, instance, done) => {
+function confirm(order, instance, done) {
+    Log('送出訂單成立', order);
+    SetMessageBoxContent(order, instance);
+    InternalPay()
+        .then(x => {
+            if (x.errcode == 0) {
+                setTimeout(() => {
+                    Log('訂單成立', order);
+                    done();
+                }, 5000);
+            }
+            else {
+                done();
+                Log('訂單送出錯誤');
+                MessageBoxManager.Alert('訂單送出錯誤，請重新再試一次。', 'error').catch(x => { /* eslint-disable */ });
+            }
+        })
+        .catch(err => {
+            Log('無法送出訂單: ', err);
+        });
+}
+
+/**
+ * 
+ * 
+ * @param instance
+ * @param message
+ * @returns
+ */
+function SetMessageBoxContent(order, instance) {
+    instance.showCancelButton = false;
+    instance.dangerouslyUseHTMLString = true;
+    instance.confirmButtonLoading = true;
+    instance.confirmButtonText = '請稍候...';
+    instance.type = 'info';
+    instance.message = `<h5 style="font-weight: bolder; color: red;">請稍候，訂單"MyCard ${order.content}" 送出中...</h1>`;    
+}
+
+/**
+ * 
+ * @param select
+ * @returns
+ */
+function OrderConfirm(select) {
+    return MessageBoxManager.MsgBox('系統即將送出訂單，您是否確定？', 'warning', (action, instance, done) => {
         if (action == 'confirm') {
-            const order = SelectMyCardItem.value[select - 1];
-            Log('送出訂單成立', order);
-            instance.showCancelButton = false;
-            instance.dangerouslyUseHTMLString = true;
-            instance.confirmButtonLoading = true;
-            instance.type = 'info';
-            instance.message = `<h5 style="font-weight: bolder; color: red;">請稍候，訂單"MyCard ${order.content}" 送出中...</h1>`;
-            instance.confirmButtonText = '請稍候...';
-            InternalPay()
-                .then(x => {
-                    if (x.errcode == 0) {
-                        setTimeout(() => {
-                            Log('訂單成立', action, instance, done);
-                            done();
-                        }, 5000);
-                    }
-                    else {
-                        done();
-                        Log('訂單送出錯誤');
-                        MessageBoxManager.Alert('訂單送出錯誤，請重新再試一次。', 'error').catch(x => { /* eslint-disable */ });
-                    }
-                })
-                .catch(err => {
-                    Log('無法送出訂單: ', err);
-                });
+            confirm(SelectMyCardItem.value[select - 1], instance, done);
         }
         else {
             Log('使用者選擇取消');
             done();
         }
-    })
-        .then(x => {
-            Log('訂單成立', x);
-            MessageBoxManager.Alert('訂單已建立成功，謝謝您的訂購。', 'success').catch(() => { /* eslint-disable */ });
-            Home();
-        })
-        .catch(x => {
-            Log('使用者取消: ', x);
-        })
+    });
+}
+
+/**
+ * 
+ */
+function OrderCompleted(order){
+    Log('訂單成立', order);
+    MessageBoxManager.Alert('訂單已建立成功，謝謝您的訂購。', 'success').catch(() => { /* eslint-disable */ });
+    Home();
+}
+
+/**
+ * 
+ * @param member
+ * @param point
+ */
+function Order(select) {
+    Log('Save 加購 MyCard: ', select);
+    OrderConfirm(select)
+        .then(x => OrderCompleted(x))
+        .catch(x => Log('使用者取消: ', x))
         .finally(() => Select.value = null);
 }  
 

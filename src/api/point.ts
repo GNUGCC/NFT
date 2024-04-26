@@ -193,6 +193,45 @@ const pay = {
     }
 };
 
+const mycardList = [
+    {
+        "id": 1,
+        "points": 100,
+        "content": "100 點數",
+        "build_time": "2024-04-25 15:09:51"
+    },
+    {
+        "id": 2,
+        "points": 500,
+        "content": "500 點數",
+        "build_time": "2024-04-25 15:10:18"
+    },
+    {
+        "id": 3,
+        "points": 1000,
+        "content": "1000 點數",
+        "build_time": "2024-04-25 15:10:33"
+    },
+    {
+        "id": 4,
+        "points": 2000,
+        "content": "2000 點數",
+        "build_time": "2024-04-25 15:10:48"
+    },
+    {
+        "id": 5,
+        "points": 5000,
+        "content": "5000 點數",
+        "build_time": "2024-04-25 15:11:03"
+    },
+    {
+        "id": 7,
+        "points": 456555,
+        "content": "123123",
+        "build_time": "2024-04-25 15:09:51"
+    }
+];
+
 export function InternalOrder({ id }) {
     return Promise.resolve(orders);
 }
