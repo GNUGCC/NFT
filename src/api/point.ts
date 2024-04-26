@@ -255,6 +255,6 @@ export function InternalMyCardSelectItem() {
  * 
  * @returns
  */
-export function InternalPay() {
-    return Promise.resolve(pay);
+export function InternalPay({ m_id, amount, content, mycard_point }) {
+    return service.post('pay', { m_id, amount, content, mycard_point });
 }
