@@ -59,7 +59,7 @@ function RedirectToPay(url) {
 function OrderConfirm(select, type) {
     return new Promise((resolve, reject) => {
         const { id } = RouteManager.Params;
-        const order = translateOrderType(SelectMyCardItem.value[select - 1], '0');
+        const order = translateOrderType(select, '0');
 
         MessageBoxManager.MsgBox(`系統即將送出訂單 ${preparePointContent(`${type}`, order.content)}，您是否確定？`, 'warning', (action, instance, done) => {
             if (action == 'confirm') {
@@ -130,14 +130,17 @@ function preparePointContent(type, order) {
  * @param order
  * @returns
  */
-function translateOrderType(order, status) {
+function translateOrderType(select, status) {
+    const array = SelectMyCardItem.value as unknown as [];
+    const order = array.find((x: any) => x.id == select) as any;
+
     return <OrderStatusType>{
         m_id: order.id,
         status,
         amount: order.points,
         content: order.content,
         build_time: order.build_time
-    };
+    };    
 }
 
 /**
