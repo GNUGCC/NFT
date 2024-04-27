@@ -66,6 +66,14 @@ const routes: Array<RouteRecordRaw> = [
 
                         },
                         component: () => import('@/views/MyCardView.vue')
+                    },
+                    {
+                        path: "/point/pay/completed",
+                        name: "completed",
+                        meta: {
+
+                        },
+                        component: () => import('@/views/PayCompletedView.vue')
                     }
                 ]
             }
