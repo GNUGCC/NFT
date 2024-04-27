@@ -1,6 +1,6 @@
 import { computed } from 'vue';
 import { InternalLogin, InternalQueryMember } from '@/api/account';
-import { FormRef, Log, LogPopup, PrepareUserPassword } from './common';
+import { FormRef, Log, LogPopup, PrepareUserPassword } from '@/modules/common';
 import { Env, ContextManager, StoreManager, MessageBoxManager } from '@/utils';
 
 const Member = computed(() => StoreManager.Member);
@@ -81,7 +81,7 @@ function CheckGuest({ account, password, err }) {
 }
 
 export { ValidateRules } from './validate';
-export { Form, Register, Logout } from './common';
+export { Form, Register, Logout } from '@/modules/common';
 export {
     Login,
     Member,
