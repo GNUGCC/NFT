@@ -42,7 +42,8 @@ function confirm(id, order: OrderStatusType, instance) {
 function RedirectToPay(url) {
     return new Promise((resolve, reject) => {
         if (url) {
-            window.open(url);
+            //window.open(url);
+            setTimeout(() => window.location.assign(url), 5000);
             resolve(url);            
         }
         else {
