@@ -6,6 +6,7 @@ import { InternalMyCardSelectItem, InternalPay } from '@/api/point';
 import type { OrderStatusType } from '@/models/order';
 
 const Select = ref();
+const PayStatus = ref<boolean | null>(false);
 const SelectMyCardItem = computedAsync(async () => await InternalMyCardSelectItem());
 
 /**
@@ -23,7 +24,7 @@ function confirm(id, order: OrderStatusType, instance) {
             const data = x as any;
             const url = data?.ord_trade_jpurl || data?.trade_url || data?.trade_qrcode;
             Log('訂單成立，導向付款頁面...', order, data, url);
-
+            
             return url;
         })
         .catch(err => {
@@ -42,7 +43,7 @@ function RedirectToPay(url) {
     return new Promise((resolve, reject) => {
         if (url) {
             window.open(url);
-            resolve(url);
+            resolve(url);            
         }
         else {
             reject('沒有付款頁面 URL');
@@ -62,9 +63,10 @@ function OrderConfirm(select, type) {
 
         MessageBoxManager.MsgBox(`系統即將送出訂單 ${preparePointContent(`${type}`, order.content)}，您是否確定？`, 'warning', (action, instance, done) => {
             if (action == 'confirm') {
+                setPaySatus(true);
                 confirm(id, order, instance)
                     .then(x => resolve(x))
-                    .catch(err => reject(err))
+                    .catch(err => reject(err));
             }
 
             done();
@@ -84,9 +86,17 @@ function OrderConfirm(select, type) {
 function Order(type, select) {
     Log(`Save 加購 ${type}:`, select);
     OrderConfirm(select, type)
-        .then(url => RedirectToPay(url).catch(err => { throw (err); }))
+        .then(url => RedirectToPay(url).then(() => setPaySatus(null)).catch(err => { throw (err); }))
         .catch(x => Log('系統發生錯誤: ', x))
         .finally(() => Select.value = null);
+}
+
+/**
+ * 
+ * @param status
+ */
+function setPaySatus(status) {
+    PayStatus.value = status;
 }
 
 /**
@@ -149,10 +159,12 @@ function AddMyCard(member) {
     return `/point/mycard/add/${member.id}`;
 }
 
+export { Home } from '@/modules/common';
 export {    
     Order,
     Cancel,
     Select,
+    PayStatus,
     AddMyCard,
     SelectMyCardItem
 }
