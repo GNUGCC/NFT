@@ -1,14 +1,29 @@
 <script setup lang="ts">
-    import { Order, Cancel, Select, SelectMyCardItem } from '@/modules/point/mycard';
+    import { Order, Cancel, Select, PayStatus, SelectMyCardItem, Home } from '@/modules/point/mycard';
+    PayStatus.value = false;
 </script>
 
 <template>
     <template v-if="SelectMyCardItem == false">
         <el-card class="card" shadow="hover">
-            <template #header><h3 class="error">取得 MyCard 品項資訊發生錯誤</h3></template>            
+            <template #header>
+                <h3 class="error">取得 MyCard 品項資訊發生錯誤</h3>
+            </template>
         </el-card>
     </template>
-    <template v-else>
+    <template v-else-if="PayStatus == true">
+        <el-alert class="pay" title="系統導向付款頁面中，請稍候…" type="info" :closable="false" effect="light" center show-icon />
+    </template>
+    <template v-else-if="PayStatus == null">
+        <el-card class="card" shadow="hover" width="500px">
+            <template #header>
+                <span class="title">MyCard 訂單訊息</span>
+            </template>
+            <el-alert class="pay" title="系統已完成建立訂單" description="請於付款頁面內完成付款可查詢訂單狀態，再次感謝您的訂購" type="success" :closable="false" effect="light" center show-icon />
+            <el-button type="primary" class="button" @click="Home" round>確定</el-button>
+        </el-card>
+    </template>
+    <template v-else-if="PayStatus == false">
         <el-card class="card" shadow="hover">
             <template #header>
                 <h1 class="mycard">MyCard 線上購點</h1>
@@ -33,13 +48,18 @@
                 <el-button type="info" class="button" @click="Cancel" plain>取消</el-button>
             </div>
         </el-card>
-    </template>    
+    </template>
 </template>
 <style lang="scss" scoped>
     .point {
         font-weight: bolder;
         float: right;
         color: blue;
+    }
+
+    .pay {
+        font-weight: bolder;
+        font-size: 20px;
     }
 
     .price {
