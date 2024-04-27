@@ -24,7 +24,7 @@ function confirm(id, order: OrderStatusType, instance) {
             const url = data?.ord_trade_jpurl || data?.trade_url || data?.trade_qrcode;
             Log('訂單成立，導向付款頁面...', order, data, url);
 
-            return RedirectToPay(url).catch(err => { throw (err); });
+            return url;
         })
         .catch(err => {
             Log('無法送出訂單: ', err);
@@ -55,12 +55,12 @@ function RedirectToPay(url) {
  * @param select
  * @returns
  */
-function OrderConfirm(select) {
+function OrderConfirm(select, type) {
     return new Promise((resolve, reject) => {
         const { id } = RouteManager.Params;
         const order = translateOrderType(SelectMyCardItem.value[select - 1], '0');
 
-        MessageBoxManager.MsgBox(`系統即將送出訂單 ${preparePointContent('MyCard', order.content)}，您是否確定？`, 'warning', (action, instance, done) => {
+        MessageBoxManager.MsgBox(`系統即將送出訂單 ${preparePointContent(`${type}`, order.content)}，您是否確定？`, 'warning', (action, instance, done) => {
             if (action == 'confirm') {
                 confirm(id, order, instance)
                     .then(x => resolve(x))
@@ -81,10 +81,10 @@ function OrderConfirm(select) {
  * @param member
  * @param point
  */
-function Order(select) {
-    Log('Save 加購 MyCard: ', select);
-    OrderConfirm(select)
-        .then(x => OrderCompleted(x))
+function Order(type, select) {
+    Log(`Save 加購 ${type}:`, select);
+    OrderConfirm(select, type)
+        .then(url => RedirectToPay(url).catch(err => { throw (err); }))
         .catch(x => Log('系統發生錯誤: ', x))
         .finally(() => Select.value = null);
 }
@@ -103,15 +103,6 @@ function SetMessageBoxContent(order, instance) {
     instance.confirmButtonText = '請稍候...';
     instance.type = 'info';
     instance.message = `<h5 style="font-weight: bolder; color: red;">請稍候，訂單 ${preparePointContent('MyCard', order.content)}  送出中...</h1>`;    
-}
-
-/**
- * 
- */
-function OrderCompleted(order) {
-    Log('訂單成立', order);
-    MessageBoxManager.Alert('訂單已建立成功，請按下確定即將導向付款頁面。', 'warning').catch(() => { /* eslint-disable */ });
-    Home();
 }
 
 /**
