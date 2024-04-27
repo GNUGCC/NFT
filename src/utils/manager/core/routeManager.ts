@@ -67,6 +67,6 @@ export class RouteManager {
      * 
      */
     private static get NeedAuthList() {
-        return ['info', 'addntf', 'addmycard', 'edit', 'detail'];
+        return ['info', 'addntf', 'addmycard', 'edit', 'detail', 'completed'];
     }
 }
