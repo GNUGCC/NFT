@@ -11,9 +11,9 @@
             </template>
         </el-card>
     </template>
-    <template v-else-if="PayStatus == true">
+    <!--<template v-else-if="PayStatus == true">
         <el-alert class="pay" title="系統導向付款頁面中，請稍候…" type="info" :closable="false" effect="light" center show-icon />
-    </template>
+    </template>-->
     <template v-else-if="PayStatus == null">
         <el-card class="card" shadow="hover">
             <template #header>
