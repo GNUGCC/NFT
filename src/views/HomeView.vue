@@ -19,12 +19,6 @@
         <h3 class="bg-primary text-center text-white p-2">
             <div class="nft">NFT</div>
         </h3>
-        <!--<template v-if="true">
-            <div class="test">
-                <el-alert title="測試階段" type="info" :closable="false" effect="dark" center show-icon />
-            </div>
-        </template>-->        
-
         <div class="container">
             <el-space warp>
                 <el-card class="box-card">
