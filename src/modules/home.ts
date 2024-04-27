@@ -12,16 +12,29 @@ const Authentication = computed(() => StoreManager.Authentication);
 function Login(useraccount: string, userpassword: string) {
     FormRef.value?.validate(valid => {
         if (valid == false) return;
-
-        const { account, password } = PrepareUserPassword({ useraccount, userpassword });
-        InternalLogin({ account, password })
-            .then(x => {
-                const data = x as any;
-                return InternalQueryMember({ id: data.member_id });
-            })
-            .then(x => LoginAndPopup(x))
-            .catch(err => CheckGuest({ account, password, err }));
+        loginToApi(PrepareUserPassword({ useraccount, userpassword }));
     });
+}
+
+/**
+ * 
+ * @param param0
+ */
+function loginToApi({ account, password }) {
+    InternalLogin({ account, password })
+        .then(x => queryMember(x))
+        .then(x => LoginAndPopup(x))
+        .catch(err => CheckGuest({ account, password, err }));
+}
+
+/**
+ * 
+ * @param data
+ * @returns
+ */
+function queryMember(data) {
+    const id = data.member_id;
+    return InternalQueryMember({ id });
 }
 
 /**
