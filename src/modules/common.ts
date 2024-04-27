@@ -2,7 +2,7 @@ import { ref } from 'vue';
 import { sha512 } from 'js-sha512';
 import { FormInstance } from 'element-plus';
 import { StoreManager, RouteManager, LogManager } from '@/utils/manager';
-import { type MemberType } from '@/models/member';
+import type { MemberType } from '@/models/member';
 
 const dev = true;
 const FormRef = ref<FormInstance>();
