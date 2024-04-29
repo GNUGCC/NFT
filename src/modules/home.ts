@@ -1,8 +1,10 @@
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
 import { InternalLogin, InternalQueryMember } from '@/api/account';
 import { FormRef, Log, LogPopup, PrepareUserPassword } from '@/modules/common';
 import { Env, ContextManager, StoreManager, MessageBoxManager } from '@/utils';
+import type { MemberType } from '@/models/member';
 
+const Form = ref<MemberType>({});
 const Member = computed(() => StoreManager.Member);
 const Authentication = computed(() => StoreManager.Authentication);
 
@@ -81,8 +83,9 @@ function CheckGuest({ account, password, err }) {
 }
 
 export { ValidateRules } from './validate';
-export { Form, Register, Logout } from '@/modules/common';
+export { Register, Logout } from '@/modules/common';
 export {
+    Form,
     Login,
     Member,
     Authentication,
