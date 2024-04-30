@@ -64,19 +64,19 @@ function LoginAndPopup(value) {
  */
 function CheckGuest({ account, password, err }) {
     if (ContextManager.Process == Env.Development) {
-        MessageBoxManager.Confirm('目前測試階段，系統將自動以訪客身份登入，您確定嗎？', 'warning', '使用者登入失敗')
-            .then(() => {
-                LoginAndPopup({
-                    account,
-                    password,
-                    data: {
-                        guest: true
-                    }
-                });
-            })
-            .catch(() => {
-                Log('測試階段登入錯誤: ', err);
-            });
+        //MessageBoxManager.Confirm('目前測試階段，系統將自動以訪客身份登入，您確定嗎？', 'warning', '使用者登入失敗')
+        //    .then(() => {
+        //        LoginAndPopup({
+        //            account,
+        //            password,
+        //            data: {
+        //                guest: true
+        //            }
+        //        });
+        //    })
+        //    .catch(() => {
+        //        Log('測試階段登入錯誤: ', err);
+        //    });
     }    
 
     LogPopup(err, 'error')
