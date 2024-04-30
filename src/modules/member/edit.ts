@@ -1,8 +1,8 @@
 import {  computed } from 'vue';
 import { InternalUpdate } from '@/api/account';
 import { PerformanceMember } from '@/store/common';
-import { Home, Log, LogPopup, LoadData, PrepareUserPassword } from '@/modules/common';
-import { Env, ContextManager, RouteManager, StoreManager, MessageBoxManager } from '@/utils';
+import { Home, Log, LogPopup, Authentication } from '@/modules/common';
+import { Env, ContextManager, StoreManager } from '@/utils';
 import type { MemberType } from '@/models/member';
 
 const Data = computed(() => prepareData());
@@ -62,7 +62,7 @@ function updateErrorMessage(error) {
  * @returns
  */
 function prepareData() {
-    const auth = Object.assign({}, StoreManager.Authentication);
+    const auth = Authentication();
     auth.password = auth.passwords = null;
     Log('prepareData: ', auth);
     return auth;
@@ -73,8 +73,8 @@ function prepareData() {
  * @param member
  * @returns
  */
-function Edit(member: MemberType) {
-    return `/member/edit/${member.id}`;
+function Edit() {
+    return '/member/edit';
 }
 
 /**
