@@ -14,7 +14,7 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'member',
                 children: [
                     {
-                        path: "/member/edit/:id",
+                        path: "/member/edit",
                         name: "edit",
                         meta: {
 
@@ -22,7 +22,7 @@ const routes: Array<RouteRecordRaw> = [
                         component: () => import('@/views/EditView.vue')
                     },
                     {
-                        path: "/member/order/:id",
+                        path: "/member/order",
                         name: "detail",
                         meta: {
 
@@ -30,7 +30,7 @@ const routes: Array<RouteRecordRaw> = [
                         component: () => import('@/views/OrderView.vue')
                     },                    
                     {
-                        path: "/member/info/:id",
+                        path: "/member/info",
                         name: "info",
                         meta: {
 
@@ -44,7 +44,7 @@ const routes: Array<RouteRecordRaw> = [
                 name: 'point',
                 children: [
                     {
-                        path: "/point/info/:id",
+                        path: "/point/info",
                         name: "info",
                         meta: {
 
@@ -52,7 +52,7 @@ const routes: Array<RouteRecordRaw> = [
                         component: () => import('@/views/InfoView.vue')
                     },
                     {
-                        path: "/point/ntf/add/:id",
+                        path: "/point/ntf/add",
                         name: "addntf",
                         meta: {
 
@@ -60,7 +60,7 @@ const routes: Array<RouteRecordRaw> = [
                         component: () => import('@/views/NtfView.vue')
                     },
                     {
-                        path: "/point/mycard/add/:id",
+                        path: "/point/mycard/add",
                         name: "addmycard",
                         meta: {
 
