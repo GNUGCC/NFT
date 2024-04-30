@@ -5,7 +5,6 @@
       import {
         Login,
         Logout,
-        Member,
         Authentication,
         Register,
         Form,
@@ -66,7 +65,7 @@
     </template>
     <template v-else>
         <el-container>
-            <el-header><Header :member="Member" /></el-header>
+            <el-header><Header /></el-header>
             <el-main><Info /></el-main>
             <el-footer><Footer /></el-footer>
         </el-container>

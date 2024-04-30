@@ -1,7 +1,6 @@
 import { computedAsync } from '@vueuse/core';
 import { InternalMyCardInfo } from '@/api/point';
 import { Home as InfoToHome, Authentication } from '@/modules/common';
-import type { MemberType } from '@/models/member';
 
 const MyCardInfo = computedAsync(async () => loadMyCardInfo());
 
