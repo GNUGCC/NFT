@@ -1,33 +1,44 @@
 <script setup lang="ts">
-    import { ref, onMounted } from 'vue';
     import { LoadData } from '@/modules/common';
-    import { Save, Cancel } from '@/modules/member/edit';            
+    import { Data, Save, Cancel } from '@/modules/member/edit';            
     import DataField from '@/components/DataField.vue';
-
-    const data = ref();
-    onMounted(() => LoadData(result => {
-        result.password = result.passwords = null;
-        data.value = result;
-    }));
 </script>
 
 <template>
-    <template v-if="data">
-        <DataField fieldTitle="編輯會員資料" :data="data" @save="Save" @cancel="Cancel" />
+    <template v-if="Data">
+        <DataField fieldTitle="編輯會員資料" :data="Data" @save="Save" @cancel="Cancel" />
     </template>
     <template v-else>
-        <span class="NotFound">找不找該會員資料</span>
+        <el-card class="card" shadow="hover">
+            <el-alert title="找不到該會員資料" type="error" effect="dark" :closable="false" center show-icon />
+        </el-card>
     </template>
 </template>
 
 <style lang="scss" scoped>
-    .NotFound {
+    .el-alert {
+        //margin: 20px 0 0;
+    }
+
+    .el-alert:first-child {
+        //margin: 0;
+    }
+
+    .card {
+        width: 40%;
+        margin: auto;
+    }
+
+    .notfound {
+        width: 300px;
+        margin: auto;
+        margin-top: 100px;
         align-items: center;
         justify-content: center;
         font-weight: bold;
-        color: red;
+        color: firebrick;
         font-size: 20px;
-        background-color: black;
+        //background-color: black;
         vertical-align: bottom;
     }
 </style>

@@ -7,6 +7,7 @@ import type { MemberType } from '@/models/member';
 const dev = true;
 const FormRef = ref<FormInstance>();
 const Form = ref<MemberType>({});
+Log('form context', FormRef.value);
 
 /**
  * 
@@ -81,8 +82,8 @@ function LoadData(result: (data) => void) {
  * 
  * @returns
  */
-function PrepareUserPassword({ useraccount, userpassword }) {
-    return { account: useraccount, password: sha512(userpassword!) };
+function PrepareUserPassword({ userpassword }) {
+    return { password: sha512(userpassword!) };
 }
 
 export {
