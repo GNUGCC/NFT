@@ -157,9 +157,9 @@ function Cancel(member) {
  * @param member
  * @returns
  */
-function AddMyCard(member) {
+function AddMyCard() {
     Log('加購 MyCard');
-    return `/point/mycard/add/${member.id}`;
+    return '/point/mycard/add';
 }
 
 export { Home } from '@/modules/common';
