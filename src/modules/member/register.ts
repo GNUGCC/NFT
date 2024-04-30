@@ -13,8 +13,8 @@ function Save(valid, fields: MemberType) {
     if (valid == false) return;
 
     Log('註冊', fields);
-    const { account, password } = PrepareUserPassword({ useraccount: fields.account, userpassword: fields.password });
-    return apiToRegister({ name: fields.name, account, password, email: fields.email, mobile: fields.mobile });   
+    const { password } = PrepareUserPassword({ userpassword: fields.password });
+    return apiToRegister({ name: fields.name, account: fields.account, password, email: fields.email, mobile: fields.mobile });   
 }
 
 /**
