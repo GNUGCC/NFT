@@ -50,7 +50,7 @@ function updateMember(value: MemberType) {
  */
 function updateErrorMessage(error) {
     if (ContextManager.Process == Env.Development) {
-        MessageBoxManager.Alert('目前為測試階段，後端修改會員資料產生錯誤!', 'error', '檢查後端');
+        //MessageBoxManager.Alert('目前為測試階段，後端修改會員資料產生錯誤!', 'error', '檢查後端');
     }
 
     Log('更新錯誤: ', error);
