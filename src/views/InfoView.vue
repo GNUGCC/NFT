@@ -1,7 +1,6 @@
 <script setup lang="ts">
     import { RouteManager } from '@/utils/';
-    import { MyCardInfo } from '@/modules/point/info';
-    const Home = () => RouteManager.Home();
+    import { MyCardInfo, Home } from '@/modules/point/info';    
 </script>
 
 <template>

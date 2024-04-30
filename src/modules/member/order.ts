@@ -1,7 +1,6 @@
 import { computedAsync } from '@vueuse/core';
-import { RouteManager } from '@/utils';
+import { Home as OrderToHome, Authentication } from '@/modules/common';
 import { InternalOrder } from '@/api/point';
-import type { MemberType } from '@/models/member';
 
 const Orders = computedAsync(async () => loadOrder());
 
@@ -10,7 +9,7 @@ const Orders = computedAsync(async () => loadOrder());
  * @returns
  */
 async function loadOrder() {
-    const { id } = RouteManager.Params;
+    const { id } = Authentication();
     return await InternalOrder({ id });
 }
 
@@ -19,11 +18,19 @@ async function loadOrder() {
  * @param member
  * @returns
  */
-function Order(member: MemberType) {
-    return `/member/order/${member.id}`;
+function Order() {
+    return '/member/order';
+}
+
+/**
+ * 
+ */
+function Home() {
+    OrderToHome();
 }
 
 export {
     Order,
-    Orders
+    Orders,
+    Home
 }

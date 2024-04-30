@@ -1,7 +1,6 @@
 import { computedAsync } from '@vueuse/core';
-import { RouteManager } from '@/utils';
 import { InternalMyCardInfo } from '@/api/point';
-import type { MemberType } from '@/models/member';
+import { Home as InfoToHome, Authentication } from '@/modules/common';
 
 const MyCardInfo = computedAsync(async () => loadMyCardInfo());
 
@@ -10,7 +9,7 @@ const MyCardInfo = computedAsync(async () => loadMyCardInfo());
  * @returns
  */
 async function loadMyCardInfo() {
-    const { id } = RouteManager.Params;
+    const { id } = Authentication();
     return await InternalMyCardInfo({ id });
 }
 
@@ -19,11 +18,19 @@ async function loadMyCardInfo() {
  * @param member
  * @returns
  */
-function Info(member: MemberType) {
-    return `/point/info/${member.id}`;
+function Info() {
+    return '/point/info';
+}
+
+/**
+ * 
+ */
+function Home() {
+    InfoToHome();
 }
 
 export {
     Info,
+    Home,
     MyCardInfo
 }
