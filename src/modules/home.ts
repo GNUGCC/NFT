@@ -1,7 +1,7 @@
 import { ref, computed } from 'vue';
 import { InternalLogin, InternalQueryMember } from '@/api/account';
 import { FormRef, Log, LogPopup, PrepareUserPassword } from '@/modules/common';
-import { Env, ContextManager, StoreManager, MessageBoxManager } from '@/utils';
+import { Env, ContextManager, StoreManager } from '@/utils';
 import type { MemberType } from '@/models/member';
 
 const Form = ref<MemberType>({});
@@ -14,7 +14,8 @@ const Authentication = computed(() => StoreManager.Authentication);
 function Login(account: string, userpassword: string) {
     FormRef.value?.validate(valid => {
         if (valid == false) return;
-        loginToApi({ account, password: PrepareUserPassword({ userpassword }) });
+        const { password } = PrepareUserPassword({ userpassword });
+        loginToApi({ account, password });
     });
 }
 
