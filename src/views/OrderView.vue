@@ -1,7 +1,6 @@
 <script setup lang="ts">
     import { RouteManager } from '@/utils/';
-    import { Orders } from '@/modules/member/order';
-    const Home = () => RouteManager.Home();
+    import { Orders, Home } from '@/modules/member/order';    
 </script>
 
 <template>

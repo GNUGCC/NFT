@@ -23,7 +23,7 @@ const routes: Array<RouteRecordRaw> = [
                     },
                     {
                         path: "/member/order",
-                        name: "detail",
+                        name: "order",
                         meta: {
 
                         },

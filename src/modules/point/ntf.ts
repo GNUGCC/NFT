@@ -1,8 +1,8 @@
-import { Log, Home } from '@/modules/common';
+import { Log, Home, Authentication } from '@/modules/common';
 
-function AddNTF(member) {
+function AddNTF() {
     Log('加購 NFT');    
-    return `/point/ntf/add/${member.id}`;
+    return '/point/ntf/add';
 }
 
 /**

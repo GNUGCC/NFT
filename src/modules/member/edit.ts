@@ -46,8 +46,8 @@ function Save(valid) {
  * @param member
  * @returns
  */
-function Edit(member: MemberType) {
-    return `/member/edit/${member.id}`;
+function Edit() {
+    return '/member/edit';
 }
 
 /**

@@ -85,6 +85,14 @@ function PrepareUserPassword({ useraccount, userpassword }) {
     return { account: useraccount, password: sha512(userpassword!) };
 }
 
+/**
+ * 
+ * @returns
+ */
+function Authentication() {
+    return StoreManager.Authentication;
+}
+
 export {
     FormRef,
     Form,
@@ -95,5 +103,6 @@ export {
     Register,
     Logout,
     LoadData,
+    Authentication,
     PrepareUserPassword
 }
