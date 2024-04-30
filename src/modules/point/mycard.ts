@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { computedAsync } from '@vueuse/core';
-import { Log, Home } from '@/modules/common';
-import { MessageBoxManager, RouteManager } from '@/utils';
+import { Log, Home, Authentication } from '@/modules/common';
+import { MessageBoxManager } from '@/utils';
 import { InternalMyCardSelectItem, InternalPay } from '@/api/point';
 import type { OrderStatusType } from '@/models/order';
 
@@ -58,7 +58,7 @@ function RedirectToPay(url) {
  */
 function OrderConfirm(select, type) {
     return new Promise((resolve, reject) => {
-        const { id } = RouteManager.Params;
+        const { id } = Authentication();
         const order = translateOrderType(select, '0');
 
         MessageBoxManager.MsgBox(`系統即將送出訂單 ${preparePointContent(`${type}`, order.content)}，您是否確定？`, 'warning', (action, instance, done) => {
@@ -157,9 +157,9 @@ function Cancel(member) {
  * @param member
  * @returns
  */
-function AddMyCard(member) {
+function AddMyCard() {
     Log('加購 MyCard');
-    return `/point/mycard/add/${member.id}`;
+    return '/point/mycard/add';
 }
 
 export { Home } from '@/modules/common';
