@@ -81,8 +81,8 @@ function LoadData(result: (data) => void) {
  * 
  * @returns
  */
-function PrepareUserPassword({ useraccount, userpassword }) {
-    return { account: useraccount, password: sha512(userpassword!) };
+function PrepareUserPassword({ userpassword }) {
+    return { password: sha512(userpassword!) };
 }
 
 export {
