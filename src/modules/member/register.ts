@@ -48,7 +48,7 @@ function addMember(result, data) {
  */
 function registerErrorMessage(err) {
     if (ContextManager.Process == Env.Development) {
-        MessageBoxManager.Alert('目前為測試階段，後端註冊產生錯誤!', 'error', '檢查後端');
+        //MessageBoxManager.Alert('目前為測試階段，後端註冊產生錯誤!', 'error', '檢查後端');
     }
 
     Log('註冊錯誤: ', err);
