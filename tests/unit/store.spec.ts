@@ -91,8 +91,12 @@ describe("測試 Store", () => {
 
         it('Member PerformanceMember({}):', () => {
             const state = { Member: PerformanceMember({}) };
+            
+            expect(state.Member)
+                .toEqual({});
+
             expect(getters.Member(state))
-                .toEqual(state.Member);
+                .toBeNull();
         });
 
         it('Member PerformanceMember({id: 1})', () => {
