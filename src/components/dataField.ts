@@ -1,6 +1,9 @@
+import { ref } from 'vue';
+import { FormRef } from '@/modules/common';
 import { PerformanceMember } from '@/store/common';
-import { FormRef, Form } from '@/modules/common';
 import type { MemberType } from '@/models/member';
+
+const Form = ref<MemberType>({});
 
 /**
  * 
