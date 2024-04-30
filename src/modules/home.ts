@@ -11,10 +11,10 @@ const Authentication = computed(() => StoreManager.Authentication);
 /**
  * 
  */
-function Login(useraccount: string, userpassword: string) {
+function Login(account: string, userpassword: string) {
     FormRef.value?.validate(valid => {
         if (valid == false) return;
-        loginToApi(PrepareUserPassword({ useraccount, userpassword }));
+        loginToApi({ account, password: PrepareUserPassword({ userpassword }) });
     });
 }
 
