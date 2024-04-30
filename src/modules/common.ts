@@ -7,6 +7,7 @@ import type { MemberType } from '@/models/member';
 const dev = true;
 const FormRef = ref<FormInstance>();
 const Form = ref<MemberType>({});
+Log('form context', FormRef.value);
 
 /**
  * 

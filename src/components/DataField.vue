@@ -1,16 +1,8 @@
 <script setup lang="ts">
-    import { defineEmits, defineProps, withDefaults, onMounted } from 'vue';
-    import { 
-        Save,
-        Cancel,                
-        Form,
-        FormRef,
-        ValidateRules,
-        InitlaizeData,
-        type FieldType,
-        type FieldEmitType
-    } from './dataField';
-
+    import { defineEmits, defineProps, defineSlots, withDefaults, onMounted } from 'vue';
+    import { Save, Cancel, Form, FormRef, ValidateRules, InitlaizeData } from './dataField';
+    import type { FieldType, FieldEmitType } from './dataField';
+    
     const emit = defineEmits<FieldEmitType>();
     const props = withDefaults(defineProps<FieldType>(), {
         data: {}
@@ -55,6 +47,7 @@
             <el-button type="info" class="button" @click="Cancel(emit)" plain>取消</el-button>
         </el-card>
     </el-space>
+    <slot name="result" v-bind="Form"></slot>
 </template>
 <style lang="scss" scoped>
     .button {
