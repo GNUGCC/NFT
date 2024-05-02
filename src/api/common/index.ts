@@ -6,6 +6,6 @@ const service = axios.create({
 service.interceptors.request.use(x => x);
 service.interceptors.response.use(
     x => Promise.resolve(x.data),
-    x => Promise.reject(x.response.data?.message));
+    x => Promise.reject(x?.response.data?.message));
 
 export default service;

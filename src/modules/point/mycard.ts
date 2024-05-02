@@ -7,7 +7,7 @@ import type { OrderStatusType } from '@/models/order';
 
 const Select = ref();
 const PayStatus = ref<boolean | null>(false);
-const SelectMyCardItem = computedAsync(async () => await InternalMyCardSelectItem());
+const SelectMyCardItem = computedAsync(async () => await prepareSelectItem());
 
 /**
  * 
@@ -97,6 +97,21 @@ function Order(type, select) {
  */
 function setPaySatus(status) {
     PayStatus.value = status;
+}
+
+/**
+ * 
+ * @param items
+ * @returns
+ */
+async function prepareSelectItem() {
+    try {
+        const result = await InternalMyCardSelectItem();
+        return Array.isArray(result) && result.length > 0 && result;
+    }
+    catch {
+        return false;
+    }
 }
 
 /**
