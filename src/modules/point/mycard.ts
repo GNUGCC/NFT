@@ -15,23 +15,37 @@ const SelectMyCardItem = computedAsync(async () => await prepareSelectItem());
  * @param instance
  * @param done
  */
-function confirm(id, order: OrderStatusType, instance) {
+function confirm(id, order: OrderStatusType) {
     Log('送出訂單成立', order, id);
-    SetMessageBoxContent(order, instance);
+    //SetMessageBoxContent(order, instance);
 
+    Log('取得付款頁面: ', id, order.amount, order.amount, order.content);
+    setPaySatus(true);
     return InternalPay({ m_id: id, amount: order.amount, mycard_point: order.amount, content: order.content })
-        .then(x => {
-            const data = x as any;
-            const url = data?.ord_trade_jpurl || data?.trade_url || data?.trade_qrcode;
-            Log('訂單成立，導向付款頁面...', order, data, url);
-            
-            return url;
-        })
-        .catch(err => {
-            Log('無法送出訂單: ', err);
-            MessageBoxManager.Alert('訂單送出錯誤，請重新再試一次。', 'error').catch(() => { /* eslint-disable */ });
-            throw err;
-        });
+        .then(pay => getPayUrl(order, pay as any))
+        .catch(err => { payError(err); throw err; });
+}
+
+/**
+ * 
+ * @param err
+ */
+function payError(err) {
+    Log('無法送出訂單: ', err);
+    MessageBoxManager.Alert('訂單送出錯誤，請重新再試一次。', 'error').catch(() => { /* eslint-disable */ });    
+}
+
+/**
+ * 
+ * @param order
+ * @param data
+ * @returns
+ */
+function getPayUrl(order, data) {
+    const url = data?.ord_trade_jpurl || data?.trade_url || data?.trade_qrcode;
+    Log('訂單成立，導向付款頁面...', order, data, url);
+
+    return url;
 }
 
 /**
@@ -40,6 +54,7 @@ function confirm(id, order: OrderStatusType, instance) {
  * @returns
  */
 function RedirectToPay(url) {
+    Log('paly: ', url);
     return new Promise((resolve, reject) => {
         if (url) {
             window.location.assign(url);
@@ -53,28 +68,36 @@ function RedirectToPay(url) {
 
 /**
  * 
- * @param select
+ * @param param0
+ * @param type
+ * @param order
  * @returns
  */
-function OrderConfirm(select, type) {
-    return new Promise((resolve, reject) => {
-        const { id } = Authentication();
-        const order = translateOrderType(select, '0');
+function showOrderMessageBox({ id }, type, order) {
+    Log('order: ', id, type, order);
 
-        MessageBoxManager.MsgBox(`系統即將送出訂單 ${preparePointContent(`${type}`, order.content)}，您是否確定？`, 'warning', (action, instance, done) => {
+    return new Promise((resolve, reject) => {
+        MessageBoxManager.MsgBox(`系統即將送出訂單 ${preparePointContent(`${type}`, order)}，您是否確定？`, 'warning', (action, instance, done) => {
             if (action == 'confirm') {
-                setPaySatus(true);
-                confirm(id, order, instance)
-                    .then(x => resolve(x))
-                    .catch(err => reject(err));
+                resolve(confirm(id, order));
             }
 
             done();
         })
-            .catch(x => {
-                Log('點選關閉: ', x);
-                reject('使用者點選關閉');
-            });
+            .catch(() => reject('使用者點選關閉'));
+    });
+}
+
+/**
+ * 
+ * @param select
+ * @returns
+ */
+function OrderConfirm({ id }, type, order) {
+    return new Promise((resolve, reject) => {
+        showOrderMessageBox({ id }, type, order)
+            .then(result => resolve(result))
+            .catch(err => { Log(err); reject(err); });
     });
 }
 
@@ -85,7 +108,7 @@ function OrderConfirm(select, type) {
  */
 function Order(type, select) {
     Log(`Save 加購 ${type}:`, select);
-    OrderConfirm(select, type)
+    OrderConfirm(Authentication(), type, translateOrderType(select, '0'))
         .then(url => RedirectToPay(url).then(() => setPaySatus(null)).catch(err => { throw (err); }))
         .catch(x => Log('系統發生錯誤: ', x))
         .finally(() => Select.value = null);
@@ -127,7 +150,7 @@ function SetMessageBoxContent(order, instance) {
     instance.confirmButtonLoading = true;
     instance.confirmButtonText = '請稍候...';
     instance.type = 'info';
-    instance.message = `<h5 style="font-weight: bolder; color: red;">請稍候，訂單 ${preparePointContent('MyCard', order.content)}  送出中...</h1>`;    
+    instance.message = `<h5 style="font-weight: bolder; color: red;">請稍候，訂單 ${preparePointContent('MyCard', order)}  送出中...</h1>`;    
 }
 
 /**
@@ -137,7 +160,7 @@ function SetMessageBoxContent(order, instance) {
  * @returns
  */
 function preparePointContent(type, order) {
-    return `"${type} ${order}"`;
+    return `"${type} ${order.content}"`;
 }
 
 /**
@@ -149,13 +172,13 @@ function translateOrderType(select, status) {
     const array = SelectMyCardItem.value as unknown as [];
     const order = array.find((x: any) => x.id == select) as any;
 
-    return <OrderStatusType>{
+    return Object.assign({}, {
         m_id: order.id,
         status,
         amount: order.points,
         content: order.content,
         build_time: order.build_time
-    };    
+    });
 }
 
 /**
