@@ -7,20 +7,22 @@
 <template>
     <el-card class="card" shadow="hover">
         <template #header>
-
+            <h3>NFT 點數項目</h3>
         </template>
-        <el-table :data="QueryNFTPoint" style="width: 100%" align="center">
-            <el-table-column label="購買內容" width="100%" align="center">
+        <el-table :data="QueryNFTPoint" style="width: 100%;" align="center">
+            <el-table-column label="購買內容" width="300px;" align="center">
                 <template #default="{ row }">
-                    <el-popover effect="light" trigger="hover" placement="top" width="auto">
-                        <template #default>
-                            <div>id: {{ row.id }}</div>
-                            <div>status: {{ row.status }}</div>
+                    <el-card shadow="hover">
+                        <template #header>
+                            <el-row>
+                                <el-col :span="24">已使用點數：{{row.used}}</el-col>                                
+                            </el-row>                            
+                            <el-row>
+                                <el-col :span="24">未使用點數：{{row.unused}}</el-col>
+                            </el-row>
                         </template>
-                        <template #reference>
-                            <el-tag>{{ row.id }}</el-tag>
-                        </template>
-                    </el-popover>
+                        <el-image :src="row.src" :fit="'contain'" />
+                    </el-card>
                 </template>
             </el-table-column>    
         </el-table>
@@ -29,13 +31,17 @@
 </template>
 
 <style lang="scss" scoped>
+    .querynft {
+        width: 100%;
+    }
+
     .info {
         width: 100px;
         margin-top: 15px;
     }
 
     .card {
-        width: 40%;
+        width: 20%;
         margin: auto;
     }
 
