@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { computedAsync } from '@vueuse/core';
 import { Log, Home, Authentication } from '@/modules/common';
 import { MessageBoxManager } from '@/utils';
@@ -7,6 +7,7 @@ import type { OrderStatusType } from '@/models/order';
 
 const Select = ref();
 const PayStatus = ref<boolean | null>(false);
+const AddMyCard = computed(() => '/point/mycard/add');
 const SelectMyCardItem = computedAsync(async () => await InternalMyCardSelectItem());
 
 /**
@@ -147,19 +148,9 @@ function translateOrderType(select, status) {
  * 
  * @param member
  */
-function Cancel(member) {
-    Log('Cancel 加購 MyCard: ', member);
+function Cancel() {
+    Log('Cancel 加購 MyCard');
     Home();
-}
-
-/**
- * 
- * @param member
- * @returns
- */
-function AddMyCard() {
-    Log('加購 MyCard');
-    return '/point/mycard/add';
 }
 
 export { Home } from '@/modules/common';

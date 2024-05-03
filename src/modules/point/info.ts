@@ -1,7 +1,9 @@
+import { computed } from 'vue';
 import { computedAsync } from '@vueuse/core';
 import { InternalMyCardInfo } from '@/api/point';
 import { Home as InfoToHome, Authentication } from '@/modules/common';
 
+const Info = computed(() => '/point/info');
 const MyCardInfo = computedAsync(async () => loadMyCardInfo());
 
 /**
@@ -11,15 +13,6 @@ const MyCardInfo = computedAsync(async () => loadMyCardInfo());
 async function loadMyCardInfo() {
     const { id } = Authentication();
     return await InternalMyCardInfo({ id });
-}
-
-/**
- * 
- * @param member
- * @returns
- */
-function Info() {
-    return '/point/info';
 }
 
 /**
