@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import IconItem from './IconItem.vue';
     import { Info } from '@/modules/point/info';
-    import { AddNTF } from '@/modules/point/ntf';
+    import { AddNTF, QueryNTF } from '@/modules/point/nft';
     import { AddMyCard } from '@/modules/point/mycard';    
 </script>
 
@@ -14,5 +14,9 @@
     </el-menu-item>
     <el-menu-item :index="AddMyCard">
         <icon-item title="加購 MyCard 點數" icon="circle-plus-filled"></icon-item>
+    </el-menu-item>
+    <el-menu-item disabled><el-divider /></el-menu-item>
+    <el-menu-item :index="QueryNTF">
+        <icon-item title="查詢 NTF 點數" icon="search"></icon-item>
     </el-menu-item>
 </template>

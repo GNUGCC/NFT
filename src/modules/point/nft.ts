@@ -1,7 +1,8 @@
 import { computed } from 'vue';
 import { Log, Home, Authentication } from '@/modules/common';
 
-const AddNTF = computed(() => '/point/ntf/add');
+const AddNTF = computed(() => '/point/nft/add');
+const QueryNTF = computed(() => '/point/nft/query');
 
 /**
  * 
@@ -25,6 +26,7 @@ function Cancel() {
 
 export {
     AddNTF,
+    QueryNTF,
     Save,
     Cancel
 }
