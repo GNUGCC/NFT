@@ -247,6 +247,13 @@ export function InternalMyCardInfo({ id }) {
 /**
  * 
  */
+export function InternalNFTPoint() {
+    return Promise.resolve();
+}
+
+/**
+ * 
+ */
 export function InternalMyCardSelectItem() {
     return service.get('goods');
 }

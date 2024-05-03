@@ -1,8 +1,18 @@
 import { computed } from 'vue';
+import { computedAsync } from '@vueuse/core';
+import { InternalNFTPoint } from '@/api/point';
 import { Log, Home, Authentication } from '@/modules/common';
 
-const AddNTF = computed(() => '/point/nft/add');
-const QueryNTF = computed(() => '/point/nft/query');
+const AddNFT = computed(() => '/point/nft/add');
+const QueryNFT = computed(() => '/point/nft/query');
+const QueryNFTPoint = computedAsync(async () => await queryNft());
+
+/**
+ * 
+ */
+async function queryNft() {
+    return await InternalNFTPoint();
+}
 
 /**
  * 
@@ -25,8 +35,9 @@ function Cancel() {
 }
 
 export {
-    AddNTF,
-    QueryNTF,
+    AddNFT,
+    QueryNFT,
+    QueryNFTPoint,
     Save,
     Cancel
 }
