@@ -5,6 +5,7 @@ import { Home, Log, LogPopup, Authentication } from '@/modules/common';
 import { Env, ContextManager, StoreManager } from '@/utils';
 import type { MemberType } from '@/models/member';
 
+const Edit = computed(() => '/member/edit');
 const Data = computed(() => prepareData());
 
 /**
@@ -66,15 +67,6 @@ function prepareData() {
     auth.password = auth.passwords = null;
     Log('prepareData: ', auth);
     return auth;
-}
-
-/**
- * 
- * @param member
- * @returns
- */
-function Edit() {
-    return '/member/edit';
 }
 
 /**
