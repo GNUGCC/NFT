@@ -17,6 +17,6 @@
     </el-menu-item>
     <el-menu-item disabled><el-divider /></el-menu-item>
     <el-menu-item :index="QueryNFT">
-        <icon-item title="查詢 NTF 點數" icon="search"></icon-item>
+        <icon-item title="查詢 NFT 點數" icon="search"></icon-item>
     </el-menu-item>
 </template>

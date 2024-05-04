@@ -7,25 +7,25 @@
 <template>
     <el-card class="card" shadow="hover">
         <template #header>
-            <h3>NFT 點數項目</h3>
+            <el-alert title="NFT 點數項目(測試資料)" type="error" :closable="false" effect="dark" center show-icon />
         </template>
-        <el-table :data="QueryNFTPoint" style="width: 100%;" align="center">
-            <el-table-column label="購買內容" width="300px;" align="center">
-                <template #default="{ row }">
-                    <el-card shadow="hover">
+        <el-scrollbar height="500px">
+            <el-space wrap>
+                <template v-for="item in QueryNFTPoint" :key="item">
+                    <el-card style="width: 300px; height: 300px" shadow="hover">
                         <template #header>
                             <el-row>
-                                <el-col :span="24">已使用點數：{{row.used}}</el-col>                                
-                            </el-row>                            
+                                <el-col :span="24">已使用點數：{{item.used}}</el-col>
+                            </el-row>
                             <el-row>
-                                <el-col :span="24">未使用點數：{{row.unused}}</el-col>
+                                <el-col :span="24">未使用點數：{{item.unused}}</el-col>
                             </el-row>
                         </template>
-                        <el-image :src="row.src" :fit="'contain'" />
-                    </el-card>
-                </template>
-            </el-table-column>    
-        </el-table>
+                        <el-image :src="item.src" :fit="'contain'" />
+                    </el-card>                   
+                </template>                
+            </el-space>                
+        </el-scrollbar>        
         <el-button type="primary" class="info" @click="Home" plain>確定</el-button>
     </el-card>    
 </template>
@@ -41,7 +41,7 @@
     }
 
     .card {
-        width: 20%;
+        width: 85%;
         margin: auto;
     }
 

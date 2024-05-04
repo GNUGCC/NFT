@@ -272,6 +272,61 @@ const nft = [
         used: '238',
         unused: '5786',
         src: 'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
+    },
+    {
+        used: '0',
+        unused: '100',
+        src: 'https://d3d9mb8xdsbq52.cloudfront.net/s3/221117/170638mrs.jpg'
+    },
+    {
+        used: '15',
+        unused: '76',
+        src: 'https://d3d9mb8xdsbq52.cloudfront.net/s3/221117/170511sdf.jpg'
+    },
+    {
+        used: '15',
+        unused: '76',
+        src: 'https://d3d9mb8xdsbq52.cloudfront.net/s3/221117/235631knf.jpg'
+    },
+    {
+        used: '15',
+        unused: '76',
+        src: 'https://d3d9mb8xdsbq52.cloudfront.net/s3/221117/183233dts.jpg'
+    },
+    {
+        used: '15',
+        unused: '76',
+        src: 'https://d3d9mb8xdsbq52.cloudfront.net/s3/221117/235649obs.jpg'
+    },
+    {
+        used: '15',
+        unused: '76',
+        src: 'https://d3d9mb8xdsbq52.cloudfront.net/s3/221117/235624sno.jpg'
+    },
+    {
+        used: '15',
+        unused: '76',
+        src: 'https://d3d9mb8xdsbq52.cloudfront.net/s3/221117/235643xmv.jpg'
+    },
+    {
+        used: '15',
+        unused: '76',
+        src: 'https://d3d9mb8xdsbq52.cloudfront.net/s3/221117/235618uhn.jpg'
+    },
+    {
+        used: '15',
+        unused: '76',
+        src: 'https://hips.hearstapps.com/hmg-prod/images/fotojet-5-1650369753.jpg'
+    },
+    {
+        used: '15',
+        unused: '76',
+        src: 'https://hips.hearstapps.com/hmg-prod/images/unnamed-1650350002.jpeg'
+    },
+    {
+        used: '15',
+        unused: '76',
+        src: 'https://hips.hearstapps.com/hmg-prod/images/unnamed-1650360944.png'
     }
 ]
 
