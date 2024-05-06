@@ -234,101 +234,24 @@ const mycardList = [
 
 const nft = [
     {
-        used: '0',
-        unused: '100',
-        src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg'
+        "tokenId": "1",
+        "uri": "https://nft.tradcoins.net/api/image/1",
+        "availablePoints": "100",
+        "lockedPoints": "0",
     },
     {
-        used: '15',
-        unused: '76',
-        src: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+        "tokenId": "2",
+        "uri": "https://nft.tradcoins.net/api/image/2",
+        "availablePoints": "100",
+        "lockedPoints": "0"
     },
     {
-        used: '200',
-        unused: '3100',
-        src: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg'
-    },
-    {
-        used: '67',
-        unused: '136',
-        src: 'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg'
-    },
-    {
-        used: '15',
-        unused: '786',
-        src: 'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg'
-    },
-    {
-        used: '315',
-        unused: '1786',
-        src: 'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg'
-    },
-    {
-        used: '152',
-        unused: '886',
-        src: 'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg'
-    },
-    {
-        used: '238',
-        unused: '5786',
-        src: 'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
-    },
-    {
-        used: '0',
-        unused: '100',
-        src: 'https://d3d9mb8xdsbq52.cloudfront.net/s3/221117/170638mrs.jpg'
-    },
-    {
-        used: '15',
-        unused: '76',
-        src: 'https://d3d9mb8xdsbq52.cloudfront.net/s3/221117/170511sdf.jpg'
-    },
-    {
-        used: '15',
-        unused: '76',
-        src: 'https://d3d9mb8xdsbq52.cloudfront.net/s3/221117/235631knf.jpg'
-    },
-    {
-        used: '15',
-        unused: '76',
-        src: 'https://d3d9mb8xdsbq52.cloudfront.net/s3/221117/183233dts.jpg'
-    },
-    {
-        used: '15',
-        unused: '76',
-        src: 'https://d3d9mb8xdsbq52.cloudfront.net/s3/221117/235649obs.jpg'
-    },
-    {
-        used: '15',
-        unused: '76',
-        src: 'https://d3d9mb8xdsbq52.cloudfront.net/s3/221117/235624sno.jpg'
-    },
-    {
-        used: '15',
-        unused: '76',
-        src: 'https://d3d9mb8xdsbq52.cloudfront.net/s3/221117/235643xmv.jpg'
-    },
-    {
-        used: '15',
-        unused: '76',
-        src: 'https://d3d9mb8xdsbq52.cloudfront.net/s3/221117/235618uhn.jpg'
-    },
-    {
-        used: '15',
-        unused: '76',
-        src: 'https://hips.hearstapps.com/hmg-prod/images/fotojet-5-1650369753.jpg'
-    },
-    {
-        used: '15',
-        unused: '76',
-        src: 'https://hips.hearstapps.com/hmg-prod/images/unnamed-1650350002.jpeg'
-    },
-    {
-        used: '15',
-        unused: '76',
-        src: 'https://hips.hearstapps.com/hmg-prod/images/unnamed-1650360944.png'
+        "tokenId": "3",
+        "uri": "https://nft.tradcoins.net/api/image/3",
+        "availablePoints": "100",
+        "lockedPoints": "0"
     }
-]
+];
 
 export function InternalOrder({ id }) {
     return Promise.resolve(orders);
@@ -344,9 +267,11 @@ export function InternalMyCardInfo({ id }) {
 
 /**
  * 
+ * @param param0
+ * @returns
  */
-export function InternalNFTPoint() {
-    return Promise.resolve(nft);
+export function InternalNFTPoint({ myCardId }) {
+    return service.get(`nfts/${myCardId}`);    
 }
 
 /**
@@ -354,6 +279,13 @@ export function InternalNFTPoint() {
  */
 export function InternalMyCardSelectItem() {
     return service.get('goods');
+}
+
+/**
+ * 
+ */
+export function InternalMyCardToNftSelectItem({ id }) {
+    return service.get(`purse/${id}`);
 }
 
 /**

@@ -14,14 +14,14 @@
                 <template v-for="item in QueryNFTPoint" :key="item">
                     <el-card style="width: 300px; height: 300px" shadow="hover">
                         <template #header>
-                            <el-row>
-                                <el-col :span="24">已使用點數：{{item.used}}</el-col>
+                            <el-row style="justify-content: left">
+                                <el-col :span="24">已使用點數: {{item.lockedPoints}}</el-col>
                             </el-row>
                             <el-row>
-                                <el-col :span="24">未使用點數：{{item.unused}}</el-col>
+                                <el-col :span="24">未使用點數: {{item.availablePoints}}</el-col>
                             </el-row>
                         </template>
-                        <el-image :src="item.src" :fit="'contain'" />
+                        <el-image :src="item.uri" :fit="'contain'" />
                     </el-card>                   
                 </template>                
             </el-space>                
