@@ -11,8 +11,8 @@ const MyCardInfo = computedAsync(async () => loadMyCardInfo());
  * @returns
  */
 async function loadMyCardInfo() {
-    const { id } = Authentication();
-    return await InternalMyCardInfo({ id });
+    const { purses } = await InternalMyCardInfo(Authentication()) as any;
+    return purses;
 }
 
 /**

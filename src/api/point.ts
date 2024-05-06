@@ -1,6 +1,6 @@
 import service from '@/api/common';
 import type { OrderStatusType } from '@/models/order';
-import type { MyCardContentType } from '@/models/mycardContent';
+import type { MyCardBuyListType } from '@/models/mycardContent';
 
 const orders: OrderStatusType[] = [
     {
@@ -50,38 +50,29 @@ const orders: OrderStatusType[] = [
     }
 ];
 
-const mycardInfo: MyCardContentType[] = [
-    {
-        id: '1',
-        m_id: '1',
-        mycard_data: '1000 點數',
-        mycard_point: '1000'
-    },
-    {
-        id: '2',
-        m_id: '2',
-        mycard_data: '300 點數',
-        mycard_point: '300'
-    },
-    {
-        id: '3',
-        m_id: '3',
-        mycard_data: '11000 點數',
-        mycard_point: '11000'
-    },
-    {
-        id: '4',
-        m_id: '4',
-        mycard_data: '13000 點數',
-        mycard_point: '13000'
-    },
-    {
-        id: '5',
-        m_id: '5',
-        mycard_data: '10000 點數',
-        mycard_point: '10000'
-    }
-];
+const mycardInfo: MyCardBuyListType = {
+    m_id: '38',
+    mycard_point: '5300',
+    nft_point: '500',
+    purses: [
+        {
+            id: '2',
+            m_id: '38',
+            mycard_point: '1700',
+            mycard_data: '測試 1700 點資料',
+            status: '1',
+            build_time: '2024-05-05 20:51:41'
+        },
+        {
+            id: '3',
+            m_id: '38',
+            mycard_point: '3600',
+            mycard_data: '測試3600點',
+            status: '1',
+            build_time: '2024-05-05 20:52:13'
+        }
+    ]
+};
 
 const pay = {
     "errcode": 0,
@@ -241,7 +232,7 @@ export function InternalOrder({ id }) {
  * @param param0
  */
 export function InternalMyCardInfo({ id }) {
-    return Promise.resolve(mycardInfo);
+    return service.get(`purse/${id}`);
 }
 
 /**
