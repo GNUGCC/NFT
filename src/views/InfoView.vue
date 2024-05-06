@@ -6,12 +6,7 @@
 <template>
     <el-card class="card" shadow="hover">        
         <template #header>
-            <template v-if="true">
-                <el-alert title="MyCard 購買記錄(測試資料)" type="error" :closable="false" effect="dark" center show-icon />
-            </template>
-            <template v-else>
-                <el-alert title="MyCard 購買記錄" type="info" :closable="false" effect="light" center show-icon />
-            </template>
+            <el-alert title="MyCard 購買記錄" type="success" :closable="false" effect="light" center show-icon />
         </template>
         <el-table :data="MyCardInfo" style="width: 100%" align="center">
             <el-table-column label="購買內容" width="100%" align="center">
