@@ -52,12 +52,12 @@ const routes: Array<RouteRecordRaw> = [
                         component: () => import('@/views/InfoView.vue')
                     },
                     {
-                        path: "/point/ntf/add",
+                        path: "/point/nft/add",
                         name: "addntf",
                         meta: {
 
                         },
-                        component: () => import('@/views/NtfView.vue')
+                        component: () => import('@/views/NftView.vue')
                     },
                     {
                         path: "/point/mycard/add",
@@ -66,6 +66,14 @@ const routes: Array<RouteRecordRaw> = [
 
                         },
                         component: () => import('@/views/MyCardView.vue')
+                    },
+                    {
+                        path: "/point/nft/query",
+                        name: "querynft",
+                        meta: {
+
+                        },
+                        component: () => import('@/views/QueryNFTView.vue')
                     },
                     {
                         path: "/point/pay/completed",

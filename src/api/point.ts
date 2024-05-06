@@ -232,6 +232,27 @@ const mycardList = [
     }
 ];
 
+const nft = [
+    {
+        "tokenId": "1",
+        "uri": "https://nft.tradcoins.net/api/image/1",
+        "availablePoints": "100",
+        "lockedPoints": "0",
+    },
+    {
+        "tokenId": "2",
+        "uri": "https://nft.tradcoins.net/api/image/2",
+        "availablePoints": "100",
+        "lockedPoints": "0"
+    },
+    {
+        "tokenId": "3",
+        "uri": "https://nft.tradcoins.net/api/image/3",
+        "availablePoints": "100",
+        "lockedPoints": "0"
+    }
+];
+
 export function InternalOrder({ id }) {
     return Promise.resolve(orders);
 }
@@ -246,9 +267,25 @@ export function InternalMyCardInfo({ id }) {
 
 /**
  * 
+ * @param param0
+ * @returns
+ */
+export function InternalNFTPoint({ myCardId }) {
+    return service.get(`nfts/${myCardId}`);    
+}
+
+/**
+ * 
  */
 export function InternalMyCardSelectItem() {
     return service.get('goods');
+}
+
+/**
+ * 
+ */
+export function InternalMyCardToNftSelectItem({ id }) {
+    return service.get(`purse/${id}`);
 }
 
 /**

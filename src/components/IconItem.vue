@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import { defineProps } from 'vue';
-    import { Discount, Avatar, Edit, InfoFilled, Plus, CirclePlusFilled, Hide } from '@element-plus/icons-vue';
+    import { Discount, Search, Avatar, Edit, InfoFilled, Plus, CirclePlusFilled, Hide } from '@element-plus/icons-vue';
 
     const props = defineProps<{
         icon: string,
@@ -30,7 +30,10 @@
     <template v-if="props.icon == 'hide'">
         <el-icon><hide /></el-icon>
     </template>
+    <template v-if="props.icon == 'search'">
+        <el-icon><search /></el-icon>
+    </template>
     <template v-if="props.title">
         <span>{{props.title}}</span>
-    </template>    
+    </template>
 </template>
