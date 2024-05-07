@@ -9,15 +9,14 @@
             <el-alert title="MyCard 購買記錄" type="success" :closable="false" effect="light" center show-icon />
         </template>
         <el-table :data="MyCardInfo" style="width: 100%" align="center">
-            <el-table-column label="購買內容" width="100%" align="center">
+            <el-table-column label="購買點數" width="100%" align="left">
                 <template #default="{ row }">
                     <el-popover effect="light" trigger="hover" placement="top" width="auto">
                         <template #default>
-                            <span>id: {{ row.id }}</span>
-                            <span>status: {{ row.mycard_data }}</span>
+                            <span>購買內容: {{ row.mycard_data }}</span>
                         </template>
                         <template #reference>
-                            <el-tag>{{ row.mycard_data }}</el-tag>
+                            <el-tag>{{ row.mycard_point }}</el-tag>
                         </template>
                     </el-popover>
                 </template>
