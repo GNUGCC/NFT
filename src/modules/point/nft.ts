@@ -8,6 +8,20 @@ import type { NftDetailType } from '@/models/nftDetail';
 const AddNFT = computed(() => '/point/nft/add');
 const QueryNFT = computed(() => '/point/nft/query');
 const QueryNFTPoint = computedAsync(async () => await queryNft());
+const QueryMyCardForNft = computedAsync(async () => await queryMyCardForNft());
+
+/**
+ * 
+ */
+async function queryMyCardForNft() {
+    return (await MyCardInfo.value).map(x => {
+        return {
+            id: x.id,
+            points: x.mycard_point,
+            content: x.mycard_data
+        };
+    });
+}
 
 /**
  * 
@@ -44,7 +58,9 @@ function Cancel() {
 export {
     AddNFT,
     QueryNFT,
+    MyCardInfo,
     QueryNFTPoint,
+    QueryMyCardForNft,
     Save,
     Cancel
 }

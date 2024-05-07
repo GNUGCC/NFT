@@ -107,9 +107,9 @@ function OrderConfirm({ id }, type, order) {
  * @param member
  * @param point
  */
-function Order(type, select) {
+function Order(type, select, mycardItem) {
     Log(`Save 加購 ${type}:`, select);
-    OrderConfirm(Authentication(), type, translateOrderType(select, '0'))
+    OrderConfirm(Authentication(), type, translateOrderType(select, mycardItem, '0'))
         .then(url => RedirectToPay(url).then(() => setPaySatus(null)).catch(err => { throw (err); }))
         .catch(x => Log('系統發生錯誤: ', x))
         .finally(() => Select.value = null);
@@ -169,8 +169,8 @@ function preparePointContent(type, order) {
  * @param order
  * @returns
  */
-function translateOrderType(select, status) {
-    const array = SelectMyCardItem.value as unknown as [];
+function translateOrderType(select, mycardItem, status) {
+    const array = mycardItem as unknown as [];
     const order = array.find((x: any) => x.id == select) as any;
 
     return Object.assign({}, {
