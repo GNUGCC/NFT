@@ -7,7 +7,12 @@
 <template>
     <el-card class="card" shadow="hover">
         <template #header>
-            <el-alert title="NFT 點數項目(測試資料)" type="error" :closable="false" effect="dark" center show-icon />
+            <template v-if="QueryNFTPoint">
+                <el-alert title="您已購置的 NFT 點數清單" type="success" :closable="false" effect="dark" center show-icon />
+            </template>
+            <template v-else>
+                <el-alert title="您沒有購買任何 NFT 點數" type="error" :closable="false" effect="dark" center show-icon />
+            </template>
         </template>
         <el-scrollbar height="500px">
             <el-space wrap>

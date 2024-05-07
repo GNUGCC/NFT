@@ -1,6 +1,7 @@
 import { computed } from 'vue';
 import { computedAsync } from '@vueuse/core';
 import { InternalNFTPoint } from '@/api/point';
+import { MyCardInfo } from '@/modules/point/info';
 import { Log, Home, Authentication } from '@/modules/common';
 import type { NftDetailType } from '@/models/nftDetail';
 
@@ -12,7 +13,12 @@ const QueryNFTPoint = computedAsync(async () => await queryNft());
  * 
  */
 async function queryNft() {
-    return await InternalNFTPoint({ myCardId: '20240503120500' });
+    const result = await MyCardInfo.value.map(async ({ id }) => await InternalNFTPoint({ myCardId: id }));
+    const data = await result.map(async x => await x);
+
+    Log('query: ', result, data);
+    const detail = (await Promise.all(result)).flat();
+    return detail.length > 0 && detail;
 }
 
 /**
