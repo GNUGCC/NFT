@@ -26,22 +26,7 @@
                 <template #default="{ row }">
                     <span>{{ row.mycard_point }}</span>
                 </template>
-            </el-table-column>
-            <!--<el-table-column label="狀態" width="100%" align="center">
-                <template #default="{ row }">
-                    <span>{{ row.status }}</span>
-                </template>
-            </el-table-column>
-            <el-table-column label="有效日期" width="100%" align="center">
-                <template #default="{ row }">
-                    <span>{{ row.available_date }}</span>
-                </template>
-            </el-table-column>
-            <el-table-column label="建立日期" width="100%" align="center">
-                <template #default="{ row }">
-                    <span>{{ row.available_date }}</span>
-                </template>
-            </el-table-column>-->
+            </el-table-column>           
             <template #empty>
                 沒有訂單資料
             </template>
