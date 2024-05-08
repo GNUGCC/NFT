@@ -1,5 +1,6 @@
 <script setup lang="ts">
-    import { Order, Cancel, Select, PayStatus, OrderMyCard, SelectMyCardItem, Home } from '@/modules/point/mycard';
+    import { PayStatus, Select } from '@/modules/common';
+    import { Order, Cancel, OrderMyCard, SelectMyCardItem, Home } from '@/modules/point/mycard';
     PayStatus.value = false;
 </script>
 

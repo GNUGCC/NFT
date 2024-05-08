@@ -2,8 +2,7 @@ import { computed } from 'vue';
 import { computedAsync } from '@vueuse/core';
 import { InternalNFTPoint } from '@/api/point';
 import { MyCardInfo } from '@/modules/point/info';
-import { Order } from '@/modules/point/mycard';
-import { Log, Home } from '@/modules/common';
+import { Log, Home, Order } from '@/modules/common';
 import type { NftDetailType } from '@/models/nftDetail';
 
 const AddNFT = computed(() => '/point/nft/add');

@@ -1,5 +1,6 @@
 <script setup lang="ts">
-    import { Cancel, Select, PayStatus, Home } from '@/modules/point/mycard';    
+    import { PayStatus, Select } from '@/modules/common';
+    import { Cancel, Home } from '@/modules/point/mycard';    
     import { QueryMyCardForNft, OrderNFT } from '@/modules/point/nft';
     PayStatus.value = false;
 </script>
