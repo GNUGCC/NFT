@@ -94,7 +94,15 @@ const routes: Array<RouteRecordRaw> = [
 
         },
         component: () => import('@/views/RegisterView.vue')
-    }    
+    },
+    {
+        path: "/console",
+        name: "console",
+        meta: {
+
+        },
+        component: () => import('@/views/ConsoleView.vue')
+    }
 ];
 
 export default createRouter({
