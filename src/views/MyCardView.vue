@@ -1,5 +1,6 @@
 <script setup lang="ts">
-    import { Order, Cancel, Select, PayStatus, SelectMyCardItem, Home } from '@/modules/point/mycard';
+    import { PayStatus, Select } from '@/modules/common';
+    import { Order, Cancel, OrderMyCard, SelectMyCardItem, Home } from '@/modules/point/mycard';
     PayStatus.value = false;
 </script>
 
@@ -13,16 +14,7 @@
     </template>
     <template v-else-if="PayStatus == true">
         <el-alert class="pay" title="系統導向付款頁面中，請稍候…" type="info" :closable="false" effect="light" center show-icon />
-    </template>
-    <!--<template v-else-if="PayStatus == null">
-        <el-card class="card" shadow="hover" width="500px">
-            <template #header>
-                <span class="title">MyCard 訂單訊息</span>
-            </template>
-            <el-alert class="pay" title="系統已完成建立訂單" description="請於付款頁面內完成付款可查詢訂單狀態，再次感謝您的訂購" type="success" :closable="false" effect="light" center show-icon />
-            <el-button type="primary" class="button" @click="Home" round>確定</el-button>
-        </el-card>
-    </template>-->
+    </template>   
     <template v-else-if="PayStatus == false">
         <el-card class="card" shadow="hover">
             <template #header>
@@ -44,7 +36,7 @@
                 </el-option>
             </el-select>
             <div style="margin-top: 5px;">
-                <el-button type="success" class="button" @click="Order('MyCard', Select, SelectMyCardItem)" :disabled="Select == null">送出訂單</el-button>
+                <el-button type="success" class="button" @click="OrderMyCard(Select)" :disabled="Select == null">送出訂單</el-button>
                 <el-button type="info" class="button" @click="Cancel" plain>取消</el-button>
             </div>
         </el-card>
