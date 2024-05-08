@@ -117,6 +117,15 @@ function Order(type, select, mycardItem) {
 
 /**
  * 
+ * @param select
+ * @returns
+ */
+function OrderMyCard(select) {
+    return Order('MyCard', select, SelectMyCardItem.value);
+}
+
+/**
+ * 
  * @param status
  */
 function setPaySatus(status) {
@@ -192,11 +201,12 @@ function Cancel() {
 }
 
 export { Home } from '@/modules/common';
-export {    
-    Order,
+export {        
     Cancel,
     Select,
+    Order,
     PayStatus,
     AddMyCard,
+    OrderMyCard,
     SelectMyCardItem
 }

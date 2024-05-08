@@ -2,13 +2,23 @@ import { computed } from 'vue';
 import { computedAsync } from '@vueuse/core';
 import { InternalNFTPoint } from '@/api/point';
 import { MyCardInfo } from '@/modules/point/info';
-import { Log, Home, Authentication } from '@/modules/common';
+import { Order } from '@/modules/point/mycard';
+import { Log, Home } from '@/modules/common';
 import type { NftDetailType } from '@/models/nftDetail';
 
 const AddNFT = computed(() => '/point/nft/add');
 const QueryNFT = computed(() => '/point/nft/query');
 const QueryNFTPoint = computedAsync(async () => await queryNft());
 const QueryMyCardForNft = computedAsync(async () => await queryMyCardForNft());
+
+/**
+ * 
+ * @param member
+ * @param point
+ */
+function OrderNFT(select) {
+    return Order('NFT', select, QueryMyCardForNft.value);
+}
 
 /**
  * 
@@ -28,9 +38,6 @@ async function queryMyCardForNft() {
  */
 async function queryNft() {
     const result = await MyCardInfo.value.map(async ({ id }) => await InternalNFTPoint({ myCardId: id }));
-    const data = await result.map(async x => await x);
-
-    Log('query: ', result, data);
     const detail = (await Promise.all(result)).flat();
     return detail.length > 0 && detail;
 }
@@ -58,6 +65,7 @@ function Cancel() {
 export {
     AddNFT,
     QueryNFT,
+    OrderNFT,
     MyCardInfo,
     QueryNFTPoint,
     QueryMyCardForNft,

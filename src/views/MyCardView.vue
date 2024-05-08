@@ -1,5 +1,5 @@
 <script setup lang="ts">
-    import { Order, Cancel, Select, PayStatus, SelectMyCardItem, Home } from '@/modules/point/mycard';
+    import { Order, Cancel, Select, PayStatus, OrderMyCard, SelectMyCardItem, Home } from '@/modules/point/mycard';
     PayStatus.value = false;
 </script>
 
@@ -35,7 +35,7 @@
                 </el-option>
             </el-select>
             <div style="margin-top: 5px;">
-                <el-button type="success" class="button" @click="Order('MyCard', Select, SelectMyCardItem)" :disabled="Select == null">送出訂單</el-button>
+                <el-button type="success" class="button" @click="OrderMyCard(Select)" :disabled="Select == null">送出訂單</el-button>
                 <el-button type="info" class="button" @click="Cancel" plain>取消</el-button>
             </div>
         </el-card>
