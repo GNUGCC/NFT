@@ -7,7 +7,7 @@
         <span class="title">後台選單</span>
     </div>
     <el-menu active-text-color="#ffffff" background-color="#344a5f" text-color="#fff" :ellipsis="false" router>
-        <el-sub-menu>
+        <el-sub-menu index="0">
             <template #title>
                 <div class="mycard">
                     <icon-item title="MyCard" icon="discount"></icon-item>
@@ -15,11 +15,11 @@
             </template>
             <el-menu-item>
                 <template #title>
-                    <icon-item title="MyCard 點數序號" icon="avatar"></icon-item>
+                    <icon-item title="新增 MyCard 序號" icon="avatar"></icon-item>
                 </template>
             </el-menu-item>
         </el-sub-menu>
-        <el-sub-menu>
+        <el-sub-menu index ="1">
             <template #title>
                 <div class="mycard">
                     <icon-item title="NFT" icon="hide"></icon-item>
@@ -30,7 +30,12 @@
                     <icon-item title="NFT 點數序號" icon="info-filled"></icon-item>
                 </template>
             </el-menu-item>
-        </el-sub-menu>        
+        </el-sub-menu>    
+        <el-menu-item>
+            <template #title>
+                <icon-item title="登出" icon="search"></icon-item>
+            </template>
+        </el-menu-item>
     </el-menu>
 </template>
 
