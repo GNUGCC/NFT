@@ -46,8 +46,8 @@
     }
 
     .el-menu-item {
-        --el-menu-hover-bg-color: rgb(0, 155, 204);
-        width: 180px;
+        //--el-menu-hover-bg-color: rgb(0, 155, 204);
+        //width: 180px;
     }
 
     .el-menu {
