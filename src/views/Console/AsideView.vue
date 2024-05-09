@@ -1,66 +1,48 @@
 <script setup lang="ts">
+    import IconItem from '@/components/IconItem.vue';
 </script>
 
 <template>
     <div class="layout-header">
         <span class="title">後台選單</span>
     </div>
-    <el-menu background-color="#0000FF" active-text-color="#FFFF00" text-color="#fff" :ellipsis="false" router>
-        <el-menu-item>
-            <template #title>
-                <span class="mycard">MyCard 點數序號</span>                
-            </template>
-        </el-menu-item>
-        <el-menu-item>
-            <template #title>
-                <span class="mycard">MyCard 點數序號</span>
-            </template>
-        </el-menu-item>
-        <el-menu-item>
-            <template #title>
-                <el-alert title="MyCard 購買記錄" type="error" :closable="false" effect="dark" center show-icon />
-            </template>
-        </el-menu-item>
+    <el-menu active-text-color="#ffffff" background-color="#344a5f" text-color="#fff" :ellipsis="false" router>
         <el-sub-menu>
             <template #title>
-                <el-alert title="MyCard 購買記錄" type="success" :closable="false" effect="dark" center show-icon />
+                <div class="mycard">
+                    <icon-item title="MyCard" icon="discount"></icon-item>
+                </div>                
             </template>
             <el-menu-item>
                 <template #title>
-                    <el-alert title="MyCard 購買記錄" type="info" :closable="false" effect="dark" center show-icon />
-                </template>
-            </el-menu-item>
-            <el-menu-item>
-                <template #title>
-                    <el-alert title="MyCard 購買記錄" type="error" :closable="false" effect="dark" center show-icon />
-                </template>
-            </el-menu-item>
-            <el-menu-item>
-                <template #title>
-                    <el-alert title="MyCard 購買記錄" type="success" :closable="false" effect="light" center show-icon />
+                    <icon-item title="MyCard 點數序號" icon="avatar"></icon-item>
                 </template>
             </el-menu-item>
         </el-sub-menu>
+        <el-sub-menu>
+            <template #title>
+                <div class="mycard">
+                    <icon-item title="NFT" icon="hide"></icon-item>
+                </div>
+            </template>
+            <el-menu-item>
+                <template #title>
+                    <icon-item title="NFT 點數序號" icon="info-filled"></icon-item>
+                </template>
+            </el-menu-item>
+        </el-sub-menu>        
     </el-menu>
 </template>
 
 <style lang="scss" scoped>
-    .el-menu-item {
-        --el-menu-hover-bg-color: rgb(0, 155, 204);
-    }
-
     .mycard {
-        //min-width: 500px !important;
-        background-color: palegreen;
-        color: blue;
-        font-size: 20px;
+        font-weight: bold;
         align-items: center;
     }
 
-    .title {
-        width: 200px;
-        font-size: 15px;
-        font-weight: bolder;
+    .el-menu-item {
+        --el-menu-hover-bg-color: rgb(0, 155, 204);
+        width: 180px;
     }
 
     .el-menu {
