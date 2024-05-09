@@ -3,38 +3,66 @@
 
 <template>
     <div class="layout-header">
-        <span>選單</span>
+        <span class="title">後台選單</span>
     </div>
-    <el-menu active-text-color="#ffffff" background-color="#344a5f" text-color="#fff" router>
+    <el-menu background-color="#0000FF" active-text-color="#FFFF00" text-color="#fff" :ellipsis="false" router>
         <el-menu-item>
             <template #title>
-                <h1>選單1</h1>
-            </template>            
-        </el-menu-item>
-        <el-menu-item>
-            <template #title>
-                <h1>選單2</h1>
+                <span class="mycard">MyCard 點數序號</span>                
             </template>
         </el-menu-item>
         <el-menu-item>
             <template #title>
-                <h1>選單3</h1>
+                <span class="mycard">MyCard 點數序號</span>
+            </template>
+        </el-menu-item>
+        <el-menu-item>
+            <template #title>
+                <el-alert title="MyCard 購買記錄" type="error" :closable="false" effect="dark" center show-icon />
             </template>
         </el-menu-item>
         <el-sub-menu>
             <template #title>
-                <h1>其他功能</h1>
+                <el-alert title="MyCard 購買記錄" type="success" :closable="false" effect="dark" center show-icon />
             </template>
             <el-menu-item>
                 <template #title>
-                    <h1>選單3</h1>
+                    <el-alert title="MyCard 購買記錄" type="info" :closable="false" effect="dark" center show-icon />
+                </template>
+            </el-menu-item>
+            <el-menu-item>
+                <template #title>
+                    <el-alert title="MyCard 購買記錄" type="error" :closable="false" effect="dark" center show-icon />
+                </template>
+            </el-menu-item>
+            <el-menu-item>
+                <template #title>
+                    <el-alert title="MyCard 購買記錄" type="success" :closable="false" effect="light" center show-icon />
                 </template>
             </el-menu-item>
         </el-sub-menu>
-    </el-menu>    
+    </el-menu>
 </template>
 
 <style lang="scss" scoped>
+    .el-menu-item {
+        --el-menu-hover-bg-color: rgb(0, 155, 204);
+    }
+
+    .mycard {
+        //min-width: 500px !important;
+        background-color: palegreen;
+        color: blue;
+        font-size: 20px;
+        align-items: center;
+    }
+
+    .title {
+        width: 200px;
+        font-size: 15px;
+        font-weight: bolder;
+    }
+
     .el-menu {
         border-right: none;
     }
