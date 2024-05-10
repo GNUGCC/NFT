@@ -1,7 +1,7 @@
 <script setup lang="ts">
     import IconItem from '@/components/IconItem.vue';
-    import NewMyCard from '@/components/NewMyCard.vue';
-    import NewNFT from '@/components/NewNFT.vue';
+    import ConsoleMyCard from '@/components/ConsoleMyCard.vue';
+    import ConsoleNft from '@/components/ConsoleNft.vue';
 </script>
 
 <template>
@@ -15,7 +15,7 @@
                     <icon-item title="MyCard" icon="discount"></icon-item>
                 </div>
             </template>
-            <NewMyCard />
+            <ConsoleMyCard />
         </el-sub-menu>
         <el-sub-menu index ="1">
             <template #title>
@@ -23,7 +23,7 @@
                     <icon-item title="NFT" icon="hide"></icon-item>
                 </div>
             </template>
-            <NewNFT />
+            <ConsoleNft />
         </el-sub-menu>    
         <el-menu-item>
             <template #title>
@@ -34,6 +34,11 @@
 </template>
 
 <style lang="scss" scoped>
+    .el-menu-vertical-demo:not(.el-menu--collapse) {
+        width: 200px;
+        min-height: 400px;
+    }
+
     .mycard {
         font-weight: bold;
         align-items: center;

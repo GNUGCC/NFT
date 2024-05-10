@@ -101,6 +101,24 @@ const routes: Array<RouteRecordRaw> = [
         meta: {
 
         },
+        children: [
+            {
+                path: "/console/newmycard",
+                name: "newmycard",
+                meta: {
+
+                },
+                component: () => import('@/components/NewMyCard.vue')
+            },
+            {
+                path: "/console/newnft",
+                name: "newnft",
+                meta: {
+
+                },
+                component: () => import('@/components/NewNft.vue')
+            }
+        ],
         component: () => import('@/views/ConsoleView.vue')
     }
 ];
