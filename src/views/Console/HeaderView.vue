@@ -1,4 +1,5 @@
 <script setup lang="ts">
+    import NewMyCard from '@/components/NewMyCard.vue';
 </script>
 
 <template>

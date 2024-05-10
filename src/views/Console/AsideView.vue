@@ -1,5 +1,7 @@
 <script setup lang="ts">
     import IconItem from '@/components/IconItem.vue';
+    import NewMyCard from '@/components/NewMyCard.vue';
+    import NewNFT from '@/components/NewNFT.vue';
 </script>
 
 <template>
@@ -11,13 +13,9 @@
             <template #title>
                 <div class="mycard">
                     <icon-item title="MyCard" icon="discount"></icon-item>
-                </div>                
+                </div>
             </template>
-            <el-menu-item>
-                <template #title>
-                    <icon-item title="新增 MyCard 序號" icon="avatar"></icon-item>
-                </template>
-            </el-menu-item>
+            <NewMyCard />
         </el-sub-menu>
         <el-sub-menu index ="1">
             <template #title>
@@ -25,11 +23,7 @@
                     <icon-item title="NFT" icon="hide"></icon-item>
                 </div>
             </template>
-            <el-menu-item>
-                <template #title>
-                    <icon-item title="NFT 點數序號" icon="info-filled"></icon-item>
-                </template>
-            </el-menu-item>
+            <NewNFT />
         </el-sub-menu>    
         <el-menu-item>
             <template #title>
