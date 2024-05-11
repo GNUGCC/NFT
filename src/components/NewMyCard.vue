@@ -18,6 +18,10 @@
                     <label class="form-label">MyCard 序號</label>
                     <el-input v-model="Form.account" placeholder="您的MyCard 序號" />
                 </el-form-item>
+                <el-form-item prop="account">
+                    <label class="form-label">MyCard 密鑰</label>
+                    <el-input v-model="Form.account" placeholder="您的MyCard 密鑰" />
+                </el-form-item>
             </el-form>
             <div style="margin-top: 5px;">
                 <el-button type="success" class="button" @click="AddNewMyCard" plain>儲存</el-button>
