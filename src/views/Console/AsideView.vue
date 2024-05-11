@@ -39,7 +39,7 @@
 
     .is-active {
         .el-menu-item {
-            background-color: rgb(0, 155, 204);
+            background-color: #808080;
         }
     }
 
