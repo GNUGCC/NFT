@@ -247,9 +247,25 @@ const nft = [
 
 const mycardPool: readonly MyCardPoolType[] = [
     {
-        id: '',
-        token: ''
-    }
+        id: '1',
+        token: 'ASDFTES-782G9GW-78GHRF'
+    },
+    {
+        id: '2',
+        token: 'ASDFTES-782G9GW-78GHRF'
+    },
+    {
+        id: '3',
+        token: 'ASDFTES-782G9GW-78GHRF'
+    },
+    {
+        id: '4',
+        token: 'ASDFTES-782G9GW-78GHRF'
+    },
+    {
+        id: '5',
+        token: 'ASDFTES-782G9GW-78GHRF'
+    }    
 ];
 
 /**

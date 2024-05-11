@@ -57,6 +57,14 @@ export class RouteManager {
 
     /**
      * 
+     */
+    static Console() {
+        LogManager.Log('登入後台', ContextManager.Router);
+        ContextManager.Router.push({ path: '/console' });
+    }
+
+    /**
+     * 
      * @param path
      * @returns
      */

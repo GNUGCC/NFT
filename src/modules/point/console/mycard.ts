@@ -10,6 +10,7 @@ async function queryMyCardPool() {
     return await InternalQueryMyCardPool();
 }
 
+export { Console } from '@/modules/common';
 export {
     QueryMyCardPool
 }

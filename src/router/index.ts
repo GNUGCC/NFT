@@ -103,6 +103,14 @@ const routes: Array<RouteRecordRaw> = [
         },
         children: [
             {
+                path: "/console/mycardpool",
+                name: "mycardpool",
+                meta: {
+
+                },
+                component: () => import('@/components/MyCardPool.vue')
+            },
+            {
                 path: "/console/newmycard",
                 name: "newmycard",
                 meta: {

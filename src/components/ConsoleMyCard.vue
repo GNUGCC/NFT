@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <el-menu-item index="/console/newmycard">
+    <el-menu-item index="/console/mycardpool">
         <template #title>
             <icon-item title="查詢序號池" icon="search"></icon-item>
         </template>
