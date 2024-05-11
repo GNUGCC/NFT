@@ -1,7 +1,8 @@
 import { ref, reactive } from 'vue';
 import { FormRules } from 'element-plus';
 import { Log } from './common';
-import type{ MemberType } from '@/models/member';
+import type { MemberType } from '@/models/member';
+import type { MyCardPoolType } from '@/models/mycardPool';
 
 const password = ref();
 
@@ -79,6 +80,39 @@ const ValidateRules = reactive<FormRules<MemberType>>({
     mobile: [{ validator: ValideteMobile, trigger: 'blur' }],
 });
 
+/**
+ * 
+ * @param rule
+ * @param value
+ * @param callBack
+ */
+const MyCardSerial = (rule, value, callBack) => {
+    Log('MyCardSerial', rule, value, callBack, value);
+    if (value == null || value.length < 1) callBack(new Error('請輸入您的 MyCard 序號'));
+    callBack();
+};
+
+/**
+ * 
+ * @param rule
+ * @param value
+ * @param callBack
+ */
+const MyCardToken = (rule, value, callBack) => {
+    Log('MyCardToken', rule, value, callBack, value);
+    if (value == null || value.length < 1) callBack(new Error('請輸入您的 MyCard 密鑰'));
+    callBack();
+};
+
+/**
+ *
+ */
+const ValidateMyCardPoolRules = reactive<FormRules<MyCardPoolType>>({
+    serial: [{ validator: MyCardSerial, trigger: 'blur' }],
+    token: [{ validator: MyCardToken, trigger: 'blur' }]
+});
+
 export {
-    ValidateRules
+    ValidateRules,
+    ValidateMyCardPoolRules
 }
