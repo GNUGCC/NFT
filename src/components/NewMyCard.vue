@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+    import { QueryMyCardPool } from '@/modules/point/newmycard';
 </script>
 
 <template>

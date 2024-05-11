@@ -1,6 +1,7 @@
 import service from '@/api/common';
 import type { OrderStatusType } from '@/models/order';
 import type { MyCardBuyListType } from '@/models/mycardContent';
+import type { MyCardPoolType } from '@/models/mycardPool';
 
 const orders: OrderStatusType[] = [
     {
@@ -244,8 +245,27 @@ const nft = [
     }
 ];
 
+const mycardPool: readonly MyCardPoolType[] = [
+    {
+        id: '',
+        token: ''
+    }
+];
+
+/**
+ * 
+ * @param param0
+ * @returns
+ */
 export function InternalOrder({ id }) {
     return Promise.resolve(orders);
+}
+
+/**
+ * 
+ */
+export function InternalQueryMyCardPool() {
+    return Promise.resolve(mycardPool);
 }
 
 /**
