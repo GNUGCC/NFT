@@ -14,7 +14,7 @@
             <Aside />
         </el-aside>
         <el-container>
-            <el-header id="header" height="100px"><Header /></el-header>
+            <el-header id="header" height="auto"><Header /></el-header>
             <el-main id="context"><Main /></el-main>
         </el-container>
     </el-container>
@@ -36,7 +36,7 @@
     #context {
         //background-color: #f7f7f7;
         background-color: gainsboro;
-        background-image: radial-gradient(gainsboro, rgba(255, 1, 0, 0.5));
+        background-image: linear-gradient(gainsboro, rgba(255, 1, 0, 0.5));
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: cover;

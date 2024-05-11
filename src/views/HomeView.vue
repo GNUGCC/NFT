@@ -2,7 +2,7 @@
     import Header from '@/components/Header.vue';
     import Info from '@/components/Info.vue';
     import Footer from '@/components/Footer.vue';
-      import {
+    import {
         Login,
         Logout,
         Authentication,

@@ -5,7 +5,12 @@
 <template>
     <el-menu-item index="/console/newmycard">
         <template #title>
-            <icon-item title="新增 MyCard 序號" icon="star-filled"></icon-item>
+            <icon-item title="查詢序號池" icon="search"></icon-item>
+        </template>
+    </el-menu-item>
+    <el-menu-item index="/console/newmycard">
+        <template #title>
+            <icon-item title="新增序號" icon="star-filled"></icon-item>
         </template>
     </el-menu-item>
 </template>

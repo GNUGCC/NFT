@@ -2,6 +2,15 @@
     import IconItem from '@/components/IconItem.vue';
     import ConsoleMyCard from '@/components/ConsoleMyCard.vue';
     import ConsoleNft from '@/components/ConsoleNft.vue';
+    import {
+        Login,
+        Logout,
+        Authentication,
+        Register,
+        Form,
+        FormRef,
+        ValidateRules
+    } from '@/modules/home';
 </script>
 
 <template>
@@ -15,15 +24,15 @@
             </template>
             <ConsoleMyCard />
         </el-sub-menu>
-        <el-sub-menu index="1">
+        <!--<el-sub-menu index="1">
             <template #title>
                 <div class="mycard">
                     <icon-item title="NFT" icon="hide"></icon-item>
                 </div>
             </template>
             <ConsoleNft />
-        </el-sub-menu>
-        <el-menu-item>
+        </el-sub-menu>-->
+        <el-menu-item @click="Logout">
             <template #title>
                 <icon-item title="登出" icon="search"></icon-item>
             </template>
