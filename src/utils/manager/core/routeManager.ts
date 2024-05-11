@@ -10,14 +10,15 @@ export class RouteManager {
      */
     static get Params() {
         return ContextManager.Router.currentRoute.value.params;
-    }
+    }    
 
     /**
      * 
      */
     static InitialRouter(router: Router) {
         router.beforeEach(to => {
-            if (RouteManager.IsPassToAuth(to.name)) return true;
+            if (RouteManager.IsConsole(to.name)) return RouteManager.IsAdmin;
+            if (RouteManager.IsPassToAuth(to.name)) return true;            
             if (StoreManager.Authentication == false) return RouteManager.Home();
             return true;
         });
@@ -56,11 +57,36 @@ export class RouteManager {
 
     /**
      * 
+     */
+    static Console() {
+        LogManager.Log('登入後台', ContextManager.Router);
+        ContextManager.Router.push({ path: '/console' });
+    }
+
+    /**
+     * 
      * @param path
      * @returns
      */
     private static IsPassToAuth(path) {
         return RouteManager.NeedAuthList.findIndex(x => path == x) < 0;
+    }      
+
+    /**
+     * 
+     * @param path
+     * @returns
+     */
+    private static IsConsole(path) {
+        return path.toLowerCase() == 'console';
+    }
+
+    /**
+     * 
+     */
+    private static get IsAdmin() {
+        const { parent } = StoreManager.Authentication;
+        return parent == 0 || RouteManager.Home();
     }
 
     /**

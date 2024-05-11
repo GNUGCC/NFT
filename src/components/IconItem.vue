@@ -1,6 +1,6 @@
 <script setup lang="ts">
     import { defineProps } from 'vue';
-    import { Discount, Search, Avatar, Edit, InfoFilled, Plus, CirclePlusFilled, Hide } from '@element-plus/icons-vue';
+    import { Discount, Search, Avatar, Edit, InfoFilled, Plus, StarFilled, Histogram, CirclePlusFilled, Hide } from '@element-plus/icons-vue';
 
     const props = defineProps<{
         icon: string,
@@ -32,6 +32,12 @@
     </template>
     <template v-if="props.icon == 'search'">
         <el-icon><search /></el-icon>
+    </template>
+    <template v-if="props.icon == 'star-filled'">
+        <el-icon><star-filled /></el-icon>
+    </template>
+    <template v-if="props.icon == 'histogram'">
+        <el-icon><histogram /></el-icon>
     </template>
     <template v-if="props.title">
         <span>{{props.title}}</span>

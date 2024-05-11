@@ -193,6 +193,10 @@ function Logout() {
     RouteManager.Logout();
 }
 
+function Console() {
+    RouteManager.Console();
+}
+
 /**
  * 
  * @param data
@@ -265,6 +269,7 @@ export {
     LogPopup,
     Register,
     Logout,
+    Console,
     LoadData,
     Select,
     PayStatus,

@@ -2,7 +2,7 @@
     import Header from '@/components/Header.vue';
     import Info from '@/components/Info.vue';
     import Footer from '@/components/Footer.vue';
-      import {
+    import {
         Login,
         Logout,
         Authentication,
@@ -58,7 +58,7 @@
         </div>
     </template>
     <template v-else>
-        <el-container>
+        <el-container class="home">
             <el-header><Header /></el-header>
             <el-main><Info /></el-main>
             <el-footer><Footer /></el-footer>
@@ -66,7 +66,7 @@
     </template>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
     .el-alert__title {
         font-size: 20px;
         font-weight: bolder;
