@@ -2,15 +2,7 @@
     import IconItem from '@/components/IconItem.vue';
     import ConsoleMyCard from '@/components/ConsoleMyCard.vue';
     import ConsoleNft from '@/components/ConsoleNft.vue';
-    import {
-        Login,
-        Logout,
-        Authentication,
-        Register,
-        Form,
-        FormRef,
-        ValidateRules
-    } from '@/modules/home';
+    import { Logout } from '@/modules/home';
 </script>
 
 <template>
