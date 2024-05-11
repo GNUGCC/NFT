@@ -17,6 +17,11 @@
                     </el-table-column>
                     <el-table-column label="序號" width="300px" align="center">
                         <template #default="{ row }">
+                            <span>{{ row.serial }}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="密鑰" width="300px" align="center">
+                        <template #default="{ row }">
                             <span>{{ row.token }}</span>
                         </template>
                     </el-table-column>

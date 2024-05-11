@@ -248,22 +248,27 @@ const nft = [
 const mycardPool: readonly MyCardPoolType[] = [
     {
         id: '1',
+        serial: '1875325ASDFTES782G9GW78GHRF',
         token: 'ASDFTES-782G9GW-78GHRF'
     },
     {
         id: '2',
+        serial: '1875325ASDFTES782G9GW78GHRF',
         token: 'ASDFTES-782G9GW-78GHRF'
     },
     {
         id: '3',
+        serial: '1875325ASDFTES782G9GW78GHRF',
         token: 'ASDFTES-782G9GW-78GHRF'
     },
     {
         id: '4',
+        serial: '1875325ASDFTES782G9GW78GHRF',
         token: 'ASDFTES-782G9GW-78GHRF'
     },
     {
         id: '5',
+        serial: '1875325ASDFTES782G9GW78GHRF',
         token: 'ASDFTES-782G9GW-78GHRF'
     }    
 ];
