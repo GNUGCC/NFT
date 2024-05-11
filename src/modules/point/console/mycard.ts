@@ -10,7 +10,15 @@ async function queryMyCardPool() {
     return await InternalQueryMyCardPool();
 }
 
+/**
+ * 
+ */
+function AddNewMyCard() {
+
+}
+
 export { Console } from '@/modules/common';
 export {
-    QueryMyCardPool
+    QueryMyCardPool,
+    AddNewMyCard
 }
