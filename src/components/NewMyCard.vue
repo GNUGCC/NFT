@@ -1,15 +1,26 @@
 <script setup lang="ts">
-    import { QueryMyCardPool } from '@/modules/point/console/mycard';
+     import { Form, FormRef, ValidateRules } from '@/modules/point/console/mycard';
+     import { Console } from '@/modules/common';
 </script>
 
 <template>
     <el-card class="card" shadow="hover">
         <template #header>
             <el-alert title="新增 MyCard 序號" type="info" :closable="false" effect="light" center show-icon />
-        </template>        
+        </template>
+        <el-form ref="FormRef"
+                 :model="Form"
+                 :rules="ValidateRules"
+                 status-icon
+                 label-width="1">
+            <el-form-item prop="account">
+                <label class="form-label">MyCard 序號</label>
+                <el-input v-model="Form.account" placeholder="您的MyCard 序號" />
+            </el-form-item>           
+        </el-form>
         <div style="margin-top: 5px;">
-            <el-button type="success" class="button" @click="OrderNFT(Select)" :disabled="Select == null">送出訂單</el-button>
-            <el-button type="info" class="button" @click="Cancel" plain>取消</el-button>
+            <el-button type="success" class="button" @click="AddNewMyCard" plain>儲存</el-button>
+            <el-button type="info" class="button" @click="Console" plain>取消</el-button>
         </div>
     </el-card>
 </template>
@@ -59,7 +70,7 @@
     .card {
         width: 40%;
         margin: auto;
-        max-height: 150px !important;
+        //max-height: 150px !important;
         font-weight: bolder;
         //background-color: blue !important;
     }
