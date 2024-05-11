@@ -1,5 +1,5 @@
 <script setup lang="ts">
-     import { Form, FormRef, ValidateRules } from '@/modules/point/console/mycard';
+     import { AddNewMyCard, Form, FormRef, ValidateMyCardPoolRules } from '@/modules/point/console/mycard';
      import { Console } from '@/modules/common';
 </script>
 
@@ -11,16 +11,16 @@
             </template>
             <el-form ref="FormRef"
                      :model="Form"
-                     :rules="ValidateRules"
+                     :rules="ValidateMyCardPoolRules"
                      status-icon
                      label-width="1">
-                <el-form-item prop="account">
+                <el-form-item prop="serial">
                     <label class="form-label">MyCard 序號</label>
-                    <el-input v-model="Form.account" placeholder="您的MyCard 序號" />
+                    <el-input v-model="Form.serial" placeholder="您的MyCard 序號" />
                 </el-form-item>
-                <el-form-item prop="account">
+                <el-form-item prop="token">
                     <label class="form-label">MyCard 密鑰</label>
-                    <el-input v-model="Form.account" placeholder="您的MyCard 密鑰" />
+                    <el-input v-model="Form.token" placeholder="您的MyCard 密鑰" />
                 </el-form-item>
             </el-form>
             <div style="margin-top: 5px;">
