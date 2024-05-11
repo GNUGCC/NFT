@@ -8,23 +8,21 @@
     <div class="layout-header">
         <span class="title">後台選單</span>
     </div>
-    <el-menu active-text-color="#ffffff" background-color="#344a5f" text-color="#fff" :ellipsis="false" router>
+    <el-menu class="mycard" active-text-color="#fff" background-color="#344a5f" text-color="#fff" :ellipsis="false" router>
         <el-sub-menu index="0">
             <template #title>
-                <div class="mycard">
-                    <icon-item title="MyCard" icon="discount"></icon-item>
-                </div>
+                <icon-item class="item" title="MyCard" icon="discount"></icon-item>
             </template>
             <ConsoleMyCard />
         </el-sub-menu>
-        <el-sub-menu index ="1">
+        <el-sub-menu index="1">
             <template #title>
                 <div class="mycard">
                     <icon-item title="NFT" icon="hide"></icon-item>
                 </div>
             </template>
             <ConsoleNft />
-        </el-sub-menu>    
+        </el-sub-menu>
         <el-menu-item>
             <template #title>
                 <icon-item title="登出" icon="search"></icon-item>
@@ -39,13 +37,30 @@
         min-height: 400px;
     }
 
+    .is-active {
+        .el-menu-item {
+            background-color: rgb(0, 155, 204);
+        }
+    }
+
+    .item {
+        font-size: 20px;
+    }
+
     .mycard {
-        font-weight: bold;
+        padding: 0;
+        //margin: 0, auto;
+        font-weight: bolder;
         align-items: center;
     }
 
+    .el-sub-menu {
+        --el-menu-hover-bg-color: rgb(0, 155, 204);
+        //width: 180px;
+    }
+
     .el-menu-item {
-        //--el-menu-hover-bg-color: rgb(0, 155, 204);
+        --el-menu-hover-bg-color: rgb(0, 155, 204);
         //width: 180px;
     }
 
