@@ -10,7 +10,7 @@ export class RouteManager {
      */
     static get Params() {
         return ContextManager.Router.currentRoute.value.params;
-    }    
+    }
 
     /**
      * 
