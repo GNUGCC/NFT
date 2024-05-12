@@ -1,9 +1,9 @@
-import { ref, computed } from 'vue';
+import { computed } from 'vue';
 import { computedAsync } from '@vueuse/core';
 import { Log, Home, Order } from '@/modules/common';
 import { InternalMyCardSelectItem } from '@/api/point';
 
-const AddMyCard = computed(() => '/point/mycard/add');
+const AddMyCard = computed(() => '/point/mycard/buy');
 const SelectMyCardItem = computedAsync(async () => await prepareSelectItem());
 
 /**
