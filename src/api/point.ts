@@ -249,27 +249,37 @@ const mycardPool: readonly MyCardPoolType[] = [
     {
         id: '1',
         serial: '1875325ASDFTES782G9GW78GHRF',
-        token: 'ASDFTES-782G9GW-78GHRF'
+        token: 'ASDFTES-782G9GW-78GHRF',
+        point: '1000',
+        valid: true
     },
     {
         id: '2',
         serial: '1875325ASDFTES782G9GW78GHRF',
-        token: 'ASDFTES-782G9GW-78GHRF'
+        token: 'ASDFTES-782G9GW-78GHRF',
+        point: '10000',
+        valid: false
     },
     {
         id: '3',
         serial: '1875325ASDFTES782G9GW78GHRF',
-        token: 'ASDFTES-782G9GW-78GHRF'
+        token: 'ASDFTES-782G9GW-78GHRF',
+        point: '3200',
+        valid: true
     },
     {
         id: '4',
         serial: '1875325ASDFTES782G9GW78GHRF',
-        token: 'ASDFTES-782G9GW-78GHRF'
+        token: 'ASDFTES-782G9GW-78GHRF',
+        point: '5000',
+        valid: true
     },
     {
         id: '5',
         serial: '1875325ASDFTES782G9GW78GHRF',
-        token: 'ASDFTES-782G9GW-78GHRF'
+        token: 'ASDFTES-782G9GW-78GHRF',
+        point: '5000',
+        valid: false
     }    
 ];
 

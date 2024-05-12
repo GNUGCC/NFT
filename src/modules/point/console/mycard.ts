@@ -13,7 +13,19 @@ const QueryMyCardPool = computedAsync(async () => await queryMyCardPool());
  * 
  */
 async function queryMyCardPool() {
-    return await InternalQueryMyCardPool();
+    const result = await InternalQueryMyCardPool();
+    return result.map(x => prepareQueryMyCard(x));
+}
+
+/**
+ * 
+ * @param result
+ * @returns
+ */
+function prepareQueryMyCard(result: MyCardPoolType) {
+    const data = { ...result };
+    data.status = result.valid == true ? '有效' : '無效';
+    return data;
 }
 
 /**
