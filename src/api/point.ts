@@ -286,6 +286,14 @@ export function InternalQueryMyCardPool() {
 
 /**
  * 
+ * @returns
+ */
+export function InternalAddMyCard({ serial, token }) {
+    return Promise.resolve({ serial, result: true });
+}
+
+/**
+ * 
  * @param param0
  */
 export function InternalMyCardInfo({ id }) {

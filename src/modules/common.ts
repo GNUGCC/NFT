@@ -172,6 +172,20 @@ function translateOrderType(select, mycardItem, status) {
 
 /**
  * 
+ * @param result
+ * @param message
+ */
+function ShowStatusMessage(result, message) {
+    if (result == false) {
+        MessageBoxManager.Alert(`${message} 出現錯誤，請重新再試一次。`, 'error').catch(() => { /* eslint-disable */ });
+    }
+    else {
+        MessageBoxManager.Alert(`${message} 成功。`, 'success').catch(() => { /* eslint-disable */ });
+    }
+}
+
+/**
+ * 
  */
 function Home() {
     Log('home: ', StoreManager);
@@ -274,5 +288,6 @@ export {
     Select,
     PayStatus,
     Authentication,
+    ShowStatusMessage,
     PrepareUserPassword
 }
