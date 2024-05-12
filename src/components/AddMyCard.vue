@@ -16,11 +16,11 @@
                      label-width="1">
                 <el-form-item prop="serial">
                     <label class="form-label">MyCard 序號</label>
-                    <el-input v-model="Form.serial" placeholder="您的MyCard 序號" />
+                    <el-input v-model="Form.serial" placeholder="您的 MyCard 序號" />
                 </el-form-item>
                 <el-form-item prop="token">
                     <label class="form-label">MyCard 密鑰</label>
-                    <el-input v-model="Form.token" placeholder="您的MyCard 密鑰" />
+                    <el-input v-model="Form.token" placeholder="您的 MyCard 密鑰" />
                 </el-form-item>
             </el-form>
             <div style="margin-top: 5px;">

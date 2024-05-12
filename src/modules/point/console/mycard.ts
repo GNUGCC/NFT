@@ -1,9 +1,7 @@
 import { ref } from 'vue';
 import { FormInstance } from 'element-plus';
 import { computedAsync } from '@vueuse/core';
-import { Log } from '@/modules/common';
-import { MessageBoxManager } from '@/utils';
-import { ShowStatusMessage } from '@/modules/common';
+import { Log, ShowStatusMessage } from '@/modules/common';
 import { InternalQueryMyCardPool, InternalAddMyCard } from '@/api/point';
 import type { MyCardPoolType } from '@/models/mycardPool';
 
