@@ -6,7 +6,9 @@
         <el-card class="card" shadow="hover">
             <template #header>
                 <el-alert title="MyCard 序號池庫存狀態(測試資料)" type="error" :closable="false" effect="dark" center show-icon />
-                <span>查詢共有 {{QueryMyCardPool.length}} 張卡片</span>
+                <template v-if="QueryMyCardPool.length">
+                    <span>查詢共有 {{QueryMyCardPool.length}} 張卡片</span>
+                </template>                
             </template>
             <el-scrollbar height="300px">
                 <el-table :data="QueryMyCardPool" style="width: 100%" align="center">
@@ -23,6 +25,16 @@
                     <el-table-column label="密鑰" width="300px" align="center">
                         <template #default="{ row }">
                             <span>{{ row.token }}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="實值點數" width="100%" align="right">
+                        <template #default="{ row }">
+                            <span>{{ row.point }}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="使用狀態" width="100%" align="right">
+                        <template #default="{ row }">
+                            <span>{{ row.status }}</span>
                         </template>
                     </el-table-column>
                     <template #empty>
