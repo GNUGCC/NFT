@@ -1,12 +1,7 @@
 <script setup lang="ts">
-    import { defineProps, computed } from 'vue';
     import Point from './Point.vue';
     import Member from './Member.vue';
     import IconItem from './IconItem.vue';
-    import { type MemberType } from '@/models/member';
-
-    const props = defineProps<{ member: MemberType }>();
-    const member = computed(() => props.member);
 </script>
 
 <template>
@@ -24,13 +19,13 @@
             <template #title>
                 <icon-item title="點數管理" icon="discount"></icon-item>
             </template>
-            <point :data="member" />
+            <point />
         </el-sub-menu>
         <el-sub-menu index="2">
             <template #title>
                 <icon-item title="會員專區" icon="avatar"></icon-item>
             </template>
-            <member :data="member" />        
+            <member />
         </el-sub-menu>
     </el-menu>   
 </template>

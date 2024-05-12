@@ -1,7 +1,10 @@
-import { reactive } from 'vue';
+import { ref, reactive } from 'vue';
 import { FormRules } from 'element-plus';
-import { Form, Log } from './common';
-import type{ MemberType } from '@/models/member';
+import { Log } from './common';
+import type { MemberType } from '@/models/member';
+import type { MyCardPoolType } from '@/models/mycardPool';
+
+const password = ref();
 
 /**
  * 
@@ -24,6 +27,7 @@ const ValideteName = (rule, value, callBack) => {
 const ValidetePassword = (rule, value, callBack) => {
     Log('ValidetePassword', rule, value, callBack);
     if (value == null || value?.length < 1) callBack(new Error('請輸入您的密碼'));
+    password.value = value;
     callBack();
 };
 
@@ -36,7 +40,8 @@ const ValidetePassword = (rule, value, callBack) => {
 const ValidetePasswords = (rule, value, callBack) => {
     Log('ValidetePasswords', rule, value, callBack);
     if (value == null || value?.length < 1) callBack(new Error('請輸入您的確認密碼'));
-    if (value != Form.value.password) callBack(new Error('新密碼必需輸入一致'));
+    if (value != password.value) callBack(new Error('新密碼必需輸入一致'));
+    //if (value != Form.value.password) callBack(new Error('新密碼必需輸入一致'));
     callBack();
 };
 
@@ -75,6 +80,39 @@ const ValidateRules = reactive<FormRules<MemberType>>({
     mobile: [{ validator: ValideteMobile, trigger: 'blur' }],
 });
 
+/**
+ * 
+ * @param rule
+ * @param value
+ * @param callBack
+ */
+const MyCardSerial = (rule, value, callBack) => {
+    Log('MyCardSerial', rule, value, callBack, value);
+    if (value == null || value.length < 1) callBack(new Error('請輸入您的 MyCard 序號'));
+    callBack();
+};
+
+/**
+ * 
+ * @param rule
+ * @param value
+ * @param callBack
+ */
+const MyCardToken = (rule, value, callBack) => {
+    Log('MyCardToken', rule, value, callBack, value);
+    if (value == null || value.length < 1) callBack(new Error('請輸入您的 MyCard 密鑰'));
+    callBack();
+};
+
+/**
+ *
+ */
+const ValidateMyCardPoolRules = reactive<FormRules<MyCardPoolType>>({
+    serial: [{ validator: MyCardSerial, trigger: 'blur' }],
+    token: [{ validator: MyCardToken, trigger: 'blur' }]
+});
+
 export {
-    ValidateRules
+    ValidateRules,
+    ValidateMyCardPoolRules
 }

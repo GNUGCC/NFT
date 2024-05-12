@@ -1,14 +1,13 @@
 <script setup lang="ts">
     import { RouteManager } from '@/utils/';
-    import { Orders } from '@/modules/member/order';
-    const Home = () => RouteManager.Home();
+    import { Orders, Home } from '@/modules/member/order';    
 </script>
 
 <template>
     <el-card class="card" shadow="hover">
         <template #header>
             <template v-if="true">
-                <el-alert title="MyCard 訂單記錄(測試資料)" :type="warning" :closable="false" effect="dark" center show-icon />
+                <el-alert title="MyCard 訂單記錄(測試資料)" type="warning" :closable="false" effect="dark" center show-icon />
             </template>
             <template v-else>
                 <el-alert title="MyCard 訂單記錄" type="info" :closable="false" effect="light" center show-icon />

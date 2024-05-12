@@ -28,17 +28,7 @@ function PerformanceMember(data) {
     if (data == null) return null;
 
     const { id, account, name, password, mobile, email, build_time, parent, token } = data;
-    return <MemberType>{
-        id,
-        account,
-        name,
-        password,
-        mobile,
-        email,
-        build_time,
-        parent,
-        token
-    };
+    return Object.assign({}, { id, account, name, password, mobile, email, build_time, parent, token });
 }
 
 /**

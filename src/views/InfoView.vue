@@ -1,29 +1,22 @@
 <script setup lang="ts">
     import { RouteManager } from '@/utils/';
-    import { MyCardInfo } from '@/modules/point/info';
-    const Home = () => RouteManager.Home();
+    import { MyCardInfo, Home } from '@/modules/point/info';    
 </script>
 
 <template>
     <el-card class="card" shadow="hover">        
         <template #header>
-            <template v-if="true">
-                <el-alert title="MyCard 購買記錄(測試資料)" type="error" :closable="false" effect="dark" center show-icon />
-            </template>
-            <template v-else>
-                <el-alert title="MyCard 購買記錄" type="info" :closable="false" effect="light" center show-icon />
-            </template>
+            <el-alert title="MyCard 購買記錄" type="success" :closable="false" effect="light" center show-icon />
         </template>
         <el-table :data="MyCardInfo" style="width: 100%" align="center">
-            <el-table-column label="購買內容" width="100%" align="center">
+            <el-table-column label="購買點數" width="100%" align="left">
                 <template #default="{ row }">
                     <el-popover effect="light" trigger="hover" placement="top" width="auto">
                         <template #default>
-                            <span>id: {{ row.id }}</span>
-                            <span>status: {{ row.mycard_data }}</span>
+                            <span>購買內容: {{ row.mycard_data }}</span>
                         </template>
                         <template #reference>
-                            <el-tag>{{ row.mycard_data }}</el-tag>
+                            <el-tag>{{ row.mycard_point }}</el-tag>
                         </template>
                     </el-popover>
                 </template>
@@ -32,22 +25,7 @@
                 <template #default="{ row }">
                     <span>{{ row.mycard_point }}</span>
                 </template>
-            </el-table-column>
-            <!--<el-table-column label="狀態" width="100%" align="center">
-                <template #default="{ row }">
-                    <span>{{ row.status }}</span>
-                </template>
-            </el-table-column>
-            <el-table-column label="有效日期" width="100%" align="center">
-                <template #default="{ row }">
-                    <span>{{ row.available_date }}</span>
-                </template>
-            </el-table-column>
-            <el-table-column label="建立日期" width="100%" align="center">
-                <template #default="{ row }">
-                    <span>{{ row.available_date }}</span>
-                </template>
-            </el-table-column>-->
+            </el-table-column>           
             <template #empty>
                 沒有訂單資料
             </template>

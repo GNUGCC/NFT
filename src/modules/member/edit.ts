@@ -1,53 +1,72 @@
-import { Form, Home, Log, LogPopup } from '@/modules/common';
+import {  computed } from 'vue';
 import { InternalUpdate } from '@/api/account';
-import { sha512 } from 'js-sha512';
+import { PerformanceMember } from '@/store/common';
+import { Home, Log, LogPopup, Authentication } from '@/modules/common';
+import { Env, ContextManager, StoreManager } from '@/utils';
 import type { MemberType } from '@/models/member';
-import {
-    Env,
-    ContextManager,
-    RouteManager,
-    StoreManager,
-    MessageBoxManager
-} from '@/utils';
+
+const Edit = computed(() => '/member/edit');
+const Data = computed(() => prepareData());
 
 /**
  * 
  * @param valid
  * @returns
  */
-function Save(valid) {
+function Save(valid, fields: MemberType) {
     if (valid == false) return;
 
-    const { id } = RouteManager.Params;
-    const { name, password, account, email, mobile } = Form.value;
-    InternalUpdate({ id, name, password: sha512(password!), account, email, mobile })
-        .then(x => {
-            const form = Object.assign({}, Form.value);
-            Log('使用者更新資料: ', form, x);
-            StoreManager.UpdateMember(form)
-                .then(() => {
-                    Log('update member: ', StoreManager.Member, StoreManager.Members);
-                    LogPopup('更新會員資料成功!', 'success');
-                    Home();
-                });                
-        })
-        .catch(err => {
-            if (ContextManager.Process == Env.Development) {
-                MessageBoxManager.Alert('目前為測試階段，後端修改會員資料產生錯誤!', 'error', '檢查後端');
-            }
+    Log('save edit', valid, fields);
+    return apiToUpdate(fields);
+}
 
-            Log('更新錯誤: ', err);
-            LogPopup(err, 'error');
+/**
+ * 
+ * @param param0
+ */
+function apiToUpdate(value: MemberType) {
+    const result = PerformanceMember(value)!;
+    InternalUpdate(result)
+        .then(() => updateMember(result))
+        .catch(err => updateErrorMessage(err));
+}
+
+/**
+ * 
+ * @param value
+ */
+function updateMember(value: MemberType) {
+    Log('使用者更新資料: ', value);
+    StoreManager.UpdateMember(value)
+        .then(() => {
+            Log('update member: ', StoreManager.Member, StoreManager.Members);
+            LogPopup('更新會員資料成功!', 'success');
+            Home();
         });
 }
 
 /**
  * 
- * @param member
+ * @param error
+ */
+function updateErrorMessage(error) {
+    if (ContextManager.Process == Env.Development) {
+        //MessageBoxManager.Alert('目前為測試階段，後端修改會員資料產生錯誤!', 'error', '檢查後端');
+    }
+
+    Log('更新錯誤: ', error);
+    LogPopup(error, 'error');
+}
+
+/**
+ * 
  * @returns
  */
-function Edit(member: MemberType) {
-    return `/member/edit/${member.id}`;
+function prepareData() {
+    const auth = Authentication();
+    auth.password = auth.passwords = null;
+    Log('prepareData: ', auth);
+    return auth;
 }
 
 /**
@@ -58,6 +77,7 @@ function Cancel() {
 }
 
 export {
+    Data,
     Save,
     Edit,
     Cancel

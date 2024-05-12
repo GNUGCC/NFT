@@ -1,4 +1,4 @@
-import { NtfType } from './ntf';
+import { NtfType } from './nft';
 /**
  * MyCard 點數
  */

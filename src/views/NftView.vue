@@ -1,5 +1,7 @@
 <script setup lang="ts">
-    import { Order, Cancel, Select, PayStatus, SelectMyCardItem, Home } from '@/modules/point/mycard';    
+    import { PayStatus, Select } from '@/modules/common';
+    import { Cancel, Home } from '@/modules/point/mycard';    
+    import { QueryMyCardForNft, OrderNFT } from '@/modules/point/nft';
     PayStatus.value = false;
 </script>
 
@@ -13,23 +15,14 @@
     </template>
     <template v-else-if="PayStatus == true">
         <el-alert class="pay" title="系統導向付款頁面中，請稍候…" type="info" :closable="false" effect="light" center show-icon />
-    </template>
-    <!--<template v-else-if="PayStatus == null">
-        <el-card class="card" shadow="hover">
-            <template #header>
-                <span class="title">NFT 訂單訊息</span>
-            </template>
-            <el-alert class="pay" title="系統已完成建立訂單" description="請於付款頁面內完成付款後可查詢訂單狀態，再次感謝您的訂購" type="success" :closable="false" effect="light" center show-icon />
-            <el-button type="primary" class="button" @click="Home" round>確定</el-button>
-        </el-card>
-    </template>-->
+    </template>    
     <template v-else-if="PayStatus == false">
         <el-card class="card" shadow="hover">
             <template #header>
                 <h1 class="mycard">NFT 線上購點</h1>
             </template>
             <el-select v-model="Select" placeholder="請選擇卡別(品項)" style="width: 400px;" effect="light" clearable>
-                <el-option v-for="item in SelectMyCardItem"
+                <el-option v-for="item in QueryMyCardForNft"
                            :key="item.id"
                            :label="item.content"
                            :value="item.id">
@@ -44,7 +37,7 @@
                 </el-option>
             </el-select>
             <div style="margin-top: 5px;">
-                <el-button type="success" class="button" @click="Order('NFT', Select)" :disabled="Select == null">送出訂單</el-button>
+                <el-button type="success" class="button" @click="OrderNFT(Select)" :disabled="Select == null">送出訂單</el-button>
                 <el-button type="info" class="button" @click="Cancel" plain>取消</el-button>
             </div>
         </el-card>
