@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue';
 import { InternalLogin, InternalQueryMember } from '@/api/account';
-import { FormRef, Log, LogPopup, PrepareUserPassword } from '@/modules/common';
+import { FormRef, Log, LogPopup, ShowElLoading, PrepareUserPassword } from '@/modules/common';
 import { Env, ContextManager, StoreManager } from '@/utils';
 import type { MemberType } from '@/models/member';
 
@@ -24,10 +24,12 @@ function Login(account: string, userpassword: string) {
  * @param param0
  */
 function loginToApi({ account, password }) {
+    const loading = ShowElLoading(true, '請稍候，系統登錄中...');
     InternalLogin({ account, password })
         .then(x => queryMember(x))
         .then(x => LoginAndPopup(x))
-        .catch(err => CheckGuest({ account, password, err }));
+        .catch(err => CheckGuest({ account, password, err }))
+        .finally(() => loading.close());
 }
 
 /**

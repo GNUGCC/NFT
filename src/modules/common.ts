@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 import { sha512 } from 'js-sha512';
-import { FormInstance } from 'element-plus';
+import { FormInstance, ElLoading } from 'element-plus';
 import { MessageBoxManager } from '@/utils';
 import { InternalPay } from '@/api/point';
 import { StoreManager, RouteManager, LogManager } from '@/utils/manager';
@@ -186,6 +186,19 @@ function ShowStatusMessage(result, message) {
 
 /**
  * 
+ * @param lock
+ * @param message
+ */
+function ShowElLoading(lock, text, background = 'rgba(0, 0, 0, 0.7)') {
+    return ElLoading.service({
+        lock,
+        text,
+        background
+    })
+}
+
+/**
+ * 
  */
 function Home() {
     Log('home: ', StoreManager);
@@ -288,6 +301,7 @@ export {
     Select,
     PayStatus,
     Authentication,
+    ShowElLoading,
     ShowStatusMessage,
     PrepareUserPassword
 }

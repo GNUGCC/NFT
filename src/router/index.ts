@@ -60,8 +60,8 @@ const routes: Array<RouteRecordRaw> = [
                         component: () => import('@/views/NftView.vue')
                     },
                     {
-                        path: "/point/mycard/add",
-                        name: "addmycard",
+                        path: "/point/mycard/buy",
+                        name: "buymycard",
                         meta: {
 
                         },
