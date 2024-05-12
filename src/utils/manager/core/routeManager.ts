@@ -17,7 +17,6 @@ export class RouteManager {
      */
     static InitialRouter(router: Router) {
         router.beforeEach(to => {
-            if (RouteManager.IsConsole(to.name)) return RouteManager.IsAdmin;
             if (RouteManager.IsPassToAuth(to.name)) return true;            
             if (StoreManager.Authentication == false) return RouteManager.Home();
             return true;
