@@ -111,12 +111,12 @@ const routes: Array<RouteRecordRaw> = [
                 component: () => import('@/components/MyCardPool.vue')
             },
             {
-                path: "/console/newmycard",
-                name: "newmycard",
+                path: "/console/addmycard",
+                name: "addmycard",
                 meta: {
 
                 },
-                component: () => import('@/components/NewMyCard.vue')
+                component: () => import('@/components/AddMyCard.vue')
             },
             {
                 path: "/console/newnft",
