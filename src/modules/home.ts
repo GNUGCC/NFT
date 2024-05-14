@@ -86,7 +86,7 @@ function CheckGuest({ account, password, err }) {
 }
 
 export { ValidateRules } from './validate';
-export { Register, Logout } from '@/modules/common';
+export { Home, Register, Logout } from '@/modules/common';
 export {
     Form,
     Login,
