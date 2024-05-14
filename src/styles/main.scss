@@ -1,11 +1,6 @@
 @import "bootstrap/scss/bootstrap";
 @import './body.scss';
 
-body {
-    background-color: gainsboro;
-    background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)), url('https://nft.tradcoins.net/mycard_logo.png');
-    //background-image: linear-gradient(rgba(0, 0, 255, 0.5), rgba(255, 255, 0, 0.5)), url('http://localhost:8080/nft.webp');
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
+body {  
+
 }
