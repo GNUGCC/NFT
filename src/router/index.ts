@@ -2,11 +2,6 @@ import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
 const routes: Array<RouteRecordRaw> = [
     {
         path: "/",
-        name: "index",
-        component: () => import('@/views/IndexView.vue'),
-    },
-    {
-        path: "/home",
         name: "home",
         component: () => import('@/views/HomeView.vue'),
         meta: {
@@ -99,7 +94,41 @@ const routes: Array<RouteRecordRaw> = [
 
         },
         component: () => import('@/views/RegisterView.vue')
-    }    
+    },
+    {
+        path: "/console",
+        name: "console",
+        meta: {
+
+        },
+        children: [
+            {
+                path: "/console/mycardpool",
+                name: "mycardpool",
+                meta: {
+
+                },
+                component: () => import('@/components/MyCardPool.vue')
+            },
+            {
+                path: "/console/addmycard",
+                name: "addmycard",
+                meta: {
+
+                },
+                component: () => import('@/components/AddMyCard.vue')
+            },
+            {
+                path: "/console/newnft",
+                name: "newnft",
+                meta: {
+
+                },
+                component: () => import('@/components/NewNft.vue')
+            }
+        ],
+        component: () => import('@/views/ConsoleView.vue')
+    }
 ];
 
 export default createRouter({

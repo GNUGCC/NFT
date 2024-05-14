@@ -17,6 +17,7 @@ export class RouteManager {
      */
     static InitialRouter(router: Router) {
         router.beforeEach(to => {
+            if (RouteManager.IsConsole(to.name)) return RouteManager.IsAdmin;
             if (RouteManager.IsPassToAuth(to.name)) return true;            
             if (StoreManager.Authentication == false) return RouteManager.Home();
             return true;
@@ -44,7 +45,8 @@ export class RouteManager {
      */
     static Home() {
         LogManager.Log('返回主頁路由', ContextManager.Router);
-        ContextManager.Router.push({ path: '/home' });
+        //RouteManager.Router.push('home');
+        ContextManager.Router.push({ path: '/' });
     }    
 
     /** 登出路由*/
