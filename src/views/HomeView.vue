@@ -14,56 +14,58 @@
 </script>
 
 <template>
-    <template v-if="Authentication == false">
-        <h3 class="bg-primary text-center text-white p-2">
-            <div class="nft">NFT</div>
-        </h3>
-        <div class="container">
-            <el-space warp>
-                <el-card class="box-card">
-                    <template #header>
-                        <span class="nft-title">NFT 登入頁面</span>
-                    </template>
-                    <el-form ref="FormRef"
-                             :model="Form"
-                             :rules="ValidateRules"
-                             status-icon
-                             label-width="1">
-                        <el-form-item prop="account">
-                            <label v-bind="{class : 'form-label'}">使用者名稱</label>
-                            <el-input v-model="Form.account" placeholder="您的使用者名稱" clearable data-username></el-input>
-                        </el-form-item>
-                        <el-form-item prop="password">
-                            <label class="form-label">密碼</label>
-                            <el-input v-model="Form.password" type="password" autocomplete="off" placeholder="您的密碼" clearable data-password></el-input>
-                        </el-form-item>
-                    </el-form>
-                </el-card>
-            </el-space>
-        </div>
-        <div class="row">
-            <div class="col">
-                <el-button type="primary" class="button" @click="Login(Form.account, Form.password)" v-if="Authentication == false">登錄</el-button>
+    <div class="homeback">
+        <template v-if="Authentication == false">
+            <h3 class="bg-primary text-center text-white p-2">
+                <div class="nft">NFT</div>
+            </h3>
+            <div class="container">
+                <el-space warp>
+                    <el-card class="box-card">
+                        <template #header>
+                            <span class="nft-title">NFT 登入頁面</span>
+                        </template>
+                        <el-form ref="FormRef"
+                                 :model="Form"
+                                 :rules="ValidateRules"
+                                 status-icon
+                                 label-width="1">
+                            <el-form-item prop="account">
+                                <label v-bind="{class : 'form-label'}">使用者名稱</label>
+                                <el-input v-model="Form.account" placeholder="您的使用者名稱" clearable data-username></el-input>
+                            </el-form-item>
+                            <el-form-item prop="password">
+                                <label class="form-label">密碼</label>
+                                <el-input v-model="Form.password" type="password" autocomplete="off" placeholder="您的密碼" clearable data-password></el-input>
+                            </el-form-item>
+                        </el-form>
+                    </el-card>
+                </el-space>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <el-button type="info" class="button" @click="Logout" v-if="Authentication == true">登出</el-button>
+            <div class="row">
+                <div class="col">
+                    <el-button type="primary" class="button" @click="Login(Form.account, Form.password)" v-if="Authentication == false">登錄</el-button>
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <el-button type="success" class="button" @click="Register" v-if="Authentication == false">註冊</el-button>
+            <div class="row">
+                <div class="col">
+                    <el-button type="info" class="button" @click="Logout" v-if="Authentication == true">登出</el-button>
+                </div>
             </div>
-        </div>
-    </template>
-    <template v-else>
-        <el-container class="home">
-            <el-header><Header /></el-header>
-            <el-main><Info /></el-main>
-            <el-footer><Footer /></el-footer>
-        </el-container>
-    </template>
+            <div class="row">
+                <div class="col">
+                    <el-button type="success" class="button" @click="Register" v-if="Authentication == false">註冊</el-button>
+                </div>
+            </div>
+        </template>
+        <template v-else>
+            <el-container class="home">
+                <el-header><Header /></el-header>
+                <el-main><Info /></el-main>
+                <el-footer><Footer /></el-footer>
+            </el-container>
+        </template>
+    </div>    
 </template>
 
 <style lang="scss" scoped>
