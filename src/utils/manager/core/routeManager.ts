@@ -10,7 +10,7 @@ export class RouteManager {
      */
     static get Params() {
         return ContextManager.Router.currentRoute.value.params;
-    }
+    }    
 
     /**
      * 
@@ -45,8 +45,7 @@ export class RouteManager {
      */
     static Home() {
         LogManager.Log('返回主頁路由', ContextManager.Router);
-        //RouteManager.Router.push('home');
-        ContextManager.Router.push({ path: '/' });
+        ContextManager.Router.push({ path: '/home' });
     }    
 
     /** 登出路由*/
