@@ -8,6 +8,9 @@ import type { MemberType } from '@/models/member';
 import type { OrderStatusType } from '@/models/order';
 
 const dev = true;
+const DateTimeNow = ref();
+setInterval(() => DateTimeNow.value = new Intl.DateTimeFormat('zh-tw', { dateStyle: 'full', timeStyle: 'medium' }).format(new Date(Date.now())), 1000);
+
 const FormRef = ref<FormInstance>();
 const Form = ref<MemberType>({});
 const Select = ref();
@@ -300,6 +303,7 @@ export {
     LoadData,
     Select,
     PayStatus,
+    DateTimeNow,
     Authentication,
     ShowElLoading,
     ShowStatusMessage,

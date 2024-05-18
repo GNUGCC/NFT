@@ -33,7 +33,7 @@ const routes: Array<RouteRecordRaw> = [
 
                         },
                         component: () => import('@/views/OrderView.vue')
-                    },                    
+                    },
                     {
                         path: "/member/info",
                         name: "info",
@@ -137,6 +137,6 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 export default createRouter({
-  history: createWebHashHistory(),
-  routes,
+    history: createWebHashHistory(),
+    routes,
 });

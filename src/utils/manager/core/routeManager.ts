@@ -10,7 +10,7 @@ export class RouteManager {
      */
     static get Params() {
         return ContextManager.Router.currentRoute.value.params;
-    }    
+    }
 
     /**
      * 
@@ -18,7 +18,7 @@ export class RouteManager {
     static InitialRouter(router: Router) {
         router.beforeEach(to => {
             if (RouteManager.IsConsole(to.name)) return RouteManager.IsAdmin;
-            if (RouteManager.IsPassToAuth(to.name)) return true;            
+            if (RouteManager.IsPassToAuth(to.name)) return true;
             if (StoreManager.Authentication == false) return RouteManager.Home();
             return true;
         });
@@ -46,7 +46,7 @@ export class RouteManager {
     static Home() {
         LogManager.Log('返回主頁路由', ContextManager.Router);
         ContextManager.Router.push({ path: '/home' });
-    }    
+    }
 
     /** 登出路由*/
     static Logout() {
@@ -69,7 +69,7 @@ export class RouteManager {
      */
     private static IsPassToAuth(path) {
         return RouteManager.NeedAuthList.findIndex(x => path == x) < 0;
-    }      
+    }
 
     /**
      * 
