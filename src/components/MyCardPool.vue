@@ -1,5 +1,10 @@
 <script setup lang="ts">
+    import { ref } from 'vue';
+    import { useTransition } from '@vueuse/core';
     import { QueryMyCardPool, Console } from '@/modules/point/console/mycard';
+    const outputValue = x => useTransition(x, {
+        duration: 1500,
+    });
 </script>
 
 <template>
@@ -29,7 +34,7 @@
                     </el-table-column>
                     <el-table-column label="實值點數" width="100%" align="right">
                         <template #default="{ row }">
-                            <span>{{ row.point }}</span>
+                            <el-statistic :value="outputValue(parseInt(row.point))" />
                         </template>
                     </el-table-column>
                     <el-table-column label="使用狀態" width="100%" align="right">

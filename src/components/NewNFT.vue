@@ -1,3 +1,3 @@
 <template>
-    <h1>NewNFT</h1>
+    <h1>測試頁面</h1>
 </template>
