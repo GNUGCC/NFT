@@ -34,7 +34,7 @@
                     </el-table-column>
                     <el-table-column label="實值點數" width="100%" align="right">
                         <template #default="{ row }">
-                            <el-statistic title="" :value="outputValue(parseInt(row.point))" />
+                            <el-statistic :value="outputValue(parseInt(row.point))" />
                         </template>
                     </el-table-column>
                     <el-table-column label="使用狀態" width="100%" align="right">
