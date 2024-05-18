@@ -2,7 +2,8 @@
     import Aside from '@/views/Console/AsideView.vue';
     import Header from '@/views/Console/HeaderView.vue';
     import Main from '@/views/Console/MainView.vue';
-    import AsideMainView from '@/views/Console/AsideMainView.vue';
+    import Footer from '@/views/Console/FooterView.vue';
+    import AsideMainView from '@/views/Console/AsideMainView.vue';   
 </script>
 
 <template>
@@ -15,7 +16,8 @@
         </el-aside>
         <el-container>
             <el-header id="header" height="auto"><Header /></el-header>
-            <el-main id="context"><Main /></el-main>
+            <el-main class="background"><Main /></el-main>
+            <el-footer class="background"><Footer /></el-footer>
         </el-container>
     </el-container>
 </template>
@@ -33,7 +35,7 @@
         background-color: #77bc99;
     }
 
-    #context {
+    .background {
         //background-color: #f7f7f7;
         background-color: gainsboro;
         background-image: linear-gradient(gainsboro, rgba(255, 1, 0, 0.5));

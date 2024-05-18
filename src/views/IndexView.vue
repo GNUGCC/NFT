@@ -1,6 +1,7 @@
 <script setup lang="ts">
     import { Home, Logout, Register, Authentication } from '@/modules/home';
-    import { Edit, Avatar, View } from '@element-plus/icons-vue'
+    import { Console } from '@/modules/common';
+    import { Edit, Avatar, View, Aim } from '@element-plus/icons-vue'
 </script>
 
 <template>    
@@ -20,14 +21,15 @@
                         NFT
                     </h1>
                 </el-col>
-                <template v-if="Authentication == false">
-                    <el-col :span="8">
+                <el-col :span="8">
+                    <template v-if="Authentication == false">
                         <el-button type="success" @click="Register" :icon="Edit" round plain>新會員註冊</el-button>
-                    </el-col>
-                </template>
-                <template v-else>
-                    <el-button type="info" @click="Home" :icon="View" round plain>會員專區</el-button>
-                </template>
+                    </template>
+                    <template v-else>
+                        <el-button type="info" @click="Home" :icon="View" round plain>會員專區</el-button>
+                        <el-button type="info" @click="Console" :icon="Aim" round>後台管理</el-button>
+                    </template>
+                </el-col>                
             </el-row>           
         </el-header>
         <el-main>
@@ -40,6 +42,9 @@
             </template>
             <template v-else>
                 <h1 class="text-white text-center">{{Authentication.name}} 您好，歡迎來到艾沛國際 NFT 購點平台</h1>
+                <div class="text-center message">
+                    <p>請點選右上角會員專區進入專屬您個人頁面</p>
+                </div>
             </template>
         </el-main>
     </el-container>
